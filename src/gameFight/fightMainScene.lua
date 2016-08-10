@@ -1,41 +1,49 @@
 --载入所有单键类
 require("gameFight.singleStage")
 require("gameFight.singleLoadMap")
+require("gameFight.Data.singleGameData")
 require("gameFight.singleUtil")
+--结束单键类载入
 
 local fightMainScene = class("fightMainScene")
 
---成员函数
-local m_MainScene = nil
-
 function fightMainScene:create(configs)
 
-    --创建一个场景
-    m_MainScene = cc.Scene:create()
-    m_MainScene:setAnchorPoint(cc.p(0,0))
-    m_MainScene:setPosition(cc.p(0,0))
+    --创建一个主场景
+    self.m_MainScene = cc.Scene:create()
+    self.m_MainScene:setAnchorPoint(cc.p(0,0))
+    self.m_MainScene:setPosition(cc.p(0,0))
+
+    --创建一个主层
+    self.m_MainLayer = cc.Layer:create()
+    self.m_MainLayer:setAnchorPoint(cc.p(0,0))
+    self.m_MainLayer:setPosition(cc.p(0,0))
+    self.m_MainScene:addChild(self.m_MainLayer,10)
+   
+    --载入所有的战斗plist
+    local myUtil = singleUtil:getInstance()
+    myUtil:addAllPlist()
 
     --读取Map配置文件
     local stageData = singleLoadMap:getInstance():loadMap("map1.json")
 
+    --创建一套测试数据
+    singleGameData:getInstance():createTestData()
+
     --载入场景，并且选择是否开启debug模式
-    singleStage:getInstance():runStageForData(m_MainScene, stageData, true)
+    singleStage:getInstance():runStageForData(self.m_MainLayer, stageData, true)
 
     --载入一个角色
-    local animation = singleUtil:getInstance():createFrameCache("enemy/babyspirit/walk","walk",7)
-    local action = cc.Sequence:create(cc.Animate:create(animation),cc.CallFunc:create(function()  end))
+    --测试Actor
+    local Enemy = require("gameFight.Actor.Enemy"):create()
+    Enemy:setData(singleGameData:getInstance().ActorData)
+    Enemy:walk()
+    Enemy:bigen()
 
-
-    local testPs = cc.Sprite:create("enemy/babyspirit/walk/walk0000.png") 
-    testPs:setScale(2.0)
-    testPs:runAction(cc.RepeatForever:create(action))
-
-    testPs:setPosition(cc.p(200,200))
-
-    m_MainScene:addChild(testPs,99)
+    self.m_MainLayer:addChild(Enemy.RootLayer,99)
 
     --运行
-    cc.Director:getInstance():runWithScene(m_MainScene)
+    cc.Director:getInstance():runWithScene(self.m_MainScene)
 end
 
 return fightMainScene

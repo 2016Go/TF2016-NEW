@@ -44,3 +44,9 @@ CC_CAMP =
     Camp_Non        = 5,        --无阵营者，参与游戏演出，如会动的螃蟹，会动的树木。等视为无阵营者，或许可以被攻击产生金币
     Camp_All        = 6         --所有
 }
+
+--战斗缓存plist组
+CC_PLIST = 
+{
+    "plist/babyspirit.plist"
+}

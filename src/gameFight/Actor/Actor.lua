@@ -1,13 +1,15 @@
-local Actor = class("Actor.Actor")
+local Actor = class("Actor")
 
---成员函数
-local Actor = nil
+--创建函数
+function Actor:create()  
+  	self.Camp = CC_CAMP.Camp_All
+    print("Actor:create()")
+end  
 
-function Actor:create(configs)
-    --其阵营表示
-    self.Camp = CC_CAMP.Camp_All
-
-    
+--设置阵营
+function Actor:setActorCamp(myCamp)
+	self.Camp = myCamp
+  	print("Actor:setActorCamp()")
 end
 
 return Actor

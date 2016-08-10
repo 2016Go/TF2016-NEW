@@ -17,37 +17,70 @@ function singleUtil:getInstance()
     return self.instance  
 end 
 
---读取地图xml信息
-function singleUtil:createFrameCache(namePath, namePng, icount, iEnd)
+function singleUtil:addPlist(plistPath)
+    local fullpath = cc.FileUtils:getInstance():fullPathForFilename(plistPath)
+    cs.logger.i(fullpath)
+    cc.SpriteFrameCache:getInstance():addSpriteFrames(plistPath)
+end
+
+function singleUtil:removePlist(plistPath)
+    cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plistPath)
+end
+
+--加载config中所有记录的plist
+function singleUtil:addAllPlist()
+    for k,v in pairs(CC_PLIST) do
+        self.instance:addPlist(v)
+    end
+end
+
+--移除所有
+function singleUtil:removeAllPlist()
+    self.instance:removeSpriteFrames()
+end
+
+--读取地图xml信息，PngPath最后一个字符要求带有/，
+function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd)
+    print("singleUtil:createFrameCache")
     --约定没有特使情况的话，图片名字个数不得超过64
-    local iCountEnd = iEnd or 64
+    iEnd = iEnd or 64
+    iCount = iCount or 64
+    --local frameArr = {}
+    --local animation =cc.Animation:create()
+    --local cache = cc.AnimationCache:getInstance()
+    --cache:addAnimationsWithFile("test.plist")
 
-    --创建足够的数组
-    local frameArr = {}
-    local animation =cc.Animation:create()
+    --创建一个动作
+    local animation = cc.Animation:create()
+    local fristFrame = nil
 
-    if cc.FileUtils:getInstance():isFileExist(namePath) then
-        local prefixPath = cc.FileUtils:getInstance():fullPathForFilename(namePath)
+    --约定每个动作图片最多不得超过iCountEnd
+    for j=0,iEnd do
+        --如果所有数据已经进去那么就走人
+        if iCount == 0 then
+            break
+        end
+        --组装路径
+        local fullPath = PngPath..Prefix..string.format("%04d.png",j)
+        local frame = cc.SpriteFrameCache:getInstance():getSpriteFrame(fullPath)
 
-        --约定每个动作图片最多不得超过iCountEnd
-        for j=0,64 do
-            local fullPath = prefixPath.."/"..namePng..string.format("%04d.png",j)
-            if cc.FileUtils:getInstance():isFileExist(fullPath)  then
-                cs.logger.i("youwei",fullPath)
-                local frame = cc.SpriteFrameCache:getInstance():getSpriteFrameByName(namePath.."/"..string.format("%04d.png",j))
-                print(frame)
-                animation:addSpriteFrame(frame)  
+        if frame ~= nil then
+            animation:addSpriteFrame(frame)
+            cs.logger.i(fullPath)
+            if fristFrame == nil then
+                fristFrame = cc.SpriteFrameCache:getInstance():getSpriteFrame(fullPath)
             end
+            iCount = iCount - 1
         end
     end
 
-    animation:setDelayPerUnit(0.15)          --设置两个帧播放时间
-    animation:setRestoreOriginalFrame(true)    --动画执行后还原初始状态 
-
-    if animation == nil then
-        cs.logger.w("animation is nil ",namePath)
+    if fristFrame == nil then
+        cs.logger.i("can not find sprite:",PngPath..Prefix..string.format("%04d.png",0))
     end
 
-    return animation
+    animation:setDelayPerUnit(DelayUnit)        --设置两个帧播放时间
+    animation:setRestoreOriginalFrame(true)     --动画执行后还原初始状态 
+
+    return fristFrame , animation
 end
 
