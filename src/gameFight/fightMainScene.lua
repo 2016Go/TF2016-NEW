@@ -6,6 +6,7 @@ require("gameFight.singleUtil")
 require("gameFight.data.singleGameData")
 require("gameFight.manager.singleTimeManager")
 require("gameFight.manager.singleEnemyManager")
+require("gameFight.manager.singleWaveManager")
 require("gameFight.gameEvent.singleGameEventPool")
 --结束单键类载入
 
@@ -40,7 +41,6 @@ function fightMainScene:create(configs)
     local enemyLoad = singleLoadEnemy:getInstance()
     enemyLoad:loadEnemy("json/enemy.json")
     enemyLoad:LoadLevelEnemy("json/level1.json")
-    local testdata = enemyLoad:getTestWave()
 
     --读取当前关卡刷怪的Enemy配置文件
     local levelData = singleLoadEnemy:getInstance():loadEnemy("json/level1.json")
@@ -51,8 +51,9 @@ function fightMainScene:create(configs)
 
     --加入一个怪物管理器管理游戏中的怪物
     local enemyManager = singleEnemyManager:getInstance()
-    enemyManager:setWaveData(testdata)
-    timeManager:addTimer(enemyManager)
+
+    --加入一个波次管理器管理游戏中的波次
+    local waveManager = singleWaveManager:getInstance()
 
     --创建一个事件池
     local singEventPool = singleGameEventPool:getInstance()
@@ -86,6 +87,9 @@ function fightMainScene:create(configs)
     self.m_MainLayer:addChild(Enemy3,99)
     --]]
 --------------------------------------------------------------------------------
+    --开始下一波（第一波）
+    cs.logger.i("SendEventForListener GameEvent_NextWaveNeed")
+    singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_NextWaveNeed)
 
     --运行
     cc.Director:getInstance():runWithScene(self.m_MainScene)

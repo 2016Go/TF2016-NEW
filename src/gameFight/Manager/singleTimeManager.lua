@@ -20,7 +20,8 @@ end
 
 function singleTimeManager:_init() 
     self.allTimer = {}
-    self.removeTimer = {}
+    self.nextRemoveTimer = {}
+    self.nextAddTimer = {}
     self.isNextFrameRemoveAll = false
 end
 
@@ -31,7 +32,7 @@ function singleTimeManager:setMainLayerForTime(MainLayer)
 	self.m_MainLayer:scheduleUpdateWithPriorityLua(
 		function(dt)
             --开始调度每个时间
-			for i,v in ipairs(self.allTimer) do
+			for i,v in pairs(self.allTimer) do
 				v:UpData(dt)
 			end
     		
@@ -42,30 +43,29 @@ function singleTimeManager:setMainLayerForTime(MainLayer)
     		end
     		
     		--清理部分时间调度者
-    		for i,v in ipairs(self.removeTimer) do
-    			removeTimer(v)
+    		for i,v in pairs(self.nextRemoveTimer) do
+    			self:_removeTimer(v)
     		end
+
+    		--加入部分时间调度者
+    		for i,v in pairs(self.nextAddTimer) do
+    			table.insert(self.allTimer, v)
+    		end
+
+    		self.nextRemoveTimer = {}
+    		self.nextAddTimer = {}
     	end,
     0)
 end
 
---内部调用函数，不对外开放
-function singleTimeManager:removeTimer( Timer )
-	for i,v in ipairs(self.allTimer) do
-		if v == Timer then
-			table.remove( self.allTimer, i )
-		end
-	end
-end
-
 --加入一个需要时间调度的成员
 function singleTimeManager:addTimer( Timer )
-	table.insert(self.allTimer, Timer)
+	table.insert(self.nextAddTimer, Timer)
 end
 
 --下一帧，删除某一个需要时间调度的成员
-function singleTimeManager:removeTimerNextFrame( Timer )
-	self.removeTimer.insert(Timer)
+function singleTimeManager:nextRemoveTimerNextFrame( Timer )
+	table.insert(self.nextRemoveTimer, Timer)
 end
 
 --下一帧，删除所有需要时间调度的成员
@@ -81,4 +81,15 @@ end
 --继续游戏中的时间调度
 function singleTimeManager:Continue( ... )
 	-- body
+end
+
+--内部调用函数，不对外开放
+function singleTimeManager:_removeTimer( Timer )
+	cs.logger.i("_removeTimer")
+	for i,v in pairs(self.allTimer) do
+		if v == Timer then
+			cs.logger.i("_removeTimer  OK")
+			table.remove( self.allTimer, i )
+		end
+	end
 end

@@ -27,7 +27,11 @@ end
 --开始每帧更新敌人管理器
 function singleEnemyManager:UpData(dt)
     self.timeGo = self.timeGo + dt
-    self:_checkAddEnemt()
+    
+    --检测是否还可以刷出怪物，如果可以刷怪，如果不可以，等待，如果没怪了，请求下一波
+    if self:_checkAddEnemt() == false then
+        return
+    end
 
     for i,v in pairs(self.allEnemy) do
         v:UpData(dt)
@@ -59,11 +63,25 @@ end
 --监听事件
 function singleEnemyManager:eventResponse(gameEventID, eventSender, parameter)
     --有敌方单位到达了终点位置
-    if gameEventID == CC_GAME_EVENT.GameEvent_EnemyGoOver then 
+    if gameEventID == CC_GAME_EVENT.GameEvent_EnemyGoOver then
         cs.logger.i("eventSender:clear()")
         self:removeEnemy(eventSender)
         eventSender:clear()
+
+    --更新最新的波次信息
+    elseif gameEventID == CC_GAME_EVENT.GameEvent_WaveDataReady then
+        cs.logger.i("setWaveData:parameter()")
+        if parameter == nil then
+            cs.logger.i("parameter:parameter() == nil")
+            return
+        end
+        singleTimeManager:getInstance():addTimer(self)
+        self:setWaveData(parameter,1)
+    else
+        cs.logger.i("this is a meng B msg")
     end
+
+    cs.logger.i("eventResponse end")
 end
 
 
@@ -76,19 +94,33 @@ function singleEnemyManager:_init()
     self.nowEnemyID = 1
 
     --加入一个监听事件
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_WaveDataReady, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_EnemyGoOver, self)
 end
 
 function singleEnemyManager:_checkAddEnemt()
-    if self.waveData == nil then
-        return
+    --如果波次信息为空（已经刷完了）
+    if next(self.waveData) == nil then
+        
+        --如果场上还有怪物(继续行动)
+        if next(self.allEnemy) ~= nil then
+            cs.logger.i("self.allEnemy is not null")
+            return true 
+
+        --否者，停止更新，发送请求波次 
+        else
+            cs.logger.i("self.allEnemy is null")
+            singleTimeManager:getInstance():nextRemoveTimerNextFrame(self)
+            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_NextWaveNeed, self)
+            return false
+        end
     end
 
     local nowItem = self.waveData["e"][self.nowEnemyID]
     if nowItem == nil then
-        --处理一波完成事件
-        self.waveData = nil
-        return
+        --处理一波完成事件(继续行动)
+        self.waveData = {}
+        return true
     end    
 
     --如果已经到达出场时间
@@ -101,17 +133,19 @@ function singleEnemyManager:_checkAddEnemt()
         local actorData = {}
         actorData.name         = "飞翔的小鸟"           -- 怪物名字
         actorData.life         = 100                   -- 生命值
-        actorData.speed        = 50                    -- 速度值
-        actorData.mainRes      = "babyspirit"          -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
+        actorData.speed        = 260                    -- 速度值
+        actorData.mainRes      = "babyspirit/walk/"          -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
         actorData.standName    = "stand"               -- 站立动作名字
         actorData.walk         = "walk"                -- 站立动作名字
         actorData.road         = 1                     -- 站立动作名字
 
         local Enemy1 = require("gameFight.actor.enemy"):create()
-        Enemy1:setData(singleGameData:getInstance().actorData)
+        Enemy1:setData(actorData)
         Enemy1.nowState = CC_ENEMY_STATE.State_Born
         self:addEnemy(Enemy1)
         singleGameData:getInstance():getMainLayer():addChild(Enemy1,99)
     end
+
+    return true
 end
 

@@ -67,10 +67,8 @@ CC_ENEMY_STATE =
 CC_GAME_EVENT = 
 {
     GameEvent_EnemyGoOver = 1,      -- 怪物走到了最后的出口
-    GameEvent_ALL1 = 2,
-    GameEvent_ALL2 = 3,
-    GameEvent_ALL3 = 4,
-    GameEvent_ALL = 5
+    GameEvent_WaveDataReady = 50,   -- 当前波次信息准备Ok,附带波次数据
+    GameEvent_NextWaveNeed  = 51    -- 请求下一个波次的怪物，
 }
 
 CC_TIME_SCALE = 1

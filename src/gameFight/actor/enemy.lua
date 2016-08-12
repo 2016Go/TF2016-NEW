@@ -54,7 +54,6 @@ end
 function enemy:walkUpData(dt)
     --将要行走路长
     local willGo = self.actorData.speed * dt
-
     --活动当前怪物所在点
     local nowPos = cc.p(self:getPosition())
 
@@ -69,7 +68,7 @@ function enemy:walkUpData(dt)
 
         --如果为空说明已经到达终点。发送消息说明已经到达终点
         if self:_getLoadPos(nextPosID ) == nil then
-            singleGameEventPool:getInstance():SendEventForListener(1, self)
+            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_EnemyGoOver, self)
             return
         end
 
