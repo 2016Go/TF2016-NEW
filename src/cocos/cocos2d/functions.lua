@@ -194,13 +194,16 @@ function class(classname, ...)
                 assert(cls.__create == nil,
                     string.format("class() - create class \"%s\" with more than one creating function or native class",
                         classname));
-                cls.__create = function() return super:create() end
+                cls.__create = function() 
+                                    return super:create() 
+                                end
             else
                 -- super is pure lua class
                 cls.__supers = cls.__supers or {}
                 cls.__supers[#cls.__supers + 1] = super
                 if not cls.super then
                     -- set first super pure lua class as class.super
+
                     cls.super = super
                 end
             end
@@ -227,8 +230,11 @@ function class(classname, ...)
         -- add default constructor
         cls.ctor = function() end
     end
+
+    
     cls.new = function(...)
         local instance
+
         if cls.__create then
             instance = cls.__create(...)
         else
@@ -239,6 +245,7 @@ function class(classname, ...)
         instance:ctor(...)
         return instance
     end
+
     cls.create = function(_, ...)
         return cls.new(...)
     end

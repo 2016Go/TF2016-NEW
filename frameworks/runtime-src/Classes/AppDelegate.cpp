@@ -61,7 +61,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
-
+    
+    //auto my = Sprite::create();
+    //my->removeFromParent()
     register_all_packages();
 
     LuaStack* stack = engine->getLuaStack();

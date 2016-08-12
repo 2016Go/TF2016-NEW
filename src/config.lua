@@ -27,7 +27,7 @@ CC_DESIGN_RESOLUTION =
 }
 
 --层级关系
-CC_LAYER_LEVEL = 
+CC_GAME_LAYER_LEVEL = 
 {
     Layer_scene = 10,    --最底层的地形层 
     Layer_scene_debug = 11,    --最底层的地形层上的debug模式绘制层
@@ -48,5 +48,29 @@ CC_CAMP =
 --战斗缓存plist组
 CC_PLIST = 
 {
-    "plist/babyspirit.plist"
+    "plist/enemy/babyspirit.plist",
+    "plist/enemy/devilhighlord_fly.plist",
+    "plist/enemy/goblin.plist",
+    "plist/enemy/orcgeneral.plist"
 }
+
+--敌人状态标记
+CC_ENEMY_STATE = 
+{
+    State_Ready= 1,             -- 准备状态，还没有到出生的时候
+    State_Born = 2,             -- 出生状态
+    State_Walk = 3,             -- 行走状态
+    State_Hit  = 4,             -- 被击状态
+    State_Die  = 5              -- 死亡状态
+}
+
+CC_GAME_EVENT = 
+{
+    GameEvent_EnemyGoOver = 1,      -- 怪物走到了最后的出口
+    GameEvent_ALL1 = 2,
+    GameEvent_ALL2 = 3,
+    GameEvent_ALL3 = 4,
+    GameEvent_ALL = 5
+}
+
+CC_TIME_SCALE = 1

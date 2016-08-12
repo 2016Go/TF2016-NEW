@@ -1,15 +1,13 @@
-local Actor = class("Actor")
+local actor = class("actor", function() return cc.Layer:create() end)
 
---创建函数
-function Actor:create()  
+--初始化函数
+function actor:ctor()
   	self.Camp = CC_CAMP.Camp_All
-    print("Actor:create()")
 end  
 
 --设置阵营
-function Actor:setActorCamp(myCamp)
+function actor:setActorCamp(myCamp)
 	self.Camp = myCamp
-  	print("Actor:setActorCamp()")
 end
 
-return Actor
+return actor

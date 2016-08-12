@@ -178,6 +178,7 @@ function class(classname, ...)
     local supers = {...}
     for _, super in ipairs(supers) do
         local superType = type(super)
+        print("superType = "..superType)
         assert(superType == "nil" or superType == "table" or superType == "function",
             string.format("class() - create class \"%s\" with invalid super class type \"%s\"",
                 classname, superType))
@@ -187,6 +188,7 @@ function class(classname, ...)
                 string.format("class() - create class \"%s\" with more than one creating function",
                     classname));
             -- if super is function, set it to __create
+            print("function   ---  cls.__create add ")
             cls.__create = super
         elseif superType == "table" then
             if super[".isclass"] then
@@ -194,13 +196,16 @@ function class(classname, ...)
                 assert(cls.__create == nil,
                     string.format("class() - create class \"%s\" with more than one creating function or native class",
                         classname));
-                cls.__create = function() return super:create() end
+                cls.__create = function() 
+                                    return super:create() 
+                                end
             else
                 -- super is pure lua class
                 cls.__supers = cls.__supers or {}
                 cls.__supers[#cls.__supers + 1] = super
                 if not cls.super then
                     -- set first super pure lua class as class.super
+                    print("table   ---  cls.super add ")
                     cls.super = super
                 end
             end
@@ -212,6 +217,7 @@ function class(classname, ...)
 
     cls.__index = cls
     if not cls.__supers or #cls.__supers == 1 then
+        print("cls.__supers or #cls.__supers == 1 219")
         setmetatable(cls, {__index = cls.super})
     else
         setmetatable(cls, {__index = function(_, key)
@@ -227,11 +233,16 @@ function class(classname, ...)
         -- add default constructor
         cls.ctor = function() end
     end
+
+    
     cls.new = function(...)
         local instance
+
         if cls.__create then
+            print("cls.__create is good")
             instance = cls.__create(...)
         else
+            print("cls.__create = nil")
             instance = {}
         end
         setmetatableindex(instance, cls)
@@ -239,6 +250,7 @@ function class(classname, ...)
         instance:ctor(...)
         return instance
     end
+
     cls.create = function(_, ...)
         return cls.new(...)
     end

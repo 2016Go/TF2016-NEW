@@ -50,3 +50,15 @@ CC_PLIST =
 {
     "plist/babyspirit.plist"
 }
+
+--敌人状态标记
+CC_ENEMY_STATE = 
+{
+    State_Ready= 1,             -- 准备状态，还没有到出生的时候
+    State_Born = 2,             -- 出生状态
+    State_Walk = 3,             -- 行走状态
+    State_Hit  = 4,             -- 被击状态
+    State_Die  = 5              -- 死亡状态
+}
+
+CC_TIME_SCALE = 1

@@ -13,6 +13,7 @@ end
 function singleLoadMap:getInstance()  
     if self.instance == nil then  
         self.instance = self:new()  
+        self.mapData = {}
     end  
     return self.instance  
 end 
@@ -33,4 +34,3 @@ function singleLoadMap:loadMap(namePath)
 
     return self.mapData
 end
-

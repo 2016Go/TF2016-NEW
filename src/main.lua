@@ -2,10 +2,11 @@
 -- Search Paths 开始加入游戏内应该有的一些搜索路径
 --------------------------------------------------------------
 print("<<<<<cc.FileUtils:getInstance():setPopupNotify(false)>>>>")
+
 cc.FileUtils:getInstance():setPopupNotify(false)
 cc.FileUtils:getInstance():addSearchPath("src/")
 cc.FileUtils:getInstance():addSearchPath("res/")
-
+require ("NativeHotUpdate"):init()
 require "config"
 
 
@@ -35,9 +36,12 @@ local function main()
     collectgarbage("setpause", 100)
     collectgarbage("setstepmul", 5000)
 
-    --cc.Director:getInstance():getOpenGLView():setDesignResolutionSize(1334, 750, cc.ResolutionPolicy.NO_BORDER) 
+    --创建随机种子
+    math.randomseed(os.time())
 
-    require("gameFight.fightMainScene"):create()
+    --载入游戏主场景
+    local mainGame = require("gameFight.fightMainScene")
+    mainGame:create()
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

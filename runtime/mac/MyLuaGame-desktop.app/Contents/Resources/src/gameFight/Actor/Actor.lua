@@ -1,15 +1,17 @@
-local Actor = class("Actor")
+print("require actor")
 
---创建函数
-function Actor:create()  
+local actor = class("actor", function()   print("cc.Node:create()") return cc.Node:create() end)
+
+--初始化函数
+function actor:ctor()
   	self.Camp = CC_CAMP.Camp_All
-    print("Actor:create()")
+    print("actor:ctor()")
 end  
 
 --设置阵营
-function Actor:setActorCamp(myCamp)
+function actor:setActorCamp(myCamp)
 	self.Camp = myCamp
-  	print("Actor:setActorCamp()")
+  	print("actor:setActorCamp()")
 end
 
-return Actor
+return actor
