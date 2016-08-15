@@ -66,7 +66,7 @@ function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd)
 
         if frame ~= nil then
             animation:addSpriteFrame(frame)
-            cs.logger.i(fullPath)
+            --cs.logger.i(fullPath)
             if fristFrame == nil then
                 fristFrame = cc.SpriteFrameCache:getInstance():getSpriteFrame(fullPath)
             end

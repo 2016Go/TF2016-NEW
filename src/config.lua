@@ -31,6 +31,9 @@ CC_GAME_LAYER_LEVEL =
 {
     Layer_scene = 10,    --最底层的地形层 
     Layer_scene_debug = 11,    --最底层的地形层上的debug模式绘制层
+    
+    Layer_scene_enemy = 100,   --怪物所在层级
+
     Layer_max = 9999     --最高层地形
 }
 
@@ -49,7 +52,7 @@ CC_CAMP =
 CC_PLIST = 
 {
     "plist/enemy/babyspirit.plist",
-    "plist/enemy/devilhighlord_fly.plist",
+    "plist/enemy/devilobserver.plist",
     "plist/enemy/goblin.plist",
     "plist/enemy/orcgeneral.plist"
 }
@@ -62,6 +65,16 @@ CC_ENEMY_STATE =
     State_Walk = 3,             -- 行走状态
     State_Hit  = 4,             -- 被击状态
     State_Die  = 5              -- 死亡状态
+}
+
+--生命体的移动方向模式记录
+CC_LIFT_WALK_DIR = 
+{
+    Walk_Left  = 1,          --左移动
+    Walk_Right = 2,          --右移动
+    Walk_Up    = 3,          --上移动
+    Walk_Down  = 4,          --下移动
+    Walk_All   = 5             
 }
 
 CC_GAME_EVENT = 

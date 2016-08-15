@@ -11,7 +11,7 @@ function enemy:ctor()
     self.actorTime = 0 -- 当前行为时间
     --创建怪物蹄片
     self.mainSprite = cc.Sprite:create()
-    self.mainSprite:setAnchorPoint(cc.p(0,0))
+    self.mainSprite:setAnchorPoint(cc.p(0.5,0.5))
     self.lifeLayer:addChild(self.mainSprite , 10)
 end
 
@@ -26,10 +26,8 @@ function enemy:setData(actorData)
     self.actorData.life         = actorData.life            -- 生命值
     self.actorData.speed        = actorData.speed           -- 速度值
     self.actorData.mainRes      = actorData.mainRes         -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
-    self.actorData.stand        = actorData.stand           -- 站立动作名字
-    self.actorData.walk         = actorData.walk            -- 位移动作名字
     self.actorData.road         = actorData.road            -- 行走道路ID
-    self.actorData.roadData     = singleLoadMap:getInstance().mapData["map"]["roads"]["road"][self.actorData.road]            -- 行走道路的数据
+    self.actorData.roadData     = singleLoadData:getInstance().mapData["map"]["roads"]["road"][self.actorData.road]            -- 行走道路的数据
 end
 
 function enemy:born()
@@ -44,10 +42,9 @@ function enemy:born()
     self.nowState = CC_ENEMY_STATE.State_Walk
 
     --动作行为切换为行走
-    local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,self.actorData.walk, 0.25,7)
+    local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,"/walk/walk", 0.25,7)
     self.mainSprite:setSpriteFrame(fristFrame)
     self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
-
     self:_setActorTime(-1)
 end
 
@@ -84,17 +81,84 @@ function enemy:walkUpData(dt)
     end
 
     --获取下一个节点位置
-
     local nextPos = self:_getLoadPos(nextPosID)
     
+    --X,Y方向行动差
+    local differenceX = nextPos.x-nowPos.x
+    local differenceY = nextPos.y-nowPos.y
+    --根据X,Y的差去判定当前行为转向
+    self:UpDataAniForWalk(differenceX,differenceY)
+
     --两点总边长
-    local addMath = math.abs(nextPos.y-nowPos.y) + math.abs(nextPos.x-nowPos.x)
+    local addMath = math.abs(differenceY) + math.abs(differenceX)
     local x = surplus*( (nextPos.x-nowPos.x)/ addMath )
     local y = surplus*( (nextPos.y-nowPos.y)/ addMath )
 
     self:setPosition(cc.p(nowPos.x+x,nowPos.y+y))
 
 end
+
+function enemy:UpDataAniForWalk( differenceX,differenceY )
+    
+    local direction = CC_LIFT_WALK_DIR.Walk_All
+    
+    --上下为方向移动
+    if math.abs(differenceY) > math.abs(differenceX) then
+        if differenceY > 0 then
+            direction = CC_LIFT_WALK_DIR.Walk_Up
+        else
+            direction = CC_LIFT_WALK_DIR.Walk_Down
+        end
+    
+    --左右移动为方向
+    else
+        if differenceX > 0 then
+            direction = CC_LIFT_WALK_DIR.Walk_Left
+        else
+            direction = CC_LIFT_WALK_DIR.Walk_Right
+        end
+    end
+
+    if direction == self.actorData.direction then
+        return
+    end
+
+    print("differenceX = "..differenceX)
+    print("differenceY = "..differenceY)
+    --变更移动行为
+    self.actorData.direction = direction
+    local fristFrame , animation
+    if direction == CC_LIFT_WALK_DIR.Walk_Up then
+        fristFrame , animation = singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,"/walk_up/walk_up", 0.25,7)
+    elseif direction == CC_LIFT_WALK_DIR.Walk_Down then
+        fristFrame , animation = singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,"/walk_down/walk_down", 0.25,7)
+    else
+        fristFrame , animation =singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,"/walk/walk", 0.25,7)
+    end
+
+    self.mainSprite:stopAllActions()
+    self.mainSprite:setSpriteFrame(fristFrame)
+    self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
+    if direction == CC_LIFT_WALK_DIR.Walk_Left then
+        print("setScaleX = "..1)
+        self.mainSprite:setScaleX(1)
+    elseif direction == CC_LIFT_WALK_DIR.Walk_Right then
+        print("setScaleX = "..-1)
+        self.mainSprite:setScaleX(-1)
+    end
+    self:_setActorTime(-1)
+end
+--self.actorData.direction
+
+--生命体的移动方向模式记录
+--CC_LIFT_WALK_DIR = 
+--{
+--    Walk_Left  = 1,          --左移动
+--    Walk_Right = 2,          --右移动
+--    Walk_Up    = 3,          --上移动
+--    Walk_Down  = 4,          --下移动
+--    Walk_All   = 5             
+--}
 
 function enemy:UpData(dt)
 

@@ -355,9 +355,9 @@
       },
       {
         "-id": "28",
-        "-name": "chs",
+        "-name": "devfly",
         "-rank": "62",
-        "-anim": "chaos",
+        "-anim": "devilobserver",
         "-baseHP": "60000",
         "-speed": "17.6",
         "-bossUnit": "true",

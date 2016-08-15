@@ -18,17 +18,8 @@ function singleGameData:getInstance()
 end 
 
 
-function singleGameData:createTestData()
-	--普通小怪数据，假数据
-	self.actorData = {}
+function singleGameData:setStageData()
 
-	self.actorData.name  		= "飞翔的小鸟"			-- 怪物名字
-	self.actorData.life  		= 100  					-- 生命值
-	self.actorData.speed 		= 15 					-- 速度值
-	self.actorData.mainRes 		= "babyspirit/walk/"	-- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
-	self.actorData.standName	= "stand"				-- 站立动作名字
-	self.actorData.walk			= "walk"				-- 站立动作名字
-	self.actorData.road			= 1						-- 站立动作名字
 end
 
 function singleGameData:setMainLayer(mainLayer)

@@ -104,7 +104,7 @@ function singleEnemyManager:_checkAddEnemt()
         
         --如果场上还有怪物(继续行动)
         if next(self.allEnemy) ~= nil then
-            cs.logger.i("self.allEnemy is not null")
+            --cs.logger.i("self.allEnemy is not null")
             return true 
 
         --否者，停止更新，发送请求波次 
@@ -116,34 +116,47 @@ function singleEnemyManager:_checkAddEnemt()
         end
     end
 
-    local nowItem = self.waveData["e"][self.nowEnemyID]
+    --获取当前正要加入的单个敌人数据
+    local nowItem = singleLoadData:getInstance():getEnemyItemBornData(self.waveData , self.nowEnemyID)
     if nowItem == nil then
         --处理一波完成事件(继续行动)
         self.waveData = {}
         return true
     end    
 
-    --如果已经到达出场时间
-    local dTime = tonumber(nowItem["-d"])/1000
-    print("nowItem"..self.nowEnemyID.." = "..nowItem["-d"].." to num = "..dTime)
+    --获取出场延时，并判断是否已经到达出场时间
+    local dTime = singleLoadData:getInstance():getEnemyItemBornTime(self.waveData , self.nowEnemyID)
     if dTime <= self.timeGo then
         self.nowEnemyID = self.nowEnemyID + 1
         self.timeGo = 0 
 
-        local actorData = {}
-        actorData.name         = "飞翔的小鸟"           -- 怪物名字
-        actorData.life         = 100                   -- 生命值
-        actorData.speed        = 260                    -- 速度值
-        actorData.mainRes      = "babyspirit/walk/"          -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
-        actorData.standName    = "stand"               -- 站立动作名字
-        actorData.walk         = "walk"                -- 站立动作名字
-        actorData.road         = 1                     -- 站立动作名字
+    --获取当前的小怪数据    
+        local enemyItemData =singleLoadData:getInstance():getEnemyItem(self.waveData , self.nowEnemyID)
+        if enemyItemData == nil then 
+            --当下一个怪物不存在的时候。返回
+            self.waveData = {}
+            return true
+        end
 
-        local Enemy1 = require("gameFight.actor.enemy"):create()
-        Enemy1:setData(actorData)
-        Enemy1.nowState = CC_ENEMY_STATE.State_Born
-        self:addEnemy(Enemy1)
-        singleGameData:getInstance():getMainLayer():addChild(Enemy1,99)
+        --当下一个怪物存在的时候，将其创建
+        --cs.util.printTable(enemyItemData)
+        local actorData = {}
+        actorData.name         = enemyItemData["-name"]                   -- 怪物名字
+        actorData.life         = tonumber(enemyItemData["-baseHP"]) or 20 -- 生命值
+        actorData.speed        = tonumber(enemyItemData["-speed"]) or 30  -- 速度值
+        actorData.mainRes      = enemyItemData["-anim"]                   -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
+        actorData.gold         = tonumber(enemyItemData["-gold"]) or 1    -- 获得资源
+        actorData.road         = tonumber(nowItem["-r"]) or 1             -- 道路
+        --兼容老版本配置
+        if actorData.road == 0 then
+            actorData.road = 1
+        end
+
+        local enemy = require("gameFight.actor.enemy"):create()
+        enemy:setData(actorData)
+        enemy.nowState = CC_ENEMY_STATE.State_Born
+        self:addEnemy(enemy)
+        singleGameData:getInstance():getMainLayer():addChild(enemy,CC_GAME_LAYER_LEVEL.Layer_scene_enemy)
     end
 
     return true

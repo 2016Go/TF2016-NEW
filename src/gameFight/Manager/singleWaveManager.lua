@@ -24,7 +24,7 @@ function singleWaveManager:eventResponse(gameEventID, eventSender, parameter)
     cs.logger.i("singleWaveManager:eventResponse"..gameEventID)
     if gameEventID == CC_GAME_EVENT.GameEvent_NextWaveNeed then
         --开始进行波次的等待时间
-        self.waveTime  =  (self.levelData["level"]["waves"]["wave"][self.waveID+1]["-d"]) / 1000
+        self.waveTime  = singleLoadData:getInstance():getLevelWavaDataTime(self.waveID+1)
         singleTimeManager:getInstance():addTimer(self)
     else
         cs.logger.i("this is a meng B msg")
@@ -48,7 +48,7 @@ end
 function singleWaveManager:_startNextWave()
     cs.logger.i("_startNextWave")
     self.waveID = self.waveID + 1
-    local waveData = self.levelData["level"]["waves"]["wave"][self.waveID]
+    local waveData = singleLoadData:getInstance():getLevelWavaData(self.waveID)
     singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_WaveDataReady, self, waveData)
 end
 
@@ -56,6 +56,5 @@ function singleWaveManager:_init()
     cs.logger.i("singleEnemyManager:_init GameEvent_NextWaveNeed")
     self.waveID = 0 --不存在0波次，用此表示游戏还没有开始
     self.waveTime = 0 --波次等待时间
-    self.levelData = singleLoadEnemy:getInstance():loadEnemy("json/level1.json")
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_NextWaveNeed, self)
 end

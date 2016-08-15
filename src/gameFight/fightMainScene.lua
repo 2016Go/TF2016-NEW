@@ -1,7 +1,6 @@
 --载入所有单键类
 require("gameFight.singleStage")
-require("gameFight.singleLoadMap")
-require("gameFight.singleLoadEnemy")
+require("gameFight.singleLoadData")
 require("gameFight.singleUtil")
 require("gameFight.data.singleGameData")
 require("gameFight.manager.singleTimeManager")
@@ -27,7 +26,6 @@ function fightMainScene:create(configs)
 
     --创建一套测试数据
     local gameData = singleGameData:getInstance()
-    gameData:createTestData()
     gameData:setMainLayer(self.m_MainLayer)
 
     --载入所有的战斗plist
@@ -35,15 +33,13 @@ function fightMainScene:create(configs)
     myUtil:addAllPlist()
 
     --读取Map配置文件
-    local stageData = singleLoadMap:getInstance():loadMap("json/map1.json")
+    local loadData = singleLoadData:getInstance()
+    local stageData = loadData:loadMap("json/map1.json")
+    print("------------------".."json/enemy.json")
+    loadData:loadEnemy("json/enemy.json")
+    print("------------------")
 
-    --读取Enemy配置文件
-    local enemyLoad = singleLoadEnemy:getInstance()
-    enemyLoad:loadEnemy("json/enemy.json")
-    enemyLoad:LoadLevelEnemy("json/level1.json")
-
-    --读取当前关卡刷怪的Enemy配置文件
-    local levelData = singleLoadEnemy:getInstance():loadEnemy("json/level1.json")
+    loadData:loadLevelEnemy("json/level1.json")
 
     --加入一个时间管理器管理游戏中的时间
     local timeManager = singleTimeManager:getInstance()
