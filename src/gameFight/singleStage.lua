@@ -25,9 +25,27 @@ function singleStage:runStageForData(target, stageData, isDebugShow)
     pSprit:setPosition(cc.p(0,0))
     target:addChild(pSprit , CC_GAME_LAYER_LEVEL.Layer_scene)
 
+    self.instance:showSpace(target, stageData["map"]["alltowers"]["towers"][1]["tower"])
+
     if isDebugShow == true then
         self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
     end
+end
+
+function singleStage:showSpace(target, stageData)
+        --获得单个坐标
+
+    local m_pDrawNode = cc.DrawNode:create(1)
+    m_pDrawNode:setAnchorPoint(cc.p(0,0))
+    m_pDrawNode:setPosition(cc.p(0,0))
+    target:addChild(m_pDrawNode, CC_GAME_LAYER_LEVEL.Layer_scene_debug)
+
+    for pCount, pData in pairs(stageData) do
+        cs.util.printTable(pData)
+        local b = loadstring("return "..pData["-tpos"])();
+        m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,1,0,0.9))
+    end
+
 end
 
 function singleStage:ShowTheDebug(target, stageData)
