@@ -35,11 +35,9 @@ function fightMainScene:create(configs)
     --读取Map配置文件
     local loadData = singleLoadData:getInstance()
     local stageData = loadData:loadMap("json/map1.json")
-    print("------------------".."json/enemy.json")
     loadData:loadEnemy("json/enemy.json")
-    print("------------------")
-
     loadData:loadLevelEnemy("json/level1.json")
+    gameData:setStageData(loadData:getStageData())
 
     --加入一个时间管理器管理游戏中的时间
     local timeManager = singleTimeManager:getInstance()
@@ -56,37 +54,12 @@ function fightMainScene:create(configs)
 
     --创建一个战斗UI的主要界面UI
     local fightUI = require("gameFight.fightUI.fightMainUI"):create()
-    self.m_MainLayer:addChild(fightUI,CC_GAME_LAYER_LEVEL.Layer_fight_mainui) 
+    self.m_MainLayer:addChild(fightUI,CC_GAME_LAYER_LEVEL.Layer_fight_main_ui) 
     fightUI:refreshUI()
 
     --载入场景，并且选择是否开启debug模式
     singleStage:getInstance():runStageForData(self.m_MainLayer, stageData, true)
 
--------------------------------------------------------------------------测试代码
-    --[[local Enemy1 = require("gameFight.actor.enemy"):create()
-    Enemy1:setData(singleGameData:getInstance().actorData)
-    Enemy1.nowState = CC_ENEMY_STATE.State_Born
-
-    local Enemy2 = require("gameFight.actor.enemy"):create()
-    singleGameData:getInstance().actorData.road = 2
-    Enemy2:setData(singleGameData:getInstance().actorData)
-    Enemy2.nowState = CC_ENEMY_STATE.State_Born
-
-    local Enemy3 = require("gameFight.actor.enemy"):create()
-    singleGameData:getInstance().actorData.road = 3
-    singleGameData:getInstance().actorData.speed = 100
-    Enemy3:setData(singleGameData:getInstance().actorData)
-
-    Enemy3.nowState = CC_ENEMY_STATE.State_Born
-
-    enemyManager:addEnemy(Enemy1)
-    enemyManager:addEnemy(Enemy2)
-    enemyManager:addEnemy(Enemy3)
-
-    self.m_MainLayer:addChild(Enemy1,99)
-    self.m_MainLayer:addChild(Enemy2,99)
-    self.m_MainLayer:addChild(Enemy3,99)
-    --]]
 --------------------------------------------------------------------------------
     --开始下一波（第一波）gameUI
     cs.logger.i("SendEventForListener GameEvent_NextWaveNeed")

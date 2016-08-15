@@ -24,6 +24,12 @@ function singleWaveManager:eventResponse(gameEventID, eventSender, parameter)
     cs.logger.i("singleWaveManager:eventResponse"..gameEventID)
     if gameEventID == CC_GAME_EVENT.GameEvent_NextWaveNeed then
         --开始进行波次的等待时间
+        local stageData = singleGameData:getInstance():getStageData()
+        if stageData.wave >= stageData.waveLimit then
+            --处理波次结束时间
+            singleTimeManager:getInstance():nextRemoveTimerNextFrame(self)
+            return
+        end
         self.waveTime  = singleLoadData:getInstance():getLevelWavaDataTime(self.waveID+1)
         singleTimeManager:getInstance():addTimer(self)
     else

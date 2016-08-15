@@ -127,10 +127,7 @@ function singleEnemyManager:_checkAddEnemt()
     --获取出场延时，并判断是否已经到达出场时间
     local dTime = singleLoadData:getInstance():getEnemyItemBornTime(self.waveData , self.nowEnemyID)
     if dTime <= self.timeGo then
-        self.nowEnemyID = self.nowEnemyID + 1
-        self.timeGo = 0 
-
-    --获取当前的小怪数据    
+        --获取当前的小怪数据    
         local enemyItemData =singleLoadData:getInstance():getEnemyItem(self.waveData , self.nowEnemyID)
         if enemyItemData == nil then 
             --当下一个怪物不存在的时候。返回
@@ -138,14 +135,25 @@ function singleEnemyManager:_checkAddEnemt()
             return true
         end
 
-        --当下一个怪物存在的时候，将其创建
-        --cs.util.printTable(enemyItemData)
+        --用数据创建敌人
+        self:_AddEnemt(enemyItemData,nowItem)
+
+        --更新数据
+        self.nowEnemyID = self.nowEnemyID + 1
+        self.timeGo = 0 
+    end
+
+    return true
+end
+
+function singleEnemyManager:_AddEnemt(enemyItemData,nowItem)
         local actorData = {}
         actorData.name         = enemyItemData["-name"]                   -- 怪物名字
         actorData.life         = tonumber(enemyItemData["-baseHP"]) or 20 -- 生命值
         actorData.speed        = tonumber(enemyItemData["-speed"]) or 30  -- 速度值
         actorData.mainRes      = enemyItemData["-anim"]                   -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
         actorData.gold         = tonumber(enemyItemData["-gold"]) or 1    -- 获得资源
+        actorData.punishHP     = tonumber(enemyItemData["-punishHP"]) or 1 -- 进入通道造成的伤害
         actorData.road         = tonumber(nowItem["-r"]) or 1             -- 道路
         --兼容老版本配置
         if actorData.road == 0 then
@@ -157,8 +165,4 @@ function singleEnemyManager:_checkAddEnemt()
         enemy.nowState = CC_ENEMY_STATE.State_Born
         self:addEnemy(enemy)
         singleGameData:getInstance():getMainLayer():addChild(enemy,CC_GAME_LAYER_LEVEL.Layer_scene_enemy)
-    end
-
-    return true
 end
-

@@ -39,6 +39,8 @@ local function main()
     --创建随机种子
     math.randomseed(os.time())
 
+    local size = cc.view.getFrameSize()
+    cs.util.printTable(size)
     --载入游戏主场景
     local mainGame = require("gameFight.fightMainScene")
     mainGame:create()

@@ -11,7 +11,7 @@ function enemy:ctor()
     self.actorTime = 0 -- 当前行为时间
     --创建怪物蹄片
     self.mainSprite = cc.Sprite:create()
-    self.mainSprite:setAnchorPoint(cc.p(0.5,0))
+    self.mainSprite:setAnchorPoint(cc.p(0.5,0.3))
     self.lifeLayer:addChild(self.mainSprite , 10)
 end
 
@@ -27,6 +27,7 @@ function enemy:setData(actorData)
     self.actorData.speed        = actorData.speed           -- 速度值
     self.actorData.mainRes      = actorData.mainRes         -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
     self.actorData.road         = actorData.road            -- 行走道路ID
+    self.actorData.punishHP     = actorData.punishHP        -- 被干掉的HP
     self.actorData.roadData     = singleLoadData:getInstance().mapData["map"]["roads"]["road"][self.actorData.road]            -- 行走道路的数据
 end
 
@@ -68,7 +69,7 @@ function enemy:walkUpData(dt)
 
         --如果为空说明已经到达终点。发送消息说明已经到达终点
         if self:_getLoadPos(nextPosID ) == nil then
-            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_EnemyGoOver, self)
+            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_EnemyGoOver, self , self.actorData.punishHP)
             return
         end
 
@@ -90,7 +91,7 @@ function enemy:walkUpData(dt)
     --X,Y方向行动差
     local differenceX = nextPos.x-nowPos.x
     local differenceY = nextPos.y-nowPos.y
-    
+
     --根据X,Y的差去判定当前行为转向
     if thisUpDataIsGoNextPos == true then
         self:UpDataAniForWalk(differenceX,differenceY)
@@ -130,8 +131,6 @@ function enemy:UpDataAniForWalk( differenceX,differenceY )
         return
     end
 
-    print("differenceX = "..differenceX)
-    print("differenceY = "..differenceY)
     --变更移动行为
     self.actorData.direction = direction
     local fristFrame , animation
@@ -147,10 +146,8 @@ function enemy:UpDataAniForWalk( differenceX,differenceY )
     self.mainSprite:setSpriteFrame(fristFrame)
     self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
     if direction == CC_LIFT_WALK_DIR.Walk_Left then
-        print("setScaleX = "..1)
         self.mainSprite:setScaleX(1)
     elseif direction == CC_LIFT_WALK_DIR.Walk_Right then
-        print("setScaleX = "..-1)
         self.mainSprite:setScaleX(-1)
     end
     self:_setActorTime(-1)

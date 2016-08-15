@@ -92,6 +92,20 @@ function singleLoadData:loadLevelEnemy(namePath)
     return self.enemyLevelData
 end
 
+--获取场景界面所需要的主要数据
+function singleLoadData:getStageData()
+    local mainUIData = {}
+    mainUIData.life = tonumber(self.enemyLevelData["level"]["hpBonus"])
+    mainUIData.gold = tonumber(self.enemyLevelData["level"]["initgold"])
+    mainUIData.exp  = tonumber(self.enemyLevelData["level"]["expStoneBonus"])
+    mainUIData.towersindex = tonumber(self.enemyLevelData["level"]["towersindex"])
+    mainUIData.bgm = self.enemyLevelData["level"]["bgm"]
+    mainUIData.wave = 0
+    mainUIData.waveLimit = #(self.enemyLevelData["level"]["waves"]["wave"])    --波次上限
+
+    return mainUIData
+end
+
 --传入一个波次的数据，和波次中的怪物id，获取这个怪物Item的所有出生的数据
 function singleLoadData:getEnemyItemBornData(waveData , itemID)
     return waveData["e"][itemID]
