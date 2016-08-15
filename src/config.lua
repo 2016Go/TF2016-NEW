@@ -34,6 +34,8 @@ CC_GAME_LAYER_LEVEL =
     
     Layer_scene_enemy = 100,   --怪物所在层级
 
+    Layer_fight_mainui = 500,   --主操作层所在层级
+    
     Layer_max = 9999     --最高层地形
 }
 

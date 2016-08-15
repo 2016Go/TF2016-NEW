@@ -11,7 +11,7 @@ function enemy:ctor()
     self.actorTime = 0 -- 当前行为时间
     --创建怪物蹄片
     self.mainSprite = cc.Sprite:create()
-    self.mainSprite:setAnchorPoint(cc.p(0.5,0.5))
+    self.mainSprite:setAnchorPoint(cc.p(0.5,0))
     self.lifeLayer:addChild(self.mainSprite , 10)
 end
 
@@ -58,6 +58,9 @@ function enemy:walkUpData(dt)
     local surplus = willGo
     local nextPosID = self.nowPosID
 
+    --该值记录这次循环是否导致了怪物跳下一个点
+    local thisUpDataIsGoNextPos = false
+
     --循环查找可以到达的最后一个点
     while(true) 
     do
@@ -78,6 +81,7 @@ function enemy:walkUpData(dt)
         surplus = willSurplus
         nowPos = self:_getLoadPos(nextPosID )
         self.nowPosID  = nextPosID
+        thisUpDataIsGoNextPos = true
     end
 
     --获取下一个节点位置
@@ -86,8 +90,11 @@ function enemy:walkUpData(dt)
     --X,Y方向行动差
     local differenceX = nextPos.x-nowPos.x
     local differenceY = nextPos.y-nowPos.y
+    
     --根据X,Y的差去判定当前行为转向
-    self:UpDataAniForWalk(differenceX,differenceY)
+    if thisUpDataIsGoNextPos == true then
+        self:UpDataAniForWalk(differenceX,differenceY)
+    end
 
     --两点总边长
     local addMath = math.abs(differenceY) + math.abs(differenceX)
@@ -148,17 +155,6 @@ function enemy:UpDataAniForWalk( differenceX,differenceY )
     end
     self:_setActorTime(-1)
 end
---self.actorData.direction
-
---生命体的移动方向模式记录
---CC_LIFT_WALK_DIR = 
---{
---    Walk_Left  = 1,          --左移动
---    Walk_Right = 2,          --右移动
---    Walk_Up    = 3,          --上移动
---    Walk_Down  = 4,          --下移动
---    Walk_All   = 5             
---}
 
 function enemy:UpData(dt)
 

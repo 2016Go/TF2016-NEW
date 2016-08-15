@@ -1,7 +1,7 @@
 --载入所有单键类
+require("gameFight.singleUtil")
 require("gameFight.singleStage")
 require("gameFight.singleLoadData")
-require("gameFight.singleUtil")
 require("gameFight.data.singleGameData")
 require("gameFight.manager.singleTimeManager")
 require("gameFight.manager.singleEnemyManager")
@@ -54,6 +54,11 @@ function fightMainScene:create(configs)
     --创建一个事件池
     local singEventPool = singleGameEventPool:getInstance()
 
+    --创建一个战斗UI的主要界面UI
+    local fightUI = require("gameFight.fightUI.fightMainUI"):create()
+    self.m_MainLayer:addChild(fightUI,CC_GAME_LAYER_LEVEL.Layer_fight_mainui) 
+    fightUI:refreshUI()
+
     --载入场景，并且选择是否开启debug模式
     singleStage:getInstance():runStageForData(self.m_MainLayer, stageData, true)
 
@@ -83,7 +88,7 @@ function fightMainScene:create(configs)
     self.m_MainLayer:addChild(Enemy3,99)
     --]]
 --------------------------------------------------------------------------------
-    --开始下一波（第一波）
+    --开始下一波（第一波）gameUI
     cs.logger.i("SendEventForListener GameEvent_NextWaveNeed")
     singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_NextWaveNeed)
 

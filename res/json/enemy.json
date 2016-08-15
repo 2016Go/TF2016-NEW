@@ -359,7 +359,7 @@
         "-rank": "62",
         "-anim": "devilobserver",
         "-baseHP": "60000",
-        "-speed": "17.6",
+        "-speed": "55.6",
         "-bossUnit": "true",
         "-attackDamage": "1800",
         "-punishHP": "100",
