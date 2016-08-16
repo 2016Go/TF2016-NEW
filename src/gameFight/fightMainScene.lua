@@ -67,7 +67,6 @@ function fightMainScene:create(configs)
 
     --运行
     cc.Director:getInstance():runWithScene(self.m_MainScene)
-
 end
 
 return fightMainScene

@@ -41,9 +41,11 @@ function singleStage:showSpace(target, stageData)
     target:addChild(m_pDrawNode, CC_GAME_LAYER_LEVEL.Layer_scene_debug)
 
     for pCount, pData in pairs(stageData) do
-        cs.util.printTable(pData)
         local b = loadstring("return "..pData["-tpos"])();
-        m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,1,0,0.9))
+        local space = require("gameFight.actor.space"):create()
+        space:setPosition(cc.p(b[1],b[2]))
+        target:addChild(space, CC_GAME_LAYER_LEVEL.Layer_scene_space)
+        --m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,1,0,0.9))
     end
 
 end

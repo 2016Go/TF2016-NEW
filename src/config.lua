@@ -32,7 +32,10 @@ CC_GAME_LAYER_LEVEL =
     Layer_scene = 10,    --最底层的地形层 
     Layer_scene_debug = 11,    --最底层的地形层上的debug模式绘制层
     
+    
+    Layer_scene_space = 50,     --空地所在层
     Layer_scene_enemy = 100,   --怪物所在层级
+
 
     Layer_fight_main_ui = 500,   --主操作层所在层级
 
@@ -49,6 +52,13 @@ CC_CAMP =
     Camp_Non        = 5,        --无阵营者，参与游戏演出，如会动的螃蟹，会动的树木。等视为无阵营者，或许可以被攻击产生金币
     Camp_All        = 6         --所有
 }
+
+--演员类的类型
+CC_ACTOR_TYPE =
+{
+    Type_actor      =  1,       --普通演员类型
+    Type_actor2     =  2
+} 
 
 --战斗缓存plist组
 CC_PLIST = 
