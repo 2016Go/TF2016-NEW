@@ -66,3 +66,22 @@
 13.游戏UI的主要逻辑lua全部写于gameUI，只提供部分接口供相互调用
 
 14.项目以后可以共用的公共库。可以进过抽象后，放于cs文件夹。
+
+
+
+
+
+
+-----------------SVN
+svn root:
+http://10.0.0.212/svn/droidhang/android/dhArt/TF2016
+svn user:
+wei_you
+密码就是你刚才设置的
+—————————程序员请忽略以下内容————————
+baidu搜TortoiseSVN  下载安装
+svn 客户端安装完要重启下电脑
+使用教程参考：
+http://jingyan.baidu.com/article/358570f6638aa4ce4724fcf7.html
+
+svn checkout http://10.0.0.212/svn/droidhang/android/dhArt/TF2016 --username=wei_you --password= /Users/apple/Documents/work/TF2016-SVN

@@ -19,15 +19,6 @@ function singleGameEventPool:getInstance()
     return self.instance  
 end
 
---内部初始化函数
-function singleGameEventPool:_init()
-    self.eventDataVec = {}
-    for i,v in pairs(CC_GAME_EVENT) do
-       --创建足够量的事件池table
-       self.eventDataVec[v] = {}
-    end
-end
-
 --加入一个事件监听者到事件池中
 function singleGameEventPool:addEventListenerInPool(gameEventID, eventListener)
     --获取所有监听者
@@ -49,5 +40,14 @@ function singleGameEventPool:SendEventForListener(gameEventID, eventSender, para
         if v.eventResponse ~= nil then
             v:eventResponse(gameEventID, eventSender, parameter)
         end
+    end
+end
+
+--内部初始化函数
+function singleGameEventPool:_init()
+    self.eventDataVec = {}
+    for i,v in pairs(CC_GAME_EVENT) do
+       --创建足够量的事件池table
+       self.eventDataVec[v] = {}
     end
 end

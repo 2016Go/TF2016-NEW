@@ -67,21 +67,13 @@ function signInUI:ctor()
 	self.UI.registerBtn:setTitleText("注册游戏")
 	self.UI.registerBtn:setTitleFontSize(25)
 	self:addChild(self.UI.registerBtn )
-
-
-	self.UI.testLabel = cc.LabelTTF:create("测试金币", "ttf/fangzhenglier.ttf", 50)  
-    self.UI.testLabel:setAnchorPoint(cc.p(1,0.5))
-    self.UI.testLabel:setPosition(cc.p(display.width/2 + 125,display.height/2 + 300))
-    self:addChild(self.UI.testLabel )
-
 	--绑定事件
 	singleManagerUI:getInstance():bindListener(self.UI.registerBtn,self,"registerBtn")
 end
 function signInUI:registerBtnTouchEnded()
 	cs.logger.i("registerBtnTouchEnded")
 
-
-	singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_Wallet, singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_Wallet] + 1 )
+	singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_Wallet, 10)
 end
 
 function signInUI:touristBtnTouchEnded()
@@ -93,8 +85,7 @@ function signInUI:touristBtnTouchEnded()
 end
 
 function signInUI:refreshUI(event,eventSender,data)
-	cs.logger.i("refreshUI ")
-	self.UI.testLabel:setString("测试金币 = "..data)
+	cs.logger.i("refreshUI")
 end
 
 function signInUI:enter()

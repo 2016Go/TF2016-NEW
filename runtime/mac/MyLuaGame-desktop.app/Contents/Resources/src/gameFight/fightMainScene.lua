@@ -9,7 +9,7 @@ require("gameFight.manager.singleWaveManager")
 require("gameFight.gameEvent.singleGameEventPool")
 --结束单键类载入
 
-local fightMainScene = class("fightMainScene", function() return cc.Scene:create() end)
+local fightMainScene = class("fightMainScene", function() return cc.Layer:create() end)
 
 function fightMainScene:ctor()
     --创建一个主层

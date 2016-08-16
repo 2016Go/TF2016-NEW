@@ -17,7 +17,10 @@ require('cs.init').init()
 require"cocos.init"
 
 --载入一个场景切换的单键类
+require("gameUI.gameUIBase.singleUIData")
+require("gameUI.gameUIBase.singleUIEvent")
 require("gameUI.gameUIBase.singleManagerUI")
+
 
 -- 简单的报错（可能要写一套更加完善的）
 local cclog = function(...)
@@ -32,7 +35,6 @@ function __G__TRACKBACK__(msg)
     return msg
 end
 
-
 local function main()
     -- 设定内存方面的清理
     collectgarbage("collect")
@@ -42,11 +44,13 @@ local function main()
     --创建随机种子
     math.randomseed(os.time())
 
+    --获取数据单键
+    singleUIData:getInstance()
+    singleUIEvent:getInstance()
+
     --载入场景
     local signInUI = require("gameUI.signInUI"):create()
     singleManagerUI:getInstance():changeUI({} , signInUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
-
-    --cc.Director:getInstance():replaceScene(mainGame)
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

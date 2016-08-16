@@ -32,6 +32,25 @@ function singleManagerUI:changeUI(nowUI , changeUI, changeTpye)
 	elseif changeTpye == CC_UI_GOTO_TPYE.UI_Add_Bomb then
 	
 	elseif changeTpye == CC_UI_GOTO_TPYE.UI_Rep_Scene then
+		local scene = cc.Director:getInstance():getRunningScene()
+
+		--加入销毁回调函数
+     	local function onNodeEvent(event)  
+        	if event == "enter" then  
+        		if changeUI.enter ~= nil then changeUI:enter() end
+        	elseif event == "enterTransitionFinish" then  
+            	if changeUI.enterTransitionFinish ~= nil then changeUI:enterTransitionFinish() end
+        	elseif event == "exit" then  
+            	if changeUI.exit ~= nil then changeUI:exit() end
+        	elseif event == "exitTransitionStart" then  
+            	if changeUI.exitTransitionStart ~= nil then changeUI:exitTransitionStart() end
+        	elseif event == "cleanup" then  
+            	if changeUI.cleanup ~= nil then changeUI:cleanup() end
+        	end  
+    	end  
+  		changeUI:registerScriptHandler(onNodeEvent) 
+    	
+    	--创建这个层
 		local scene = cc.Scene:create()
 		scene:addChild(changeUI)
 		cc.Director:getInstance():replaceScene(scene)
@@ -95,7 +114,6 @@ function singleManagerUI:_bindTouch(node,target,name)
         --to do youwei
         --制作防手抽代码
 
-
         -- 播放声音
         -- to do youwei
         --制作播放声音代码
@@ -105,13 +123,3 @@ function singleManagerUI:_bindTouch(node,target,name)
     -- 添加触控事件侦听器
     widget:addTouchEventListener(listener)
 end
-
---[[界面跳转的方式
-CC_UI_GOTO_TPYE = 
-{
-    UI_Add_Layer = 1,           --层直接覆盖跳转
-    UI_Add_Bomb  = 2,           --弹框覆盖跳转
-    UI_Rep_Scene = 3            --场景切换
-}
---]]
-
