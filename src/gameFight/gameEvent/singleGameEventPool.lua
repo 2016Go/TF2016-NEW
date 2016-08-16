@@ -21,7 +21,6 @@ end
 
 --内部初始化函数
 function singleGameEventPool:_init()
-   cs.logger.i("singleGameEventPool")
     self.eventDataVec = {}
     for i,v in pairs(CC_GAME_EVENT) do
        --创建足够量的事件池table

@@ -9,20 +9,15 @@ require("gameFight.manager.singleWaveManager")
 require("gameFight.gameEvent.singleGameEventPool")
 --结束单键类载入
 
-local fightMainScene = class("fightMainScene")
+local fightMainScene = class("fightMainScene", function() return cc.Layer:create() end)
 
-function fightMainScene:create(configs)
-
-    --创建一个主场景
-    self.m_MainScene = cc.Scene:create()
-    self.m_MainScene:setAnchorPoint(cc.p(0,0))
-    self.m_MainScene:setPosition(cc.p(0,0))
-
+function fightMainScene:ctor()
     --创建一个主层
+    cs.logger.i("fightMainScene:ctor **********************")
     self.m_MainLayer = cc.Layer:create()
     self.m_MainLayer:setAnchorPoint(cc.p(0,0))
     self.m_MainLayer:setPosition(cc.p(0,0))
-    self.m_MainScene:addChild(self.m_MainLayer,10)
+    self:addChild(self.m_MainLayer,10)
 
     --创建一套测试数据
     local gameData = singleGameData:getInstance()
@@ -66,7 +61,6 @@ function fightMainScene:create(configs)
     singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_NextWaveNeed)
 
     --运行
-    cc.Director:getInstance():runWithScene(self.m_MainScene)
 end
 
 return fightMainScene

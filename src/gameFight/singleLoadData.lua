@@ -50,23 +50,16 @@ function singleLoadData:loadEnemy(namePath)
         --打开整个文件
         local fullPath = cc.FileUtils:getInstance():fullPathForFilename(namePath)
         local strJson = cc.FileUtils:getInstance():getStringFromFile(fullPath);
-
-        print("********************************************1"..namePath)
         --开始解析
         local allData = json.decode(strJson)
-
-
         local enemyData1 = allData["enemies"]
         enemyData = enemyData1["e"]
-
-        print("********************************************2")
     else
         cs.logger.d("can not find",namePath)
     end
 
     --二次解析
     for k,v in pairs(enemyData) do
-        print(k,v)
         local enemyName = v["-name"]
         self.enemyData[enemyName] = v
     end

@@ -14,7 +14,10 @@ require "config"
 require('cs.init').init()
 
 -- 此后不在允许随意创建全局变量
-require "cocos.init"
+require"cocos.init"
+
+--载入一个场景切换的单键类
+require("gameUI.gameUIBase.singleManagerUI")
 
 -- 简单的报错（可能要写一套更加完善的）
 local cclog = function(...)
@@ -39,11 +42,11 @@ local function main()
     --创建随机种子
     math.randomseed(os.time())
 
-    local size = cc.view.getFrameSize()
-    cs.util.printTable(size)
-    --载入游戏主场景
-    local mainGame = require("gameFight.fightMainScene")
-    mainGame:create()
+    --载入场景
+    local signInUI = require("gameUI.signInUI"):create()
+    singleManagerUI:getInstance():changeUI({} , signInUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+
+    --cc.Director:getInstance():replaceScene(mainGame)
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

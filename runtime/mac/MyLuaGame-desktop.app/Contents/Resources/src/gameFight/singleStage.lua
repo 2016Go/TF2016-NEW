@@ -18,27 +18,46 @@ function singleStage:getInstance()
 end  
 
 --设定场景的数据，并显示场景
-function singleStage:runStageForData(Target, StageData, isDebugShow)
+function singleStage:runStageForData(target, stageData, isDebugShow)
     --创建一个地形
-    local pSprit = cc.Sprite:create(StageData["map"]["bgimage"])
+    local pSprit = cc.Sprite:create(stageData["map"]["bgimage"])
     pSprit:setAnchorPoint(cc.p(0,0))
     pSprit:setPosition(cc.p(0,0))
-    Target:addChild(pSprit , CC_LAYER_LEVEL.Layer_scene)
+    target:addChild(pSprit , CC_GAME_LAYER_LEVEL.Layer_scene)
+
+    self.instance:showSpace(target, stageData["map"]["alltowers"]["towers"][1]["tower"])
 
     if isDebugShow == true then
-        self.instance:ShowTheDebug(Target, StageData["map"]["roads"]["road"])
+        self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
     end
 end
 
-function singleStage:ShowTheDebug(Target, StageData)
+function singleStage:showSpace(target, stageData)
+        --获得单个坐标
 
     local m_pDrawNode = cc.DrawNode:create(1)
     m_pDrawNode:setAnchorPoint(cc.p(0,0))
     m_pDrawNode:setPosition(cc.p(0,0))
-    Target:addChild(m_pDrawNode, CC_LAYER_LEVEL.Layer_scene_debug)
+    target:addChild(m_pDrawNode, CC_GAME_LAYER_LEVEL.Layer_scene_debug)
+
+    for pCount, pData in pairs(stageData) do
+        local b = loadstring("return "..pData["-tpos"])();
+        local space = require("gameFight.actor.space"):create()
+        space:setPosition(cc.p(b[1],b[2]))
+        target:addChild(space, CC_GAME_LAYER_LEVEL.Layer_scene_space)
+        --m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,1,0,0.9))
+    end
+
+end
+
+function singleStage:ShowTheDebug(target, stageData)
+    local m_pDrawNode = cc.DrawNode:create(1)
+    m_pDrawNode:setAnchorPoint(cc.p(0,0))
+    m_pDrawNode:setPosition(cc.p(0,0))
+    target:addChild(m_pDrawNode, CC_GAME_LAYER_LEVEL.Layer_scene_debug)
 
     --获得单个坐标
-    for pCount, pData in ipairs(StageData) do
+    for pCount, pData in ipairs(stageData) do
         for i, v in pairs(pData["p"]) do
             local b = loadstring("return "..v)();
             m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,0,0,0.9))

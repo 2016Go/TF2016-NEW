@@ -26,19 +26,34 @@ CC_DESIGN_RESOLUTION =
     end
 }
 
---层级关系
+--界面名称标记
+CC_UI_TAG = 
+{
+    UI_SignIn   = "signIn",         --登录界面
+    UI_Register = "register",       --注册界面
+    UI_MainHall = "mainHall"        --游戏主大厅
+}
+
+--界面跳转的方式
+CC_UI_GOTO_TPYE = 
+{
+    UI_Add_Layer = 1,           --层直接覆盖跳转
+    UI_Add_Bomb  = 2,           --弹框覆盖跳转
+    UI_Rep_Scene = 3            --场景切换
+}
+
+
+
+--战斗中的层级关系
 CC_GAME_LAYER_LEVEL = 
 {
     Layer_scene = 10,    --最底层的地形层 
     Layer_scene_debug = 11,    --最底层的地形层上的debug模式绘制层
     
-    
     Layer_scene_space = 50,     --空地所在层
     Layer_scene_enemy = 100,   --怪物所在层级
 
-
     Layer_fight_main_ui = 500,   --主操作层所在层级
-
     Layer_max = 9999     --最高层地形
 }
 
@@ -53,11 +68,13 @@ CC_CAMP =
     Camp_All        = 6         --所有
 }
 
---演员类的类型
+--演员类的类型，该类型主要为塔升级作为标示，如果标记为Type_Actor
+--说明作者并不在意这个类的类型的运算
 CC_ACTOR_TYPE =
 {
-    Type_actor      =  1,       --普通演员类型
-    Type_actor2     =  2
+    Type_Actor      =  1,       --普通演员类型,
+    Type_Space      =  2,       --空地类型
+    Type_game
 } 
 
 --战斗缓存plist组

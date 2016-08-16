@@ -10,7 +10,6 @@ function space:ctor()
     self.spaceSp = cc.Sprite:create("super/space.png")          --生命节点，用于怪物的翻转已经特效等
     self.spaceSp:setAnchorPoint(cc.p(0.5,0.5))    --设定节点的锚点
     self:addChild(self.spaceSp,10)            --加入根节点
-	cs.logger.i("gameFight.actor.space:ctor()")
 end
 
 return space

@@ -178,7 +178,6 @@ function class(classname, ...)
     local supers = {...}
     for _, super in ipairs(supers) do
         local superType = type(super)
-        print("superType = "..superType)
         assert(superType == "nil" or superType == "table" or superType == "function",
             string.format("class() - create class \"%s\" with invalid super class type \"%s\"",
                 classname, superType))
@@ -188,7 +187,6 @@ function class(classname, ...)
                 string.format("class() - create class \"%s\" with more than one creating function",
                     classname));
             -- if super is function, set it to __create
-            print("function   ---  cls.__create add ")
             cls.__create = super
         elseif superType == "table" then
             if super[".isclass"] then
@@ -205,7 +203,7 @@ function class(classname, ...)
                 cls.__supers[#cls.__supers + 1] = super
                 if not cls.super then
                     -- set first super pure lua class as class.super
-                    print("table   ---  cls.super add ")
+
                     cls.super = super
                 end
             end
@@ -217,7 +215,6 @@ function class(classname, ...)
 
     cls.__index = cls
     if not cls.__supers or #cls.__supers == 1 then
-        print("cls.__supers or #cls.__supers == 1 219")
         setmetatable(cls, {__index = cls.super})
     else
         setmetatable(cls, {__index = function(_, key)
@@ -239,10 +236,8 @@ function class(classname, ...)
         local instance
 
         if cls.__create then
-            print("cls.__create is good")
             instance = cls.__create(...)
         else
-            print("cls.__create = nil")
             instance = {}
         end
         setmetatableindex(instance, cls)
