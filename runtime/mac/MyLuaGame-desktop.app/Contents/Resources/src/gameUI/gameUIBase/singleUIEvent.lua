@@ -24,7 +24,7 @@ function singleUIEvent:addEventListenerInPool(gameEventID, eventListener)
     --获取所有监听者
     local listenerVec = self.eventDataVec[gameEventID]
     --懒得去用find啦，自己写
-    for k,v in pairs(listenerVec) do
+    for k,v in ipairs(listenerVec) do
         if v == eventListener then
             return
         end
@@ -62,7 +62,7 @@ end
 --内部初始化函数
 function singleUIEvent:_init()
     self.eventDataVec = {}
-    for i,v in pairs(CC_GAME_EVENT) do
+    for i,v in pairs(CC_UI_DATA_TPYE) do
        --创建足够量的事件池table
        self.eventDataVec[v] = {}
     end

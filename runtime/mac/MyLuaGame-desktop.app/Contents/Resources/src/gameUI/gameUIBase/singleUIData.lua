@@ -25,14 +25,15 @@ function singleUIData:setData(key, v)
     end
 
     self[key] = v
-
+    singleUIEvent:getInstance():SendEventForListener(key , self , v)
     --发送数据变更消息
+    self:_saveData(key,v)
 end
 
 function singleUIData:_init() 
     cs.logger.i("_init")
 
-    local walletData = cs.util.readUD(CC_UI_DATA_TPYE.UI_WalletData)
+    local PlayName = cs.util.readUD(CC_UI_DATA_TPYE.UI_PlayName)
     cs.util.flushUD()
     
     --如果是新玩家，先测试的给他添加基础函数
@@ -50,4 +51,10 @@ function singleUIData:_setNewPlayerData()
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_PlayName , "游客" )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Wallet , 300 )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Level , 0 )
+    cs.util.flushUD()
+end 
+
+function singleUIData:_saveData(key , data)
+    cs.util.writeUD( key , data )
+    cs.util.flushUD()
 end 
