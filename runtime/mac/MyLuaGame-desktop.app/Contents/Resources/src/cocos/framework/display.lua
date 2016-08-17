@@ -38,6 +38,7 @@ if not view then
             height = CC_DESIGN_RESOLUTION.height
         end
     end
+    print("**********width**************"..width)
     view = cc.GLViewImpl:createWithRect("Cocos2d-Lua", cc.rect(0, 0, width, height))
     director:setOpenGLView(view)
 end

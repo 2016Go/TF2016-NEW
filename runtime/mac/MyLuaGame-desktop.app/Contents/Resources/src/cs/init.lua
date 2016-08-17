@@ -3,8 +3,8 @@ module('cs.init',package.seeall)
 ----------------------------------------------------
 -- 设计分辨率
 ----------------------------------------------------
-_G.C_DESIGN_RESOLUTION_DH = 540
-_G.C_DESIGN_RESOLUTION_DW = 960
+--_G.C_DESIGN_RESOLUTION_DH = 540
+--_G.C_DESIGN_RESOLUTION_DW = 960
 
 ----------------------------------------------------
 -- C_BUILT_IN_OS:系统

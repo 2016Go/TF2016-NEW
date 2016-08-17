@@ -21,6 +21,11 @@ function signInUI:ctor()
 	--将图片扩大成背景大小
 	self.UI.bgSp:setScaleX(display.width/bgSize.width)
 	self.UI.bgSp:setScaleY(display.height/bgSize.height)
+
+	cs.logger.i("display.width"..display.width)
+	cs.logger.i("display.height"..display.height)
+		cs.logger.i("bgSize.width"..bgSize.width)
+	cs.logger.i("bgSize.height"..bgSize.height)
 	self:addChild(self.UI.bgSp )
 
 	--加载账号密码输入框
