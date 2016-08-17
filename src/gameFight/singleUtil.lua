@@ -41,7 +41,6 @@ end
 
 --读取地图xml信息，PngPath最后一个字符要求带有/，
 function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd)
-    print("singleUtil:createFrameCache")
     --约定没有特使情况的话，图片名字个数不得超过64
     iEnd = iEnd or 64
     iCount = iCount or 64

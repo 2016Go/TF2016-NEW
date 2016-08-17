@@ -20,10 +20,19 @@ end
 --设定场景的数据，并显示场景
 function singleStage:runStageForData(target, stageData, isDebugShow)
     --创建一个地形
-    local pSprit = cc.Sprite:create(stageData["map"]["bgimage"])
-    pSprit:setAnchorPoint(cc.p(0,0))
-    pSprit:setPosition(cc.p(0,0))
-    target:addChild(pSprit , CC_GAME_LAYER_LEVEL.Layer_scene)
+    local pSprite = cc.Sprite:create(stageData["map"]["bgimage"])
+    pSprite:setAnchorPoint(cc.p(0.5,0.5))
+    pSprite:setPosition(cc.p(0,0))
+
+    --获取图片原本大小
+    local bgSize = pSprite:getContentSize();
+
+    --将图片扩大成背景大小
+    pSprite:setScaleX(display.height/bgSize.height)
+    pSprite:setScaleY(display.height/bgSize.height)
+
+
+    target:addChild(pSprite , CC_GAME_LAYER_LEVEL.Layer_scene)
 
     self.instance:showSpace(target, stageData["map"]["alltowers"]["towers"][1]["tower"])
 

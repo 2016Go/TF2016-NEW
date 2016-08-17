@@ -48,6 +48,7 @@ function singleGameData:_init()
 
 	singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_NextWaveNeed, self)
 	singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_EnemyGoOver, self)
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_GoldChange, self)
 end
 
 function singleGameData:eventResponse(gameEventID, eventSender, parameter)
@@ -61,13 +62,16 @@ function singleGameData:eventResponse(gameEventID, eventSender, parameter)
  		singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_MainUIDataChange, self)
     
     elseif gameEventID == CC_GAME_EVENT.GameEvent_EnemyGoOver then
-    	if self.mainUIData.life  <= 0 then
-    		--死亡逻辑
+    	if self.mainUIData.life  <= 0 then --死亡逻辑
     		return
     	end
     	self.mainUIData.life  = self.mainUIData.life - parameter
     	singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_MainUIDataChange, self)
-    else
+
+    elseif gameEventID == CC_GAME_EVENT.GameEvent_GoldChange then
+        self.mainUIData.gold = self.mainUIData.gold + parameter
+        singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_MainUIDataChange, self)
+    else 
         cs.logger.i("this is a meng B msg")
     end
 end

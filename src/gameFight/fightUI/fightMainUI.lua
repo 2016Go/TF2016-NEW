@@ -11,6 +11,7 @@ end
 function fightMainUI:createUI()
     self.UI.lifeSp = cc.Sprite:create("plist/fight/life.png")
     self.UI.lifeSp:setAnchorPoint(cc.p(0,1))
+    self.UI.lifeSp:setScale(0.5)
     self.UI.lifeSp:setPosition(cc.p( display.size.width * 0.05 ,display.size.height))
     self:addChild(self.UI.lifeSp )
 
@@ -23,6 +24,7 @@ function fightMainUI:createUI()
     self.UI.goldSp = cc.Sprite:create("plist/fight/gold.png")
     self.UI.goldSp:setAnchorPoint(cc.p(0,1))
     self.UI.goldSp:setPosition(cc.p(display.size.width * 0.30,display.size.height))
+    self.UI.goldSp:setScale(0.5)
     self:addChild(self.UI.goldSp )
 
     self.UI.goldLabel = cc.LabelTTF:create("", "ttf/fangzhenglier.ttf", 50)  
@@ -33,6 +35,7 @@ function fightMainUI:createUI()
     --创建波次
     self.UI.waveSp = cc.Sprite:create("plist/fight/wave.png")
     self.UI.waveSp:setAnchorPoint(cc.p(0,1))
+    self.UI.waveSp:setScale(0.5)
     self.UI.waveSp:setPosition(cc.p(display.size.width * 0.55,display.size.height))
     self:addChild(self.UI.waveSp )
 

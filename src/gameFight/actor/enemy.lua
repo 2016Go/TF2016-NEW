@@ -28,7 +28,12 @@ function enemy:setData(actorData)
     self.actorData.mainRes      = actorData.mainRes         -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
     self.actorData.road         = actorData.road            -- 行走道路ID
     self.actorData.punishHP     = actorData.punishHP        -- 被干掉的HP
-    self.actorData.roadData     = singleLoadData:getInstance().mapData["map"]["roads"]["road"][self.actorData.road]            -- 行走道路的数据
+
+    if singleLoadData:getInstance().mapData["map"]["roads"] == nil then
+        print("singleLoadData:getInstance().mapData == nil")
+    end
+    --self.actorData.roadData     = singleLoadData:getInstance().mapData["map"]["roads"]["road"]
+    self.actorData.roadData = singleLoadData:getInstance().mapData["map"]["roads"]["road"][self.actorData.road]            -- 行走道路的数据
 end
 
 function enemy:born()
@@ -197,7 +202,6 @@ end
 --特殊情况设定actorTime时间的通用接口
 function enemy:_setActorTime(actorTime)
     self.actorTime = actorTime
-    cs.logger.i("Enemy:_setActorTime is do")
 end
 
 return enemy

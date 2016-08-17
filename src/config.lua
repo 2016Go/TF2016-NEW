@@ -15,12 +15,12 @@ CC_DISABLE_GLOBAL = true
 CC_DESIGN_RESOLUTION = {
     width = 640,
     height = 1138,
-    autoscale = "FIXED_HEIGHT",
+    autoscale = "SHOW_ALL",
     callback = function(framesize)
         local ratio = framesize.width / framesize.height
         if ratio <= 1.34 then
             -- iPad 768*1024(1536*2048) is 4:3 screen
-            return {autoscale = "FIXED_WIDTH"}
+            return {autoscale = "SHOW_ALL"}
         end
     end
 }
@@ -129,7 +129,10 @@ CC_GAME_EVENT =
     GameEvent_WaveDataReady = 50,   -- 当前波次信息准备Ok,附带波次数据
     GameEvent_NextWaveNeed  = 51,    -- 请求下一个波次的怪物，
 
-    GameEvent_MainUIDataChange = 100     --游戏场景数据变化 
+    GameEvent_MainUIDataChange = 100,     --游戏场景数据变化
+    GameEvent_GoldChange    =   101,     --金币数据变更      
+
+    GameEvent_BuildTower    =   150     --建造防御塔
 }
 
 CC_TIME_SCALE = 1

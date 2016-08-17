@@ -12,7 +12,8 @@ end
   
 function singleStage:getInstance()  
     if self.instance == nil then  
-        self.instance = self:new()  
+        self.instance = self:new()
+        self.instance:_init()  
     end  
     return self.instance  
 end  
@@ -21,11 +22,23 @@ end
 function singleStage:runStageForData(target, stageData, isDebugShow)
     --创建一个地形
     local pSprit = cc.Sprite:create(stageData["map"]["bgimage"])
+
+    --获取图片原本大小
+    local bgSize = pSprit:getContentSize();
+
+    --保存一份以防万一
+    self.target = target
+
+    --将图片扩大成背景大小
+    pSprit:setScaleX(display.width/bgSize.width)
+    pSprit:setScaleY(display.height/bgSize.height)
+
+    
     pSprit:setAnchorPoint(cc.p(0,0))
     pSprit:setPosition(cc.p(0,0))
     target:addChild(pSprit , CC_GAME_LAYER_LEVEL.Layer_scene)
 
-    self.instance:showSpace(target, stageData["map"]["alltowers"]["towers"][1]["tower"])
+    self.instance:showSpace(target, stageData["map"]["towers"]["tower"])
 
     if isDebugShow == true then
         self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
@@ -63,4 +76,21 @@ function singleStage:ShowTheDebug(target, stageData)
             m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,0,0,0.9))
         end
     end
+end
+
+function singleStage:eventResponse(gameEventID, eventSender, parameter)
+    if gameEventID == CC_GAME_EVENT.GameEvent_BuildTower then
+        local pParent = eventSender:getParent() 
+        local x,y = eventSender:getPosition()
+        eventSender:removeFromParent()
+
+        local tower = require("gameFight.actor.tower"):create()
+        tower:setPosition(cc.p(x,y))
+        pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_space)
+    end
+end
+
+function singleStage:_init()
+    -- body
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_BuildTower, self)
 end

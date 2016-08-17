@@ -72,7 +72,6 @@ function signInUI:ctor()
 	self.UI.registerBtn:setTitleFontSize(25)
 	self:addChild(self.UI.registerBtn )
 
-
 	self.UI.testLabel = cc.LabelTTF:create("测试金币", "ttf/fangzhenglier.ttf", 50)  
     self.UI.testLabel:setAnchorPoint(cc.p(1,0.5))
     self.UI.testLabel:setPosition(cc.p(display.width/2 + 125,display.height/2 + 300))

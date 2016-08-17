@@ -84,6 +84,9 @@ function singleManagerUI:bindListener(node,target,name)
     elseif type == 'ccui.PageView' then---
         --_do_bind_pageView_(node,target)
         --_bindTouch(node,target,name,'PageView')
+    else
+        cs.logger.i("_bindTouch")
+        self:_bindTouch(node,target,name)
     end
 end
 
@@ -117,6 +120,7 @@ function singleManagerUI:_bindTouch(node,target,name)
         -- 播放声音
         -- to do youwei
         --制作播放声音代码
+        cs.logger.i("listener"..type)
         cs.util.call(mapping[type], target, sender, type)
     end
 

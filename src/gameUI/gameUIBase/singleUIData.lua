@@ -31,13 +31,13 @@ function singleUIData:setData(key, v)
 end
 
 function singleUIData:_init() 
-    cs.logger.i("_init")
+    cs.logger.i("singleUIData _init")
 
     local PlayName = cs.util.readUD(CC_UI_DATA_TPYE.UI_PlayName)
     cs.util.flushUD()
     
     --如果是新玩家，先测试的给他添加基础函数
-    if walletData == "" then
+    if PlayName == "" then
         self:_setNewPlayerData()
     end
 
@@ -48,6 +48,7 @@ function singleUIData:_init()
 end
 
 function singleUIData:_setNewPlayerData()
+    cs.logger.i("_setNewPlayerData")
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_PlayName , "游客" )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Wallet , 300 )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Level , 0 )
