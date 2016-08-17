@@ -1,6 +1,6 @@
 module('cs.conf.conf',package.seeall)
 
-local json = require('json')
+local json = require('cocos.cocos2d.json')
 
 ------------------------------
 local global_flename
@@ -18,8 +18,12 @@ end
 function reload_global()
     globals = {}
     
+    cs.util.printTable(global_flename)
     if type(global_flename) == 'table' then
-        for _,v in ipairs(global_flename) do
+        print("global == table")
+        for _,v in pairs(global_flename) do
+            print("global == ".._)
+            print("global == "..v)
             _global_(v)
         end
     else
@@ -81,7 +85,6 @@ function attach(filename,name)
         end
         values['_jsons_'] = nil
     end
-
     attaches[name] = data
 end
 
@@ -115,6 +118,9 @@ end
 
 function a(name,id,default)
     local attach = attaches[name]
+    if attact == nil then 
+        print("attact == nil with name "..name)
+    end
     if attach then
         local value = attach.values[id]
         if value then

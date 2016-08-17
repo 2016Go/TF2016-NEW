@@ -25,14 +25,6 @@ module('cs.init',package.seeall)
 _G.C_BUILT_IN_OS = "os"
 _G.C_BUILT_IN_OS_VER = "os_ver"
 
---初始化配置脚本
-local conf = {
-              'Configs/config/operator/zytx.conf',         --掌娱天下网络数据位置
-              'Configs/config/operator/common.conf',       --平台通用标记
-              'Configs/config/global.conf',                --预加载
-              'Configs/config/i18n/zh-cn.conf',            --中文报错
-             }
-
 function init(params)
     local cs = _G.cs or {} --创建G表
 
@@ -56,6 +48,17 @@ function init(params)
 
     -- 缓存,用于管理单键类
     cs.cache = require('cs.cache.cache')
+
+    -- 配置
+    cs.conf = require('cs.conf.init')({})
+
+    -- 配置文件载入
+    if type(CC_CONFIG) == 'table' then
+        for _,v in ipairs(CC_CONFIG) do
+            print(v.src.." == "..v.name)
+            cs.conf.attach(v.src,v.name)
+        end
+    end
 
     -- 语言报错框
     -- cs.i18n = require('cs.i18n.init')()

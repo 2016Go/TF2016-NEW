@@ -5,6 +5,9 @@ function signInUI:ctor()
 	--初始化监听数据，初始化数据
 	cs.logger.i("signInUI:ctor()")
 
+	local a = cs.conf.a('tower', 1)
+	cs.util.printTable(a)
+
 	self:setAnchorPoint(cc.p(0,0))
 	self:setPosition(cc.p(0,0))
 
@@ -22,10 +25,6 @@ function signInUI:ctor()
 	self.UI.bgSp:setScaleX(display.width/bgSize.width)
 	self.UI.bgSp:setScaleY(display.height/bgSize.height)
 
-	cs.logger.i("display.width"..display.width)
-	cs.logger.i("display.height"..display.height)
-		cs.logger.i("bgSize.width"..bgSize.width)
-	cs.logger.i("bgSize.height"..bgSize.height)
 	self:addChild(self.UI.bgSp )
 
 	--加载账号密码输入框
