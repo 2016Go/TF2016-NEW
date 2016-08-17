@@ -72,7 +72,7 @@ public:
     
     /** @brief Create function for creating a new AssetsManagerEx
      @param manifestUrl   The url for the local manifest file
-     @param storagePath   The storage path for downloaded assets
+     @param storagePath   The storage path for downloaded assetes
      @warning   The cached manifest in your storage path have higher priority and will be searched first,
                 only if it doesn't exist, AssetsManagerEx will use the given manifestUrl.
      */
@@ -189,9 +189,6 @@ protected:
     
 private:
     void batchDownload();
-
-    // Called when one DownloadUnits finished
-    void onDownloadUnitsFinished();
     
     //! The event of the current AssetsManagerEx in event dispatcher
     std::string _eventName;

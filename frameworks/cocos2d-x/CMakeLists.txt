@@ -1,7 +1,6 @@
 #/****************************************************************************
 # Copyright (c) 2013 cocos2d-x.org
 # Copyright (c) 2014 martell malone
-# Copyright (c) 2015 Chukong Technologies Inc.
 #
 # http://www.cocos2d-x.org
 #
@@ -24,7 +23,7 @@
 # THE SOFTWARE.
 # ****************************************************************************/
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 2.8)
 # It ensures that when Find*.cmake files included from cmake's Modules dir
 # include another *.cmake file with relative path, that file will be included
 # also from cmake's Modules dir, to not clash with per-project files.
@@ -39,7 +38,7 @@ endif()
 project (Cocos2d-X)
 
 # The version number
-set(COCOS2D_X_VERSION 3.11)
+set(COCOS2D_X_VERSION 3.10)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/Modules/")
 include(CocosBuildHelpers)
@@ -56,7 +55,6 @@ if(MINGW)
   set(USE_PREBUILT_LIBS_DEFAULT OFF)
 endif()
 
-set(BUILD_CPP_EMPTY_TEST_DEFAULT ON)
 set(BUILD_CPP_TESTS_DEFAULT ON)
 set(BUILD_LUA_LIBS_DEFAULT ON)
 set(BUILD_LUA_TESTS_DEFAULT ON)
@@ -64,7 +62,6 @@ set(BUILD_JS_LIBS_DEFAULT ON)
 set(BUILD_JS_TESTS_DEFAULT ON)
 # TODO: fix test samples for MSVC
 if(MSVC)
-  set(BUILD_CPP_EMPTY_TEST_DEFAULT OFF)
   set(BUILD_CPP_TESTS_DEFAULT OFF)
   set(BUILD_LUA_LIBS_DEFAULT OFF)
   set(BUILD_LUA_TESTS_DEFAULT OFF)
@@ -84,7 +81,6 @@ option(BUILD_EDITOR_SPINE "Build editor support for spine" ON)
 option(BUILD_EDITOR_COCOSTUDIO "Build editor support for cocostudio" ON)
 option(BUILD_EDITOR_COCOSBUILDER "Build editor support for cocosbuilder" ON)
 option(BUILD_CPP_TESTS "Build TestCpp samples" ${BUILD_CPP_TESTS_DEFAULT})
-option(BUILD_CPP_EMPTY_TEST "Build TestCpp samples" ${BUILD_CPP_EMPTY_TEST_DEFAULT})
 option(BUILD_LUA_LIBS "Build lua libraries" ${BUILD_LUA_LIBS_DEFAULT})
 option(BUILD_LUA_TESTS "Build TestLua samples" ${BUILD_LUA_TESTS_DEFAULT})
 option(BUILD_JS_LIBS "Build js libraries" ${BUILD_JS_LIBS_DEFAULT})
@@ -95,15 +91,11 @@ if(USE_PREBUILT_LIBS AND MINGW)
   message(FATAL_ERROR "Prebuilt windows libs can't be used with mingw, please use packages.")
 endif()
 
-# CMAKE_BUILD_TYPE has precedence over DEBUG_MODE
-# Still supporting DEBUG_MODE for backwards compatibility
-if (NOT CMAKE_BUILD_TYPE)
-  if(DEBUG_MODE)
-    set(CMAKE_BUILD_TYPE DEBUG)
-  else(DEBUG_MODE)
-    set(CMAKE_BUILD_TYPE RELEASE)
-  endif(DEBUG_MODE)
-endif(NOT CMAKE_BUILD_TYPE)
+if(DEBUG_MODE)
+  set(CMAKE_BUILD_TYPE DEBUG)
+else(DEBUG_MODE)
+  set(CMAKE_BUILD_TYPE RELEASE)
+endif(DEBUG_MODE)
 
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -DCOCOS2D_DEBUG=1")
 set(CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
@@ -124,7 +116,7 @@ if(MSVC)
 else()
   set(CMAKE_C_FLAGS_DEBUG "-g -Wall -Wextra -DCOCOS2D_DEBUG=1")
   set(CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu99")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated-declarations -Wno-reorder")
   if(CLANG)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
@@ -154,8 +146,6 @@ elseif(LINUX)
 elseif(ANDROID)
   ADD_DEFINITIONS (-DUSE_FILE32API)
   set(PLATFORM_FOLDER android)
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fexceptions")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsigned-char -latomic")
 else()
   message( FATAL_ERROR "Unsupported platform, CMake will exit" )
 endif()
@@ -234,9 +224,7 @@ endif(USE_WEBP)
 
 # Chipmunk
 if(USE_CHIPMUNK)
-  if(USE_PREBUILT_LIBS)
-    cocos_find_package(Chipmunk CHIPMUNK REQUIRED)
-  endif()
+  cocos_find_package(Chipmunk CHIPMUNK REQUIRED)
   add_definitions(-DCC_ENABLE_CHIPMUNK_INTEGRATION=1)
   if(IOS OR MACOSX)
     # without this chipmunk will try to use apple defined geometry types, that conflicts with cocos
@@ -359,13 +347,9 @@ endif()
 # libcocos2d.a
 add_subdirectory(cocos)
 
-# build cpp-empty-test
-if(BUILD_CPP_EMPTY_TEST)
-  add_subdirectory(tests/cpp-empty-test)
-endif(BUILD_CPP_EMPTY_TEST)
-
-# build cpp-tests
+# build cpp tests
 if(BUILD_CPP_TESTS)
+  add_subdirectory(tests/cpp-empty-test)
   add_subdirectory(tests/cpp-tests)
 endif(BUILD_CPP_TESTS)
 
@@ -383,6 +367,10 @@ endif(BUILD_LUA_LIBS)
 
 ## JS
 if(BUILD_JS_LIBS)
+  link_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/spidermonkey/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+  )
+
   add_subdirectory(cocos/scripting/js-bindings)
 
   # build js tests

@@ -91,10 +91,9 @@
         
 --------------------------------
 -- 
--- @function [parent=#ImageView] ignoreContentAdaptWithSize 
+-- @function [parent=#ImageView] init 
 -- @param self
--- @param #bool ignore
--- @return ImageView#ImageView self (return value: ccui.ImageView)
+-- @return bool#bool ret (return value: bool)
         
 --------------------------------
 -- 
@@ -104,29 +103,16 @@
         
 --------------------------------
 -- 
--- @function [parent=#ImageView] init 
--- @param self
--- @return bool#bool ret (return value: bool)
-        
---------------------------------
--- 
--- @function [parent=#ImageView] setGLProgram 
--- @param self
--- @param #cc.GLProgram glProgram
--- @return ImageView#ImageView self (return value: ccui.ImageView)
-        
---------------------------------
--- 
--- @function [parent=#ImageView] setGLProgramState 
--- @param self
--- @param #cc.GLProgramState glProgramState
--- @return ImageView#ImageView self (return value: ccui.ImageView)
-        
---------------------------------
--- 
 -- @function [parent=#ImageView] getVirtualRendererSize 
 -- @param self
 -- @return size_table#size_table ret (return value: size_table)
+        
+--------------------------------
+-- 
+-- @function [parent=#ImageView] ignoreContentAdaptWithSize 
+-- @param self
+-- @param #bool ignore
+-- @return ImageView#ImageView self (return value: ccui.ImageView)
         
 --------------------------------
 -- Default constructor<br>

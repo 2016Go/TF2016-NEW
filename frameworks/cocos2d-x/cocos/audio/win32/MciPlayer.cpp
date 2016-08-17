@@ -1,4 +1,4 @@
-#include "audio/win32/MciPlayer.h"
+#include "MciPlayer.h"
 #include <tchar.h>
 #include "platform/CCFileUtils.h"
 

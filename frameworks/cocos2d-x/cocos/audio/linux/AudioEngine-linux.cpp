@@ -2,7 +2,7 @@
  * @author cesarpachon
  */ 
 #include <cstring>
-#include "audio/linux/AudioEngine-linux.h"
+#include "AudioEngine-linux.h"
 #include "cocos2d.h"
 using namespace cocos2d;
 using namespace cocos2d::experimental;

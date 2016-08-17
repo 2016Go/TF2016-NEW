@@ -25,9 +25,9 @@ THE SOFTWARE.
 #ifndef __CCPROCESSBASE_H__
 #define __CCPROCESSBASE_H__
 
-#include "editor-support/cocostudio/CCArmatureDefine.h"
-#include "editor-support/cocostudio/CCDatas.h"
-#include "editor-support/cocostudio/CocosStudioExport.h"
+#include "cocostudio/CCArmatureDefine.h"
+#include "cocostudio/CCDatas.h"
+#include "cocostudio/CocosStudioExport.h"
 
 namespace cocostudio {
 

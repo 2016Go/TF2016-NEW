@@ -50,11 +50,13 @@
 -- @return bool#bool ret (return value: bool)
         
 --------------------------------
--- Scroll inner container to bottom boundary of scrollview.<br>
+-- Scroll inner container to both direction percent position of scrollview.<br>
+-- param percent A value between 0 and 100.<br>
 -- param timeInSec Time in seconds.<br>
 -- param attenuated Whether scroll speed attenuate or not.
--- @function [parent=#ScrollView] scrollToBottom 
+-- @function [parent=#ScrollView] scrollToPercentBothDirection 
 -- @param self
+-- @param #vec2_table percent
 -- @param #float timeInSec
 -- @param #bool attenuated
 -- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
@@ -133,15 +135,9 @@
 -- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
         
 --------------------------------
--- Scroll inner container to both direction percent position of scrollview.<br>
--- param percent A value between 0 and 100.<br>
--- param timeInSec Time in seconds.<br>
--- param attenuated Whether scroll speed attenuate or not.
--- @function [parent=#ScrollView] scrollToPercentBothDirection 
+-- Move inner container to bottom and left boundary of scrollview.
+-- @function [parent=#ScrollView] jumpToBottomLeft 
 -- @param self
--- @param #vec2_table percent
--- @param #float timeInSec
--- @param #bool attenuated
 -- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
         
 --------------------------------
@@ -251,21 +247,6 @@
 -- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
         
 --------------------------------
--- brief Set the touch total time threshold<br>
--- param the touch total time threshold
--- @function [parent=#ScrollView] setTouchTotalTimeThreshold 
--- @param self
--- @param #float touchTotalTimeThreshold
--- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
-        
---------------------------------
--- brief Get the touch total time threshold<br>
--- return the touch total time threshold
--- @function [parent=#ScrollView] getTouchTotalTimeThreshold 
--- @param self
--- @return float#float ret (return value: float)
-        
---------------------------------
 -- brief Get the horizontal scroll bar's position from right-top corner.<br>
 -- return positionFromCorner
 -- @function [parent=#ScrollView] getScrollBarPositionFromCornerForHorizontal 
@@ -286,12 +267,6 @@
 -- @function [parent=#ScrollView] setBounceEnabled 
 -- @param self
 -- @param #bool enabled
--- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
-        
---------------------------------
--- Immediately stops inner container scroll initiated by any of the "scrollTo*" member functions
--- @function [parent=#ScrollView] stopAutoScroll 
--- @param self
 -- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
         
 --------------------------------
@@ -333,6 +308,16 @@
 -- @function [parent=#ScrollView] scrollToPercentVertical 
 -- @param self
 -- @param #float percent
+-- @param #float timeInSec
+-- @param #bool attenuated
+-- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
+        
+--------------------------------
+-- Scroll inner container to bottom boundary of scrollview.<br>
+-- param timeInSec Time in seconds.<br>
+-- param attenuated Whether scroll speed attenuate or not.
+-- @function [parent=#ScrollView] scrollToBottom 
+-- @param self
 -- @param #float timeInSec
 -- @param #bool attenuated
 -- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
@@ -413,12 +398,6 @@
 -- @function [parent=#ScrollView] isScrollBarAutoHideEnabled 
 -- @param self
 -- @return bool#bool ret (return value: bool)
-        
---------------------------------
--- Move inner container to bottom and left boundary of scrollview.
--- @function [parent=#ScrollView] jumpToBottomLeft 
--- @param self
--- @return ScrollView#ScrollView self (return value: ccui.ScrollView)
         
 --------------------------------
 -- Move inner container to right boundary of scrollview.

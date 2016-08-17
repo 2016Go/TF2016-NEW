@@ -28,7 +28,7 @@
 
 /// @cond DO_NOT_SHOW
 
-#include "2d/CCFont.h"
+#include "CCFont.h"
 
 NS_CC_BEGIN
 

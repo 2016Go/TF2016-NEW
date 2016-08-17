@@ -23,16 +23,16 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "base/CCController.h"
+#include "CCController.h"
 #include "platform/CCPlatformConfig.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
-#include "base/ccMacros.h"
-#include "base/CCEventDispatcher.h"
-#include "base/CCEventController.h"
-#include "base/CCEventListenerController.h"
-#include "base/CCDirector.h"
-#include "2d/CCLabel.h"
+#include "ccMacros.h"
+#include "CCEventDispatcher.h"
+#include "CCEventController.h"
+#include "CCEventListenerController.h"
+#include "CCDirector.h"
+#include "CCLabel.h"
 
 #import <GameController/GameController.h>
 

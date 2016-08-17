@@ -41,6 +41,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.chukong.cocosplay.client.CocosPlayClient;
 import com.enhance.gameservice.IGameTuningService;
 
 import java.io.UnsupportedEncodingException;
@@ -93,7 +94,12 @@ public class Cocos2dxHelper {
             final ApplicationInfo applicationInfo = activity.getApplicationInfo();
                     
             Cocos2dxHelper.sPackageName = applicationInfo.packageName;
-            Cocos2dxHelper.sFileDirectory = activity.getFilesDir().getAbsolutePath();
+            if (CocosPlayClient.isEnabled() && !CocosPlayClient.isDemo()) {
+                Cocos2dxHelper.sFileDirectory = CocosPlayClient.getGameRoot();
+            }
+            else {
+                Cocos2dxHelper.sFileDirectory = activity.getFilesDir().getAbsolutePath();
+            }
             
             Cocos2dxHelper.nativeSetApkPath(applicationInfo.sourceDir);
     

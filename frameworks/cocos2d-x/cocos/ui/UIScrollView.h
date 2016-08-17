@@ -55,8 +55,7 @@ typedef enum
     SCROLLVIEW_EVENT_BOUNCE_TOP,
     SCROLLVIEW_EVENT_BOUNCE_BOTTOM,
     SCROLLVIEW_EVENT_BOUNCE_LEFT,
-    SCROLLVIEW_EVENT_BOUNCE_RIGHT,
-    SCROLLVIEW_EVENT_AUTOSCROLL_ENDED
+    SCROLLVIEW_EVENT_BOUNCE_RIGHT
 }ScrollviewEventType;
 
 /**
@@ -101,8 +100,7 @@ public:
         BOUNCE_BOTTOM,
         BOUNCE_LEFT,
         BOUNCE_RIGHT,
-        CONTAINER_MOVED,
-        AUTOSCROLL_ENDED
+        CONTAINER_MOVED
     };
 
     /**
@@ -157,65 +155,60 @@ public:
     Layout* getInnerContainer()const;
 
     /**
-     * Immediately stops inner container scroll initiated by any of the "scrollTo*" member functions
-     */
-    virtual void stopAutoScroll();
-
-    /**
      * Scroll inner container to bottom boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToBottom(float timeInSec, bool attenuated);
+    void scrollToBottom(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to top boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToTop(float timeInSec, bool attenuated);
+    void scrollToTop(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to left boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToLeft(float timeInSec, bool attenuated);
+    void scrollToLeft(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to right boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToRight(float timeInSec, bool attenuated);
+    void scrollToRight(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to top and left boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToTopLeft(float timeInSec, bool attenuated);
+    void scrollToTopLeft(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to top and right boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToTopRight(float timeInSec, bool attenuated);
+    void scrollToTopRight(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to bottom and left boundary of scrollview.
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToBottomLeft(float timeInSec, bool attenuated);
+    void scrollToBottomLeft(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to bottom and right boundary of scrollview.
      * @param timeInSec Time in seconds
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToBottomRight(float timeInSec, bool attenuated);
+    void scrollToBottomRight(float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to vertical percent position of scrollview.
@@ -223,7 +216,7 @@ public:
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToPercentVertical(float percent, float timeInSec, bool attenuated);
+    void scrollToPercentVertical(float percent, float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to horizontal percent position of scrollview.
@@ -231,7 +224,7 @@ public:
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToPercentHorizontal(float percent, float timeInSec, bool attenuated);
+    void scrollToPercentHorizontal(float percent, float timeInSec, bool attenuated);
 
     /**
      * Scroll inner container to both direction percent position of scrollview.
@@ -239,7 +232,7 @@ public:
      * @param timeInSec Time in seconds.
      * @param attenuated Whether scroll speed attenuate or not.
      */
-    virtual void scrollToPercentBothDirection(const Vec2& percent, float timeInSec, bool attenuated);
+    void scrollToPercentBothDirection(const Vec2& percent, float timeInSec, bool attenuated);
 
     /**
      * Move inner container to bottom boundary of scrollview.
@@ -329,7 +322,7 @@ public:
      *
      * @return The inner container position.
      */
-    const Vec2& getInnerContainerPosition() const;
+    const Vec2 getInnerContainerPosition() const;
 
     /**
      * Add callback function which will be called  when scrollview event triggered.
@@ -513,20 +506,6 @@ public:
     float getScrollBarAutoHideTime() const;
     
     /**
-     * @brief Set the touch total time threshold
-     *
-     * @param the touch total time threshold
-     */
-    void setTouchTotalTimeThreshold(float touchTotalTimeThreshold);
-    
-    /**
-     * @brief Get the touch total time threshold
-     *
-     * @return the touch total time threshold
-     */
-    float getTouchTotalTimeThreshold() const;
-    
-    /**
      * Set layout type for scrollview.
      *
      * @see `Layout::Type`
@@ -624,8 +603,6 @@ protected:
     void updateScrollBar(const Vec2& outOfBoundary);
 
 protected:
-    virtual float getAutoScrollStopEpsilon() const;
-    bool fltEqualZero(const Vec2& point) const;
     Layout* _innerContainer;
 
     Direction _direction;
@@ -643,7 +620,6 @@ protected:
     std::list<Vec2> _touchMoveDisplacements;
     std::list<float> _touchMoveTimeDeltas;
     long long _touchMovePreviousTimestamp;
-    float _touchTotalTimeThreshold;
     
     bool _autoScrolling;
     bool _autoScrollAttenuate;

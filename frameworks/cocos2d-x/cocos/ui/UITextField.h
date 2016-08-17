@@ -119,7 +119,7 @@ public:
      * Return the total inputed characters.
      *@return Total inputed character count.
      */
-    std::size_t getCharCount()const;
+    int getCharCount()const;
     
     
     /**
@@ -209,6 +209,8 @@ public:
 protected:
     bool _maxLengthEnabled;
     int _maxLength;
+    bool _passwordEnabled;
+    std::string _passwordStyleText;
     bool _attachWithIME;
     bool _detachWithIME;
     bool _insertText;
@@ -621,30 +623,6 @@ public:
      */
     TextVAlignment getTextVerticalAlignment() const;
     
-    /**
-     * Set enable cursor use.
-     * @js NA
-     */
-    void setCursorEnabled(bool enabled);
-    
-    /**
-     * Set char showing cursor.
-     * @js NA
-     */
-    void setCursorChar(char cursor);
-    
-    /**
-     * Set cursor position, if enabled
-     * @js NA
-     */
-    void setCursorPosition(std::size_t cursorPosition);
-    
-    /**
-     * Set cursor position to hit letter, if enabled
-     * @js NA
-     */
-    void setCursorFromPoint(const Vec2 &point, const Camera* camera);
-    
 CC_CONSTRUCTOR_ACCESS:
     virtual bool init() override;
     
@@ -683,6 +661,7 @@ protected:
 #endif
     ccTextFieldCallback _eventCallback;
     
+    std::string _passwordStyleText;
     bool _textFieldRendererAdaptDirty;
 private:
     enum class FontType

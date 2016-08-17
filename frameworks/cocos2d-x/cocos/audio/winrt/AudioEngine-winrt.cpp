@@ -21,7 +21,7 @@
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 
-#include "audio/winrt/AudioEngine-winrt.h"
+#include "AudioEngine-winrt.h"
 #include "platform/CCFileUtils.h"
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"

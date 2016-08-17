@@ -160,13 +160,16 @@ bool Manifest::versionEquals(const Manifest *b) const
 std::unordered_map<std::string, Manifest::AssetDiff> Manifest::genDiff(const Manifest *b) const
 {
     std::unordered_map<std::string, AssetDiff> diff_map;
-    const std::unordered_map<std::string, Asset> &bAssets = b->getAssets();
+    std::unordered_map<std::string, Asset> bAssets = b->getAssets();
     
+    std::string key;
+    Asset valueA;
+    Asset valueB;
     std::unordered_map<std::string, Asset>::const_iterator valueIt, it;
     for (it = _assets.begin(); it != _assets.end(); ++it)
     {
-        const auto &key = it->first;
-        const auto &valueA = it->second;
+        key = it->first;
+        valueA = it->second;
         
         // Deleted
         valueIt = bAssets.find(key);
@@ -179,7 +182,7 @@ std::unordered_map<std::string, Manifest::AssetDiff> Manifest::genDiff(const Man
         }
         
         // Modified
-        const auto &valueB = valueIt->second;
+        valueB = valueIt->second;
         if (valueA.md5 != valueB.md5) {
             AssetDiff diff;
             diff.asset = valueB;
@@ -190,8 +193,8 @@ std::unordered_map<std::string, Manifest::AssetDiff> Manifest::genDiff(const Man
     
     for (it = bAssets.begin(); it != bAssets.end(); ++it)
     {
-        const auto &key = it->first;
-        const auto &valueB = it->second;
+        key = it->first;
+        valueB = it->second;
         
         // Added
         valueIt = _assets.find(key);
@@ -315,7 +318,8 @@ void Manifest::setAssetDownloadState(const std::string &key, const Manifest::Dow
                 {
                     for (rapidjson::Value::MemberIterator itr = assets.MemberBegin(); itr != assets.MemberEnd(); ++itr)
                     {
-                        if (key.compare(itr->name.GetString()) == 0) {
+                        std::string jkey = itr->name.GetString();
+                        if (jkey == key) {
                             rapidjson::Value &entry = itr->value;
                             if (entry.HasMember(KEY_DOWNLOAD_STATE) && entry[KEY_DOWNLOAD_STATE].IsInt())
                             {

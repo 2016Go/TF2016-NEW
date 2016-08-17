@@ -77,7 +77,7 @@ public:
     @brief Get whether the clipping is enabled or not.
     @return Whether the clipping is enabled or not. Default is true.
     */
-    bool isClippingEnabled() const {
+    const bool isClippingEnabled() const {
         return _clippingEnabled;
     }
 

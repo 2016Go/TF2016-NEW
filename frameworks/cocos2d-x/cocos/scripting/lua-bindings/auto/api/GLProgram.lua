@@ -43,8 +43,8 @@
 -- @return string#string ret (return value: string)
         
 --------------------------------
--- @overload self         
 -- @overload self, mat4_table         
+-- @overload self         
 -- @function [parent=#GLProgram] setUniformsForBuiltins
 -- @param self
 -- @param #mat4_table modelView

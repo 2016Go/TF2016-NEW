@@ -1,5 +1,5 @@
 
-#include "scripting/lua-bindings/manual/platform/android/CCLuaJavaBridge.h"
+#include "CCLuaJavaBridge.h"
 #include "platform/android/jni/JniHelper.h"
 #include <android/log.h>
 #include "base/ccUTF8.h"
@@ -8,7 +8,7 @@
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
 extern "C" {
-#include "scripting/lua-bindings/manual/tolua_fix.h"
+#include "tolua_fix.h"
 }
 
 LuaJavaBridge::CallInfo::~CallInfo(void)

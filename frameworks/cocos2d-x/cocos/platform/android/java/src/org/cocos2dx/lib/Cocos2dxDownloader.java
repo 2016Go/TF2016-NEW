@@ -99,7 +99,10 @@ class FileTaskHandler extends FileAsyncHttpResponseHandler {
     @Override
     public void onFinish() {
         // onFinish called after onSuccess/onFailure
-        _downloader.runNextTaskIfExists();
+        Runnable taskRunnable = _downloader.dequeue();
+        if (taskRunnable != null) {
+            Cocos2dxHelper.getActivity().runOnUiThread(taskRunnable);
+        }
     }
 
     @Override
@@ -170,7 +173,6 @@ public class Cocos2dxDownloader {
     private int _countOfMaxProcessingTasks;
     private HashMap _taskMap = new HashMap();
     private Queue<Runnable> _taskQueue = new LinkedList<Runnable>();
-    private int _runningTaskCount = 0;
 
     void onProgress(final int id, final long downloadBytes, final long downloadNow, final long downloadTotal) {
         DownloadTask task = (DownloadTask)_taskMap.get(id);
@@ -275,7 +277,12 @@ public class Cocos2dxDownloader {
                 }
             }
         };
-        downloader.enqueueTask(taskRunnable);
+        if (downloader._taskQueue.size() < downloader._countOfMaxProcessingTasks) {
+            Cocos2dxHelper.getActivity().runOnUiThread(taskRunnable);
+            downloader._taskQueue.add(null);
+        } else {
+            downloader._taskQueue.add(taskRunnable);
+        }
     }
 
     public static void cancelAllRequests(final Cocos2dxDownloader downloader) {
@@ -297,27 +304,14 @@ public class Cocos2dxDownloader {
         });
     }
 
-
-    public void enqueueTask(Runnable taskRunnable) {
-        synchronized (_taskQueue) {
-            if (_runningTaskCount < _countOfMaxProcessingTasks) {
-                Cocos2dxHelper.getActivity().runOnUiThread(taskRunnable);
-                _runningTaskCount++;
-            } else {
-                _taskQueue.add(taskRunnable);
-            }
+    public Runnable dequeue() {
+        if (!_taskQueue.isEmpty() && _taskQueue.element() == null) {
+            _taskQueue.remove();
         }
-    }
-
-    public void runNextTaskIfExists() {
-        synchronized (_taskQueue) {
-            Runnable taskRunnable = Cocos2dxDownloader.this._taskQueue.poll();
-            if (taskRunnable != null) {
-                Cocos2dxHelper.getActivity().runOnUiThread(taskRunnable);
-            } else {
-                _runningTaskCount--;
-            }
+        if (!_taskQueue.isEmpty()) {
+            return _taskQueue.remove();
         }
+        return null;
     }
 
     native void nativeOnProgress(int id, int taskId, long dl, long dlnow, long dltotal);

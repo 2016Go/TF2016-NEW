@@ -61,10 +61,7 @@ then running it again in Reverse mode.
 
 Example:
 
-@code
-auto action = MoveBy::create(1.0f, Vec2::ONE);
-auto pingPongAction = Sequence::create(action, action->reverse(), nullptr);
-@endcode
+Action *pingPongAction = Sequence::actions(action, action->reverse(), nullptr);
 */
 class CC_DLL ActionInterval : public FiniteTimeAction
 {
@@ -1523,6 +1520,10 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
+    //
+    // Overrides
+    //
+    virtual bool isDone(void) const override;
     
 CC_CONSTRUCTOR_ACCESS:
     TargetedAction();

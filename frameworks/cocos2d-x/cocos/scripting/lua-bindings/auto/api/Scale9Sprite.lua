@@ -428,13 +428,6 @@
         
 --------------------------------
 -- 
--- @function [parent=#Scale9Sprite] setGLProgram 
--- @param self
--- @param #cc.GLProgram glprogram
--- @return Scale9Sprite#Scale9Sprite self (return value: ccui.Scale9Sprite)
-        
---------------------------------
--- 
 -- @function [parent=#Scale9Sprite] updateDisplayedColor 
 -- @param self
 -- @param #color3b_table parentColor
@@ -445,13 +438,6 @@
 -- @function [parent=#Scale9Sprite] setContentSize 
 -- @param self
 -- @param #size_table size
--- @return Scale9Sprite#Scale9Sprite self (return value: ccui.Scale9Sprite)
-        
---------------------------------
--- 
--- @function [parent=#Scale9Sprite] setGLProgramState 
--- @param self
--- @param #cc.GLProgramState glProgramState
 -- @return Scale9Sprite#Scale9Sprite self (return value: ccui.Scale9Sprite)
         
 --------------------------------

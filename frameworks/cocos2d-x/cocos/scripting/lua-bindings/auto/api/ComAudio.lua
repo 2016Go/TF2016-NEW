@@ -1,7 +1,7 @@
 
 --------------------------------
 -- @module ComAudio
--- @extend Component,PlayableProtocol
+-- @extend Component
 -- @parent_module ccs
 
 --------------------------------
@@ -45,12 +45,6 @@
 --------------------------------
 -- 
 -- @function [parent=#ComAudio] end 
--- @param self
--- @return ComAudio#ComAudio self (return value: ccs.ComAudio)
-        
---------------------------------
--- / @{/ @name implement Playable Protocol
--- @function [parent=#ComAudio] start 
 -- @param self
 -- @return ComAudio#ComAudio self (return value: ccs.ComAudio)
         
@@ -109,12 +103,6 @@
 -- @param #bool bLoop
 -- @return ComAudio#ComAudio self (return value: ccs.ComAudio)
 
---------------------------------
--- 
--- @function [parent=#ComAudio] stop 
--- @param self
--- @return ComAudio#ComAudio self (return value: ccs.ComAudio)
-        
 --------------------------------
 -- @overload self, char         
 -- @overload self, char, bool         

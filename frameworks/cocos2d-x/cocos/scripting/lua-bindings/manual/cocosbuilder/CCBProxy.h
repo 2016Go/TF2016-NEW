@@ -2,10 +2,10 @@
 #define __CCBPROXY_H_
 
 #include "cocos2d.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#include "CCLuaEngine.h"
 #include "audio/include/SimpleAudioEngine.h"
 #include "extensions/cocos-ext.h"
-#include "editor-support/cocosbuilder/CocosBuilder.h"
+#include "cocosbuilder/CocosBuilder.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;

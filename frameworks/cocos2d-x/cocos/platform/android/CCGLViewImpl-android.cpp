@@ -26,10 +26,12 @@ THE SOFTWARE.
 #include "platform/CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
-#include "platform/android/CCGLViewImpl-android.h"
+#include "CCGLViewImpl-android.h"
 #include "base/CCDirector.h"
 #include "base/ccMacros.h"
-#include "platform/android/jni/JniHelper.h"
+#include "jni/IMEJni.h"
+#include "jni/JniHelper.h"
+#include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include "CCGL.h"
 
 #include <stdlib.h>
@@ -110,7 +112,7 @@ bool GLViewImpl::isOpenGLReady()
 
 void GLViewImpl::end()
 {
-    JniHelper::callStaticVoidMethod("org/cocos2dx/lib/Cocos2dxHelper", "terminateProcess");
+    terminateProcessJNI();
 }
 
 void GLViewImpl::swapBuffers()
@@ -119,11 +121,7 @@ void GLViewImpl::swapBuffers()
 
 void GLViewImpl::setIMEKeyboardState(bool bOpen)
 {
-    if (bOpen) {
-        JniHelper::callStaticVoidMethod("org/cocos2dx/lib/Cocos2dxGLSurfaceView", "openIMEKeyboard");
-    } else {
-        JniHelper::callStaticVoidMethod("org/cocos2dx/lib/Cocos2dxGLSurfaceView", "closeIMEKeyboard");
-    }
+    setKeyboardStateJNI((int)bOpen);
 }
 
 NS_CC_END

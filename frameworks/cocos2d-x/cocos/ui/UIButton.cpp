@@ -714,7 +714,7 @@ void Button::setTitleText(const std::string& text)
     updateTitleLocation();
 }
 
-std::string Button::getTitleText() const
+const std::string Button::getTitleText() const
 {
     if(nullptr == _titleRenderer)
     {
@@ -824,7 +824,7 @@ Label* Button::getTitleRenderer()const
     return _titleRenderer;
 }
 
-std::string Button::getTitleFontName() const
+const std::string Button::getTitleFontName() const
 {
     if (nullptr != _titleRenderer)
     {

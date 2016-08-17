@@ -159,7 +159,7 @@ public:
      */
     void setConnectionTimeout(unsigned int timeout);
     
-    /** @brief Gets connection time out in seconds
+    /** @brief Gets connection time out in secondes
      */
     unsigned int getConnectionTimeout();
 

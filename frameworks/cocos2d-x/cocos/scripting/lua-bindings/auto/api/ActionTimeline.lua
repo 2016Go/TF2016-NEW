@@ -1,7 +1,7 @@
 
 --------------------------------
 -- @module ActionTimeline
--- @extend Action,PlayableProtocol
+-- @extend Action
 -- @parent_module ccs
 
 --------------------------------
@@ -42,12 +42,6 @@
 --------------------------------
 --  Pause the animation. 
 -- @function [parent=#ActionTimeline] pause 
--- @param self
--- @return ActionTimeline#ActionTimeline self (return value: ccs.ActionTimeline)
-        
---------------------------------
--- / @{/ @name implement Playable Protocol
--- @function [parent=#ActionTimeline] start 
 -- @param self
 -- @return ActionTimeline#ActionTimeline self (return value: ccs.ActionTimeline)
         
@@ -234,17 +228,17 @@
         
 --------------------------------
 -- 
+-- @function [parent=#ActionTimeline] step 
+-- @param self
+-- @param #float delta
+-- @return ActionTimeline#ActionTimeline self (return value: ccs.ActionTimeline)
+        
+--------------------------------
+-- 
 -- @function [parent=#ActionTimeline] startWithTarget 
 -- @param self
 -- @param #cc.Node target
 -- @return ActionTimeline#ActionTimeline self (return value: ccs.ActionTimeline)
-        
---------------------------------
---  Returns a reverse of ActionTimeline. <br>
--- Not implement yet.
--- @function [parent=#ActionTimeline] reverse 
--- @param self
--- @return ActionTimeline#ActionTimeline ret (return value: ccs.ActionTimeline)
         
 --------------------------------
 --  Returns a clone of ActionTimeline 
@@ -253,17 +247,11 @@
 -- @return ActionTimeline#ActionTimeline ret (return value: ccs.ActionTimeline)
         
 --------------------------------
--- 
--- @function [parent=#ActionTimeline] stop 
+--  Returns a reverse of ActionTimeline. <br>
+-- Not implement yet.
+-- @function [parent=#ActionTimeline] reverse 
 -- @param self
--- @return ActionTimeline#ActionTimeline self (return value: ccs.ActionTimeline)
-        
---------------------------------
--- 
--- @function [parent=#ActionTimeline] step 
--- @param self
--- @param #float delta
--- @return ActionTimeline#ActionTimeline self (return value: ccs.ActionTimeline)
+-- @return ActionTimeline#ActionTimeline ret (return value: ccs.ActionTimeline)
         
 --------------------------------
 -- 

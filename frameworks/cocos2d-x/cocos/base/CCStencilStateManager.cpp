@@ -23,7 +23,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "base/CCStencilStateManager.hpp"
+#include "CCStencilStateManager.hpp"
 #include "base/CCDirector.h"
 #include "renderer/CCGLProgramCache.h"
 #include "renderer/ccGLStateCache.h"

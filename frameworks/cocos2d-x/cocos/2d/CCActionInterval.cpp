@@ -409,11 +409,10 @@ bool Repeat::initWithAction(FiniteTimeAction *action, unsigned int times)
 
         _actionInstant = dynamic_cast<ActionInstant*>(action) ? true : false;
         //an instant action needs to be executed one time less in the update method since it uses startWithTarget to execute the action
-        // minggo: instant action doesn't execute action in Repeat::startWithTarget(), so comment it.
-//        if (_actionInstant) 
-//        {
-//            _times -=1;
-//        }
+        if (_actionInstant) 
+        {
+            _times -=1;
+        }
         _total = 0;
 
         return true;
@@ -456,7 +455,7 @@ void Repeat::update(float dt)
 {
     if (dt >= _nextDt)
     {
-        while (dt >= _nextDt && _total < _times)
+        while (dt > _nextDt && _total < _times)
         {
             if (!(sendUpdateEventToScript(1.0f, _innerAction)))
                 _innerAction->update(1.0f);
@@ -468,11 +467,8 @@ void Repeat::update(float dt)
         }
 
         // fix for issue #1288, incorrect end value of repeat
-        if(fabs(dt - 1.0f) < FLT_EPSILON && _total < _times)
+        if(dt >= 1.0f && _total < _times) 
         {
-            if (!(sendUpdateEventToScript(1.0f, _innerAction)))
-                _innerAction->update(1.0f);
-            
             _total++;
         }
 
@@ -481,9 +477,8 @@ void Repeat::update(float dt)
         {
             if (_total == _times)
             {
-                // minggo: inner action update is invoked above, don't have to invoke it here
-//                if (!(sendUpdateEventToScript(1, _innerAction)))
-//                    _innerAction->update(1);
+                if (!(sendUpdateEventToScript(1, _innerAction)))
+                    _innerAction->update(1);
                 _innerAction->stop();
             }
             else
@@ -2539,6 +2534,11 @@ void TargetedAction::update(float time)
 {
     if (!(sendUpdateEventToScript(time, _action)))
         _action->update(time);
+}
+
+bool TargetedAction::isDone(void) const
+{
+    return _action->isDone();
 }
 
 void TargetedAction::setForcedTarget(Node* forcedTarget)

@@ -30,7 +30,7 @@
 #include <unordered_map>
 
 #include "base/CCRef.h"
-#include "renderer/CCRenderCommand.h"
+#include "CCRenderCommand.h"
 
 /**
  * @addtogroup renderer

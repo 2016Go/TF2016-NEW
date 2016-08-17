@@ -11,16 +11,16 @@
 -- @return float#float ret (return value: float)
         
 --------------------------------
--- get vertex count<br>
--- return number of vertices
--- @function [parent=#PolygonInfo] getVertCount 
+-- get triangles count<br>
+-- return number of triangles
+-- @function [parent=#PolygonInfo] getTriaglesCount 
 -- @param self
 -- @return unsigned int#unsigned int ret (return value: unsigned int)
         
 --------------------------------
--- get triangles count<br>
--- return number of triangles
--- @function [parent=#PolygonInfo] getTrianglesCount 
+-- get vertex count<br>
+-- return number of vertices
+-- @function [parent=#PolygonInfo] getVertCount 
 -- @param self
 -- @return unsigned int#unsigned int ret (return value: unsigned int)
         

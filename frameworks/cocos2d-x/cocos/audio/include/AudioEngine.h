@@ -33,7 +33,7 @@
 #include <unordered_map>
 
 #include "platform/CCPlatformMacros.h"
-#include "audio/include/Export.h"
+#include "Export.h"
 
 #ifdef ERROR
 #undef ERROR

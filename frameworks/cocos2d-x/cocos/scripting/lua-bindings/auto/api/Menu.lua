@@ -12,10 +12,9 @@
 -- @return bool#bool ret (return value: bool)
         
 --------------------------------
--- Set whether the menu is visible. If set false, interacting with the menu<br>
--- will have no effect.<br>
+-- Set whether the menu is visible.<br>
 -- The default value is true, a menu is default to visible.<br>
--- param value true if menu is to be enabled, false if menu is to be disabled.
+-- param value true if menu is enable, false if menu is disable.
 -- @function [parent=#Menu] setEnabled 
 -- @param self
 -- @param #bool value
@@ -28,7 +27,7 @@
 -- @return Menu#Menu self (return value: cc.Menu)
         
 --------------------------------
--- Determines if the menu is enabled.<br>
+-- Determines if the menu is enable.<br>
 -- see `setEnabled(bool)`.<br>
 -- return whether the menu is enabled or not.
 -- @function [parent=#Menu] isEnabled 

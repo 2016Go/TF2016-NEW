@@ -45,7 +45,6 @@ UIEditBox/UIEditBox.cpp \
 UIEditBox/UIEditBoxImpl-android.cpp \
 UIEditBox/UIEditBoxImpl-common.cpp \
 UILayoutComponent.cpp \
-UITabControl.cpp \
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../editor-support
 

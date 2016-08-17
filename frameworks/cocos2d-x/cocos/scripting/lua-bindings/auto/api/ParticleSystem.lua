@@ -1,7 +1,7 @@
 
 --------------------------------
 -- @module ParticleSystem
--- @extend Node,TextureProtocol,PlayableProtocol
+-- @extend Node,TextureProtocol
 -- @parent_module cc
 
 --------------------------------
@@ -417,12 +417,6 @@
 -- @return ParticleSystem#ParticleSystem self (return value: cc.ParticleSystem)
         
 --------------------------------
--- 
--- @function [parent=#ParticleSystem] stop 
--- @param self
--- @return ParticleSystem#ParticleSystem self (return value: cc.ParticleSystem)
-        
---------------------------------
 --  Update the verts position data of particle,<br>
 -- should be overridden by subclasses. 
 -- @function [parent=#ParticleSystem] updateParticleQuads 
@@ -466,12 +460,6 @@
 -- @function [parent=#ParticleSystem] setRotationIsDir 
 -- @param self
 -- @param #bool t
--- @return ParticleSystem#ParticleSystem self (return value: cc.ParticleSystem)
-        
---------------------------------
--- / @{/ @name implement Playable Protocol
--- @function [parent=#ParticleSystem] start 
--- @param self
 -- @return ParticleSystem#ParticleSystem self (return value: cc.ParticleSystem)
         
 --------------------------------

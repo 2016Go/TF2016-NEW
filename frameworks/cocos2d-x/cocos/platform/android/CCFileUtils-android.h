@@ -59,7 +59,7 @@ public:
     static AAssetManager* getAssetManager() { return assetmanager; }
 
     /* override functions */
-    bool init() override;
+    bool init();
 
     virtual std::string getNewFilename(const std::string &filename) const override;
 
@@ -77,8 +77,8 @@ public:
      */
     virtual Data getDataFromFile(const std::string& filename) override;
 
-    virtual std::string getWritablePath() const override;
-    virtual bool isAbsolutePath(const std::string& strPath) const override;
+    virtual std::string getWritablePath() const;
+    virtual bool isAbsolutePath(const std::string& strPath) const;
     
 private:
     virtual bool isFileExistInternal(const std::string& strFilePath) const override;

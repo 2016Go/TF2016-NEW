@@ -26,8 +26,8 @@
  ****************************************************************************/
 
 #import <UIKit/UIKit.h>
-#import "ui/UIEditBox/iOS/CCUITextInput.h"
-#include "ui/UIEditBox/UIEditBoxImpl-ios.h"
+#import "CCUITextInput.h"
+#include "UIEditBoxImpl-ios.h"
 
 
 @interface UIEditBoxImplIOS_objc : NSObject <UITextFieldDelegate, UITextViewDelegate>
@@ -53,7 +53,8 @@
 - (void)setVisible:(BOOL)visible;
 - (void)setTextColor:(UIColor*)color;
 - (void)setFont:(UIFont *)font;
-- (void)updateFrame:(CGRect)rect;
+- (void)setPosition:(CGPoint)pos;
+- (void)setContentSize:(CGSize)size;
 
 - (void)openKeyboard;
 - (void)closeKeyboard;

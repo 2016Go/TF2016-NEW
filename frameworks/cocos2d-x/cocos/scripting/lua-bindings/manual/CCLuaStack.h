@@ -31,7 +31,7 @@ extern "C" {
 }
 
 #include "cocos2d.h"
-#include "scripting/lua-bindings/manual/CCLuaValue.h"
+#include "CCLuaValue.h"
 
 /**
  * @addtogroup lua

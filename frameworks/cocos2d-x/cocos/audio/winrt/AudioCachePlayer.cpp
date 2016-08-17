@@ -20,7 +20,7 @@
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
 
-#include "audio/winrt/AudioCachePlayer.h"
+#include "AudioCachePlayer.h"
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"
 

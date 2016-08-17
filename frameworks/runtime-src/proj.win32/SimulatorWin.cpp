@@ -22,7 +22,7 @@
 #include "glfw3.h"
 #include "glfw3native.h"
 
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#include "CCLuaEngine.h"
 #include "AppEvent.h"
 #include "AppLang.h"
 #include "runtime/ConfigParser.h"
@@ -827,3 +827,4 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
     }
     return g_oldWindowProc(hWnd, uMsg, wParam, lParam);
 }
+

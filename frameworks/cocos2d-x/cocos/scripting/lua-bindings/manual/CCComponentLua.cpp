@@ -22,11 +22,11 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "scripting/lua-bindings/manual/CCComponentLua.h"
+#include "CCComponentLua.h"
 #include <string>
 #include "base/CCScriptSupport.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
-#include "scripting/lua-bindings/manual/LuaBasicConversions.h"
+#include "CCLuaEngine.h"
+#include "LuaBasicConversions.h"
 
 NS_CC_BEGIN
 

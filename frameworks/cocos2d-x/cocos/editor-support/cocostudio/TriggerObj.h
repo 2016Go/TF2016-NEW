@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef __TRIGGEROBJ_H__
 #define __TRIGGEROBJ_H__
 
-#include "editor-support/cocostudio/CocoStudio.h"
+#include "CocoStudio.h"
 #include "base/CCVector.h"
 
 namespace cocos2d {

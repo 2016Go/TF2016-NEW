@@ -111,7 +111,7 @@
         
 --------------------------------
 -- Query the percent content size value.<br>
--- return Percent (x,y) in Vec2.
+-- return Percet (x,y) in Vec2.
 -- @function [parent=#LayoutComponent] getPercentContentSize 
 -- @param self
 -- @return vec2_table#vec2_table ret (return value: vec2_table)

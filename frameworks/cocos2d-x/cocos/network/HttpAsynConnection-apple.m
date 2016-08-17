@@ -25,7 +25,7 @@
 #include "platform/CCPlatformConfig.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
-#import "network/HttpAsynConnection-apple.h"
+#import "HttpAsynConnection-apple.h"
 
 @interface HttpAsynConnection ()
 
@@ -141,7 +141,7 @@
 }
 
 /**
- * This delegate method is called if the connection cannot be established to the server.  
+ * This delegate methodis called if the connection cannot be established to the server.  
  * The error object will have a description of the error
  **/
 - (void)connection:(NSURLConnection *)connection 
@@ -187,17 +187,11 @@
         CFDataRef errDataRef = SecTrustCopyExceptions(serverTrust);
         SecTrustSetExceptions(serverTrust, errDataRef);
         SecTrustEvaluate(serverTrust, &trustResult);
-        CFRelease(errDataRef);
+        [(id)errDataRef release];
     }
     [certData release];
-    if (cert)
-    {
-        CFRelease(cert);
-    }
-    if (certArrayRef) 
-    {
-        CFRelease(certArrayRef);
-    }
+    [(id)certArrayRef release];
+    [(id)certArrayRef release];
     //Did our custom trust chain evaluate successfully?
     return trustResult = kSecTrustResultUnspecified || trustResult == kSecTrustResultProceed;    
 }

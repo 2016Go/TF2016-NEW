@@ -1,8 +1,8 @@
 #include "AppDelegate.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
-#include "audio/include/SimpleAudioEngine.h"
+#include "CCLuaEngine.h"
+#include "SimpleAudioEngine.h"
 #include "cocos2d.h"
-#include "scripting/lua-bindings/manual/lua_module_register.h"
+#include "lua_module_register.h"
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_LINUX)
 #include "ide-support/CodeIDESupport.h"
@@ -61,9 +61,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
-    
-    //auto my = Sprite::create();
-    //my->removeFromParent()
+
     register_all_packages();
 
     LuaStack* stack = engine->getLuaStack();

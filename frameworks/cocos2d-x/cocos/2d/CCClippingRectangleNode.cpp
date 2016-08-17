@@ -1,15 +1,15 @@
 
-#include "2d/CCClippingRectangleNode.h"
+#include "CCClippingRectangleNode.h"
 #include "base/CCDirector.h"
 #include "renderer/CCRenderer.h"
 #include "math/Vec2.h"
-#include "platform/CCGLView.h"
+#include "CCGLView.h"
 
 NS_CC_BEGIN
 
 ClippingRectangleNode* ClippingRectangleNode::create(const Rect& clippingRegion)
 {
-    ClippingRectangleNode* node = new (std::nothrow) ClippingRectangleNode();
+    ClippingRectangleNode* node = new ClippingRectangleNode();
     if (node && node->init()) {
         node->setClippingRegion(clippingRegion);
         node->autorelease();
@@ -22,7 +22,7 @@ ClippingRectangleNode* ClippingRectangleNode::create(const Rect& clippingRegion)
 
 ClippingRectangleNode* ClippingRectangleNode::create()
 {
-    ClippingRectangleNode* node = new (std::nothrow) ClippingRectangleNode();
+    ClippingRectangleNode* node = new ClippingRectangleNode();
     if (node && node->init()) {
         node->autorelease();
     } else {

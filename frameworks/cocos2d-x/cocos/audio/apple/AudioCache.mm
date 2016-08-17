@@ -25,7 +25,7 @@
 #include "platform/CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
-#include "audio/apple/AudioCache.h"
+#include "AudioCache.h"
 
 #import <Foundation/Foundation.h>
 #import <OpenAL/alc.h>

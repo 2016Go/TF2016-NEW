@@ -162,7 +162,7 @@ public:
      * Query the currently inputed character count.
      *@return The total input character count.
      */
-    inline std::size_t getCharCount() const { return _charCount; };
+    inline int getCharCount() const { return _charCount; };
     
     /**
      * Query the color of place holder.
@@ -195,12 +195,6 @@ public:
     virtual void setString(const std::string& text) override;
 
     /**
-    * Append to input text of TextField.
-    *@param text The append text of TextField.
-    */
-    virtual void appendString(const std::string& text);
-
-    /**
      * Query the input text of TextField.
      *@return Get the input text of TextField.
      */
@@ -226,43 +220,15 @@ public:
      * @js NA
      */
     virtual void setSecureTextEntry(bool value);
-    virtual void setPasswordTextStyle(const std::string& text);
-    std::string getPasswordTextStyle() const;
 
     /**
      * Query whether the currently display mode is secure text entry or not.
      *@return Whether current text is displayed as secure text entry.
      * @js NA
      */
-    virtual bool isSecureTextEntry()const;
+    virtual bool isSecureTextEntry();
 
     virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
-
-    virtual void update(float delta) override;
-
-    /**
-    * Set enable cursor use.
-    * @js NA
-    */
-    void setCursorEnabled(bool enabled);
-
-    /**
-    * Set char showing cursor.
-    * @js NA
-    */
-    void setCursorChar(char cursor);
-
-    /**
-    * Set cursor position, if enabled
-    * @js NA
-    */
-    void setCursorPosition(std::size_t cursorPosition);
-
-    /**
-    * Set cursor position to hit letter, if enabled
-    * @js NA
-    */
-    void setCursorFromPoint(const Vec2 &point, const Camera* camera);
 
 protected:
     //////////////////////////////////////////////////////////////////////////
@@ -271,15 +237,12 @@ protected:
 
     virtual bool canAttachWithIME() override;
     virtual bool canDetachWithIME() override;
-    virtual void didAttachWithIME() override;
-    virtual void didDetachWithIME() override;
     virtual void insertText(const char * text, size_t len) override;
     virtual void deleteBackward() override;
     virtual const std::string& getContentText() override;
-    virtual void controlKey(EventKeyboard::KeyCode keyCode) override;
 
     TextFieldDelegate * _delegate;
-    std::size_t _charCount;
+    int _charCount;
 
     std::string _inputText;
 
@@ -288,22 +251,6 @@ protected:
     Color4B _colorText;
 
     bool _secureTextEntry;
-    std::string _passwordStyleText;
-
-    // Need use cursor
-    bool _cursorEnabled;
-    // Current position cursor
-    std::size_t _cursorPosition;
-    // Char showing cursor
-    char _cursorChar;
-    // >0 - show, <0 - hide
-    float _cursorShowingTime;
-
-    bool _isAttachWithIME;
-
-    void makeStringSupportCursor(std::string& displayText);
-    void updateCursorDisplayText();
-    void setAttachWithIME(bool isAttachWithIME);
 
 private:
     class LengthStack;

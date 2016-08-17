@@ -107,6 +107,6 @@ protected:
 
 NS_CC_END
 
-#include "3d/CCAnimationCurve.inl"
+#include "CCAnimationCurve.inl"
 
 #endif

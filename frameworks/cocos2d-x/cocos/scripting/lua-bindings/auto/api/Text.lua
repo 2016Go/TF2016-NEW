@@ -170,7 +170,7 @@
 -- @return Text#Text self (return value: ccui.Text)
         
 --------------------------------
--- Return current effect color value.
+-- Return current effect color vlaue.
 -- @function [parent=#Text] getEffectColor 
 -- @param self
 -- @return color4b_table#color4b_table ret (return value: color4b_table)

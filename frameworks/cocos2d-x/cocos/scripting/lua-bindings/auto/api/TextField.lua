@@ -203,14 +203,6 @@
 -- @return TextField#TextField self (return value: ccui.TextField)
         
 --------------------------------
--- Set cursor position, if enabled<br>
--- js NA
--- @function [parent=#TextField] setCursorPosition 
--- @param self
--- @param #unsigned long cursorPosition
--- @return TextField#TextField self (return value: ccui.TextField)
-        
---------------------------------
 -- brief Inquire the horizontal alignment<br>
 -- return The horizontal alignment
 -- @function [parent=#TextField] getTextHorizontalAlignment 
@@ -231,15 +223,6 @@
 -- @function [parent=#TextField] setPlaceHolder 
 -- @param self
 -- @param #string value
--- @return TextField#TextField self (return value: ccui.TextField)
-        
---------------------------------
--- Set cursor position to hit letter, if enabled<br>
--- js NA
--- @function [parent=#TextField] setCursorFromPoint 
--- @param self
--- @param #vec2_table point
--- @param #cc.Camera camera
 -- @return TextField#TextField self (return value: ccui.TextField)
         
 --------------------------------
@@ -264,14 +247,6 @@
 -- @function [parent=#TextField] setTextColor 
 -- @param self
 -- @param #color4b_table textColor
--- @return TextField#TextField self (return value: ccui.TextField)
-        
---------------------------------
--- Set char showing cursor.<br>
--- js NA
--- @function [parent=#TextField] setCursorChar 
--- @param self
--- @param #char cursor
 -- @return TextField#TextField self (return value: ccui.TextField)
         
 --------------------------------
@@ -317,14 +292,6 @@
 -- @function [parent=#TextField] setMaxLength 
 -- @param self
 -- @param #int length
--- @return TextField#TextField self (return value: ccui.TextField)
-        
---------------------------------
--- Set enable cursor use.<br>
--- js NA
--- @function [parent=#TextField] setCursorEnabled 
--- @param self
--- @param #bool enabled
 -- @return TextField#TextField self (return value: ccui.TextField)
         
 --------------------------------

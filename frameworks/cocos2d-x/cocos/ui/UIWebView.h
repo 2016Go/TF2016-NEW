@@ -27,7 +27,7 @@
 
 #include "platform/CCPlatformConfig.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) && !defined(CC_PLATFORM_OS_TVOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS )
 
 
 #include "ui/UIWidget.h"
@@ -203,9 +203,6 @@ public:
      * Toggle visibility of WebView.
      */
     virtual void setVisible(bool visible) override;
-    
-    virtual void onEnter() override;
-    virtual void onExit() override;
     
 protected:
     virtual cocos2d::ui::Widget* createCloneInstance() override;

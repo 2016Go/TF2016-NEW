@@ -29,7 +29,7 @@
 
 #include "platform/CCPlatformConfig.h"
 
-#include "ui/UIEditBox/UIEditBoxImpl.h"
+#include "UIEditBoxImpl.h"
 
 NS_CC_BEGIN
 
@@ -107,6 +107,7 @@ public:
     virtual void setNativePlaceHolder(const char* pText) = 0;
     virtual void setNativeVisible(bool visible) = 0;
     virtual void updateNativeFrame(const Rect& rect) = 0;
+    virtual void setNativeContentSize(const Size& size) = 0;
     virtual const char* getNativeDefaultFontName() = 0;
     virtual void nativeOpenKeyboard() = 0;
     virtual void nativeCloseKeyboard() = 0;
@@ -117,7 +118,6 @@ private:
 	void			initInactiveLabels(const Size& size);
 	void			setInactiveText(const char* pText);
     void            placeInactiveLabels();
-    virtual void doAnimationWhenKeyboardMove(float duration, float distance)override {};
 	
     Label* _label;
     Label* _labelPlaceHolder;

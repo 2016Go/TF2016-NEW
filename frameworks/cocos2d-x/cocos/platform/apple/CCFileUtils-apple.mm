@@ -25,7 +25,7 @@ THE SOFTWARE.
 ****************************************************************************/
 #import <Foundation/Foundation.h>
 
-#include "platform/apple/CCFileUtils-apple.h"
+#include "CCFileUtils-apple.h"
 
 #include <ftw.h>
 
@@ -60,8 +60,7 @@ static void addItemToArray(id item, ValueVector& array)
         const char* numType = [num objCType];
         if(num == (void*)kCFBooleanFalse || num == (void*)kCFBooleanTrue)
         {
-            bool v = [num boolValue];
-            array.push_back(Value(v));
+            array.push_back(Value([num boolValue]));
         }
         else if(strcmp(numType, @encode(float)) == 0)
         {
@@ -191,8 +190,7 @@ static void addValueToDict(id nsKey, id nsValue, ValueMap& dict)
         const char* numType = [num objCType];
         if(num == (void*)kCFBooleanFalse || num == (void*)kCFBooleanTrue)
         {
-             bool v = [num boolValue];
-             dict[key] = Value(v);
+             dict[key] = Value([num boolValue]);
         }
         else if(strcmp(numType, @encode(float)) == 0)
         {
@@ -482,12 +480,12 @@ ValueMap FileUtilsApple::getValueMapFromData(const char* filedata, int filesize)
     return ret;
 }
 
-bool FileUtilsApple::writeToFile(const ValueMap& dict, const std::string &fullPath)
+bool FileUtilsApple::writeToFile(ValueMap& dict, const std::string &fullPath)
 {
     return writeValueMapToFile(dict, fullPath);
 }
 
-bool FileUtils::writeValueMapToFile(const ValueMap& dict, const std::string& fullPath)
+bool FileUtils::writeValueMapToFile(ValueMap& dict, const std::string& fullPath)
 {
     
     //CCLOG("iOS||Mac Dictionary %d write to file %s", dict->_ID, fullPath.c_str());
@@ -505,7 +503,7 @@ bool FileUtils::writeValueMapToFile(const ValueMap& dict, const std::string& ful
     return true;
 }
 
-bool FileUtils::writeValueVectorToFile(const ValueVector& vecData, const std::string& fullPath)
+bool FileUtils::writeValueVectorToFile(ValueVector vecData, const std::string& fullPath)
 {
     NSString* path = [NSString stringWithUTF8String:fullPath.c_str()];
     NSMutableArray* array = [NSMutableArray array];
@@ -541,3 +539,4 @@ ValueVector FileUtilsApple::getValueVectorFromFile(const std::string& filename)
 }
 
 NS_CC_END
+

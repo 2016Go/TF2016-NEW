@@ -38,7 +38,7 @@
 #include "platform/CCFileUtils.h"
 #include "base/ccUtils.h"
 
-#include "3d/CCObjLoader.h"
+#include "CCObjLoader.h"
 
 namespace tinyobj {
     

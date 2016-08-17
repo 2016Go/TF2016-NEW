@@ -25,9 +25,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "platform/winrt/Keyboard-winrt.h"
+#include "Keyboard-winrt.h"
 #include "base/CCEventKeyboard.h"
-#include "platform/winrt/CCGLViewImpl-winrt.h"
+#include "CCGLViewImpl-winrt.h"
 #include "base/CCIMEDispatcher.h"
 #include "base/CCDirector.h"
 #include "base/CCEventDispatcher.h"
@@ -270,47 +270,33 @@ void KeyBoardWinRT::OnWinRTKeyboardEvent(WinRTKeyboardEventType type, KeyEventAr
 {
     bool pressed = (type == WinRTKeyboardEventType::KeyPressed);
 
-    // Is key repeats
-    bool repeat = pressed && args->KeyStatus.WasKeyDown;
+    // don't allow key repeats
+    if (pressed && args->KeyStatus.WasKeyDown)
+    {
+        return;
+    }
 
     int key = static_cast<int>(args->VirtualKey);
     auto it = g_keyCodeMap.find(key);
     if (it != g_keyCodeMap.end())
     {
-
-        EventKeyboard::KeyCode keyCode = it->second;
-
-        EventKeyboard event(keyCode, pressed);
-        if (!repeat)
+        switch (it->second)
         {
+        case EventKeyboard::KeyCode::KEY_BACKSPACE:
+            if (pressed)
+            {
+                IMEDispatcher::sharedDispatcher()->dispatchDeleteBackward();
+            }
+            break;
+        default:
+            EventKeyboard event(it->second, pressed);
             auto dispatcher = Director::getInstance()->getEventDispatcher();
             dispatcher->dispatchEvent(&event);
-            if (keyCode == EventKeyboard::KeyCode::KEY_ENTER)
+            if (it->second == EventKeyboard::KeyCode::KEY_ENTER)
             {
                 IMEDispatcher::sharedDispatcher()->dispatchInsertText("\n", 1);
-            }
-        }
-
-        if (pressed && !event.isStopped())
-        {
-            switch (keyCode)
-            {
-            case EventKeyboard::KeyCode::KEY_BACKSPACE:
-                IMEDispatcher::sharedDispatcher()->dispatchDeleteBackward();
-                break;
-            case EventKeyboard::KeyCode::KEY_HOME:
-            case EventKeyboard::KeyCode::KEY_KP_HOME:
-            case EventKeyboard::KeyCode::KEY_DELETE:
-            case EventKeyboard::KeyCode::KEY_KP_DELETE:
-            case EventKeyboard::KeyCode::KEY_END:
-            case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-            case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-            case EventKeyboard::KeyCode::KEY_ESCAPE:
-                IMEDispatcher::sharedDispatcher()->dispatchControlKey(keyCode);
-                break;
-            default:
-                break;
-            }
+                }
+            break;
         }
     }
     else

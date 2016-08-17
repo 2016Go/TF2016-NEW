@@ -37,7 +37,7 @@
 #include "runtime/ConfigParser.h"
 
 #include "cocos2d.h"
-#include "scripting/lua-bindings/manual/CCLuaEngine.h"
+#include "CCLuaEngine.h"
 #include "CodeIDESupport.h"
 
 #include "platform/mac/PlayerMac.h"

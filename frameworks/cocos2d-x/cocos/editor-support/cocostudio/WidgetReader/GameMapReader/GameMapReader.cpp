@@ -22,12 +22,12 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "editor-support/cocostudio/WidgetReader/GameMapReader/GameMapReader.h"
+#include "GameMapReader.h"
 
 #include "2d/CCTMXXMLParser.h"
 
-#include "editor-support/cocostudio/CSParseBinary_generated.h"
-#include "editor-support/cocostudio/WidgetReader/NodeReader/NodeReader.h"
+#include "cocostudio/CSParseBinary_generated.h"
+#include "cocostudio/WidgetReader/NodeReader/NodeReader.h"
 
 #include "tinyxml2.h"
 #include "flatbuffers/flatbuffers.h"
@@ -55,7 +55,7 @@ namespace cocostudio
     {
         if (!_instanceTMXTiledMapReader)
         {
-            _instanceTMXTiledMapReader = new (std::nothrow) GameMapReader();
+            _instanceTMXTiledMapReader = new GameMapReader();
         }
         
         return _instanceTMXTiledMapReader;
