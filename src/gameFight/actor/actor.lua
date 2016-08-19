@@ -10,4 +10,9 @@ function actor:setActorCamp(myCamp)
 	self.Camp = myCamp
 end
 
+--当怪物死亡，或消失的时候调用
+function actor:clear()
+    self:removeFromParent()
+end
+
 return actor

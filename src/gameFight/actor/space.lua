@@ -12,16 +12,8 @@ function space:ctor()
     self.spaceImage:setAnchorPoint(cc.p(0.5,0.5))    --设定节点的锚点
     self:addChild(self.spaceImage,10)            --加入根节点
 
---[[	
-	local listener = function(sender,type)
-		if type == ccui.TouchEventType.ended then
-   			self:spaceSpTouchEnd()
-   		end
-    end
-]]
     -- 添加触控事件侦听器
    -- self.spaceSp:addTouchEventListener(listener)
-
 	singleManagerUI:getInstance():bindListener(self.spaceImage,self,"spaceSp")
 end
 
@@ -43,16 +35,9 @@ function space:spaceSpTouchEnded()
 
 	singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_GoldChange, self , -towerData['gunbuildGold'])
 
-    --创建生命图片
-    --local stageData = 
-    --self.UI.lifeLabel:setString(""..stageData.life)
-    --self.UI.goldLabel:setString(""..stageData)
-    --self.UI.waveLabel:setString(""..stageData.wave.."/"..stageData.waveLimit)
-
 	--销毁自己
 	--发送建造塔的消息。
 	singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildTower, self , towerData)
-
 end
 
 return space

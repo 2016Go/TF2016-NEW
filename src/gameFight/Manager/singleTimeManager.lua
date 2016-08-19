@@ -16,13 +16,6 @@ function singleTimeManager:getInstance()
         self.instance:_init()
     end  
     return self.instance  
-end 
-
-function singleTimeManager:_init() 
-    self.allTimer = {}
-    self.nextRemoveTimer = {}
-    self.nextAddTimer = {}
-    self.isNextFrameRemoveAll = false
 end
 
 --设定主要的时间调度层，来为整个时间调度
@@ -31,9 +24,15 @@ function singleTimeManager:setMainLayerForTime(MainLayer)
 
 	self.m_MainLayer:scheduleUpdateWithPriorityLua(
 		function(dt)
+            --单双加 1
+            self.iCountTime  = self.iCountTime  + 1
+            if self.iCountTime >= 2 then
+                self.iCountTime = 0
+            end
+
             --开始调度每个时间
 			for i,v in pairs(self.allTimer) do
-				v:UpData(dt)
+				v:UpData(dt , self.iCountTime)
 			end
     		
     		--清理所有的时间调度者
@@ -92,4 +91,12 @@ function singleTimeManager:_removeTimer( Timer )
 			table.remove( self.allTimer, i )
 		end
 	end
+end
+
+function singleTimeManager:_init() 
+    self.allTimer = {}
+    self.nextRemoveTimer = {}
+    self.nextAddTimer = {}
+    self.isNextFrameRemoveAll = false
+    self.iCountTime = 0             --计数，用于单双数的记录，用来相应部分Timer的单双限制
 end

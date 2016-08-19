@@ -4,18 +4,33 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>bartizanPng/1.png</key>
+            <key>bullet1/walk/01.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{72,72}</string>
+                <string>{20,5}</string>
                 <key>spriteSourceSize</key>
-                <string>{72,72}</string>
+                <string>{20,5}</string>
                 <key>textureRect</key>
-                <string>{{0,0},{72,72}}</string>
+                <string>{{0,0},{20,5}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>bullet1/walk/02.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{20,5}</string>
+                <key>spriteSourceSize</key>
+                <string>{20,5}</string>
+                <key>textureRect</key>
+                <string>{{20,0},{20,5}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -29,13 +44,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>bartizanPng.png</string>
+            <string>bullet1.png</string>
             <key>size</key>
-            <string>{72,72}</string>
+            <string>{40,5}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3d8ba184fe5b1c492ace4d780fd1f858:426cc21566e1e6abda6a6d8c3df9e93e:60694331ad9932edd78f3f3069b2b2e1$</string>
+            <string>$TexturePacker:SmartUpdate:fd3a96f9ae0d744712dc47c22506eb3f:45c96e2ef81bffdf21ed1daf9fb8cb5f:4cd55f489520dc70ee11ad705325cb3a$</string>
             <key>textureFileName</key>
-            <string>bartizanPng.png</string>
+            <string>bullet1.png</string>
         </dict>
     </dict>
 </plist>

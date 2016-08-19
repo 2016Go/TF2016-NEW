@@ -25,22 +25,44 @@ function singleEnemyManager:setWaveData(waveData , nowEnemyID)
 end
 
 --开始每帧更新敌人管理器
-function singleEnemyManager:UpData(dt)
-    self.timeGo = self.timeGo + dt
-    
+function singleEnemyManager:UpData(dt , iCountTime)
+    --如果单数计时，不执行，如此来提高游戏效率
+    self.dt = self.dt + dt
+    if iCountTime == 1 then
+        return
+    end
+    self.timeGo = self.timeGo + self.dt
+
+
+
     --检测是否还可以刷出怪物，如果可以刷怪，如果不可以，等待，如果没怪了，请求下一波
     if self:_checkAddEnemt() == false then
         return
     end
 
+    --运行更新
     for i,v in pairs(self.allEnemy) do
-        v:UpData(dt)
+        v:UpData(self.dt)
     end
+
+            --先删除
+    for i,v in pairs(self.nextFrameRemoveEnemy) do
+        self:_removeEnemy(v)
+    end 
+
+    --再添加
+    for i,v in pairs(self.nextFrameAddEnemy) do
+        table.insert(self.allEnemy, v)
+    end 
+
+    self.nextFrameRemoveEnemy = {}
+    self.nextFrameAddEnemy = {}
+    self.dt = 0
 end
 
 --加入一个敌人
 function singleEnemyManager:addEnemy(myEnemy)
-    table.insert(self.allEnemy, myEnemy)
+    table.insert(self.nextFrameAddEnemy, myEnemy)
 end
 
 --删除一个敌人，下一帧
@@ -48,13 +70,12 @@ function singleEnemyManager:removeEnemyNextFrame(myEnemy)
     table.insert(self.nextFrameRemoveEnemy, myEnemy)
 end
 
---删除一个敌人，内部调用
-function singleEnemyManager:removeEnemy(myEnemy)
-    cs.logger.i("removeEnemy---no ok")
+--删除一个敌人，内部调用,危险操作，可能导致崩溃，不建议随便使用
+function singleEnemyManager:_removeEnemy(myEnemy)
     for i,v in pairs(self.allEnemy) do
         if v == myEnemy then
-            cs.logger.i("remove---ok")
             table.remove( self.allEnemy, i )
+            v:clear()
             return
         end
     end
@@ -64,31 +85,48 @@ end
 function singleEnemyManager:eventResponse(gameEventID, eventSender, parameter)
     --有敌方单位到达了终点位置
     if gameEventID == CC_GAME_EVENT.GameEvent_EnemyGoOver then
-        cs.logger.i("eventSender:clear()")
-        self:removeEnemy(eventSender)
-        eventSender:clear()
+        self:removeEnemyNextFrame(eventSender)
 
     --更新最新的波次信息
     elseif gameEventID == CC_GAME_EVENT.GameEvent_WaveDataReady then
-        cs.logger.i("setWaveData:parameter()")
         if parameter == nil then
             cs.logger.i("parameter:parameter() == nil")
             return
         end
         singleTimeManager:getInstance():addTimer(self)
         self:setWaveData(parameter,1)
+    elseif gameEventID ==  CC_GAME_EVENT.GameEvent_LifeDie then
+        --if self:checkEnemyIsInManager(eventSender) == true then
+        self:removeEnemyNextFrame(eventSender)
+        --end
     else
         cs.logger.i("this is a meng B msg")
     end
 
-    cs.logger.i("eventResponse end")
 end
 
+--获取所有怪物
+function singleEnemyManager:getAllEnemy()
+    return self.allEnemy
+end
+
+--检测参数中的怪物是否依旧存在于管理器中
+function singleEnemyManager:checkEnemyIsInManager(myEnemy)
+    for i,v in pairs(self.allEnemy) do
+        if v == myEnemy then
+            return true
+        end
+    end
+
+    return false
+end
 
 --内部调用初始化函数
 function singleEnemyManager:_init()
+    self.dt = 0
     self.allEnemy = {}
     self.nextFrameRemoveEnemy = {}
+    self.nextFrameAddEnemy = {}
     self.timeGo = 0
     self.waveData = {}
     self.nowEnemyID = 1
@@ -96,6 +134,7 @@ function singleEnemyManager:_init()
     --加入一个监听事件
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_WaveDataReady, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_EnemyGoOver, self)
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_LifeDie, self)
 end
 
 function singleEnemyManager:_checkAddEnemt()

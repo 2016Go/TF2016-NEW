@@ -6,6 +6,7 @@ function fightMainUI:ctor()
     self:createUI()
 
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_MainUIDataChange, self)
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_LifeDie, self)
 end
 
 function fightMainUI:createUI()
@@ -59,6 +60,13 @@ function fightMainUI:eventResponse(gameEventID, eventSender, parameter)
     if gameEventID == CC_GAME_EVENT.GameEvent_MainUIDataChange then
         --开始进行波次的等待时间
         self:refreshUI()
+    elseif gameEventID == CC_GAME_EVENT.GameEvent_LifeDie then
+
+        if parameter ~= nil then
+            local stageData = singleGameData:getInstance():getStageData()
+            stageData.gold = stageData.gold + parameter.gold
+            self:refreshUI()
+        end
     else
         cs.logger.i("this is a meng B msg")
     end

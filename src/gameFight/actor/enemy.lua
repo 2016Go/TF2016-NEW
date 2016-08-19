@@ -15,19 +15,15 @@ function enemy:ctor()
     self.lifeLayer:addChild(self.mainSprite , 10)
 end
 
---当怪物死亡，或消失的时候调用
-function enemy:clear()
-    self:removeFromParent()
-end
-
 function enemy:setData(actorData)
-    self.actorData = {}
     self.actorData.name         = actorData.name            -- 怪物名字
     self.actorData.life         = actorData.life            -- 生命值
     self.actorData.speed        = actorData.speed           -- 速度值
     self.actorData.mainRes      = actorData.mainRes         -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
     self.actorData.road         = actorData.road            -- 行走道路ID
     self.actorData.punishHP     = actorData.punishHP        -- 被干掉的HP
+    self.actorData.gold         = actorData.gold                                                                                                                                                                                                                                                                                                            -- 击杀怪物获得的金币
+    
 
     if singleLoadData:getInstance().mapData["map"]["roads"] == nil then
         print("singleLoadData:getInstance().mapData == nil")
@@ -163,6 +159,11 @@ function enemy:UpData(dt)
     --更新时间
     if self.actorTime > 0 then
         self.actorTime = self.actorTime - dt
+        return
+    end
+
+    --如果生命检测失败，无生命
+    if self:_checklief() == false then
         return
     end
 

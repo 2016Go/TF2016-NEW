@@ -24,6 +24,8 @@ function singleStage:runStageForData(target, stageData, isDebugShow)
     local pSprit = cc.Sprite:create(stageData["map"]["bgimage"])
     local pTopSprit = cc.Sprite:create(stageData["map"]["bgtopimage"])
 
+    local pSkySprit = cc.Sprite:create("map/cloudshadow.png")
+
     --获取图片原本大小
     local bgSize = pSprit:getContentSize();
 
@@ -45,10 +47,16 @@ function singleStage:runStageForData(target, stageData, isDebugShow)
     pTopSprit:setPosition(cc.p(0,0))
     target:addChild(pTopSprit , CC_GAME_LAYER_LEVEL.Layer_scene_top)
 
+    pSkySprit:setAnchorPoint(cc.p(0,0))
+    pSkySprit:setPosition(cc.p(0,300))
+    pSkySprit:runAction(cc.MoveBy:create(300, cc.p(500, 500)))
+    target:addChild(pSkySprit , CC_GAME_LAYER_LEVEL.Layer_scene_sky)
+
     self.instance:showSpace(target, stageData["map"]["towers"]["tower"])
 
+
     if isDebugShow == true then
-        self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
+        --self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
     end
 end
 
@@ -65,12 +73,15 @@ function singleStage:showSpace(target, stageData)
         local space = require("gameFight.actor.space"):create()
         space:setPosition(cc.p(b[1],b[2]))
         target:addChild(space, CC_GAME_LAYER_LEVEL.Layer_scene_space)
-        --m_pDrawNode:drawCircle(cc.p(b[1],b[2]), 5, 0, 4, false, 1, 1, cc.c4b(1,1,0,0.9))
     end
 
 end
 
 function singleStage:ShowTheDebug(target, stageData)
+    if CC_IS_SHOW_DEBUG == false then
+        return
+    end
+    
     local m_pDrawNode = cc.DrawNode:create(1)
     m_pDrawNode:setAnchorPoint(cc.p(0,0))
     m_pDrawNode:setPosition(cc.p(0,0))
@@ -95,7 +106,8 @@ function singleStage:eventResponse(gameEventID, eventSender, parameter)
         tower:setPosition(cc.p(x,y))
         tower:setTowerData(parameter)
         tower:createTowerWithData()
-        pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_space)
+        singleTowerManager:getInstance():addTower(tower)
+        pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_tower)
     end
 end
 

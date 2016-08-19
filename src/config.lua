@@ -29,7 +29,11 @@ CC_DESIGN_RESOLUTION = {
 CC_CONFIG = 
 {
     { src = 'conf/tower.conf', name = 'tower' },              --塔的配置
+    { src = 'conf/bullet.conf', name = 'bullet' },            --子弹的配置
 }
+
+--是否显示DEBUG编辑器模式下的圈绘图
+CC_IS_SHOW_DEBUG = true
 
 -----------------------------------------------------
 -----界面方面的枚举标记
@@ -70,6 +74,11 @@ CC_GAME_LAYER_LEVEL =
     Layer_scene_space = 50,     --空地所在层
     Layer_scene_enemy = 100,   --怪物所在层级
     Layer_scene_top = 150,      --上层地形
+    Layer_scene_tower = 180,    --塔所在层
+    Layer_scene_bullet = 190,    --子弹所在的层
+
+
+    Layer_scene_sky =  400,   --云层
 
     Layer_fight_main_ui = 500,   --主操作层所在层级
     Layer_max = 9999     --最高层地形
@@ -90,9 +99,9 @@ CC_CAMP =
 --说明作者并不在意这个类的类型的运算
 CC_ACTOR_TYPE =
 {
-    Type_Actor      =  1,       --普通演员类型,
-    Type_Space      =  2,       --空地类型
-    Type_game
+    Type_Actor          =  1,       --普通演员类型,
+    Type_Space          =  2,       --空地类型
+    Type_Tower_Arrow    =  3        --箭塔
 } 
 
 --战斗缓存plist组
@@ -103,7 +112,8 @@ CC_PLIST =
     "plist/enemy/goblin.plist",
     "plist/enemy/orcgeneral.plist",
     "plist/enemy/babyspirit.plist",
-    "plist/towers/parents.plist"
+    "plist/towers/parents.plist",
+    "plist/bullet/bullet1.plist",
 }
 
 --敌人状态标记
@@ -129,13 +139,17 @@ CC_LIFT_WALK_DIR =
 CC_GAME_EVENT = 
 {
     GameEvent_EnemyGoOver = 1,      -- 怪物走到了最后的出口
+    GameEvent_LifeDie = 2,          -- 生命体被击杀
     GameEvent_WaveDataReady = 50,   -- 当前波次信息准备Ok,附带波次数据
     GameEvent_NextWaveNeed  = 51,    -- 请求下一个波次的怪物，
 
     GameEvent_MainUIDataChange = 100,     --游戏场景数据变化
     GameEvent_GoldChange    =   101,     --金币数据变更      
 
-    GameEvent_BuildTower    =   150     --建造防御塔
+    GameEvent_BuildTower    =   150,     --建造防御塔
+    GameEvent_BuildBullet   =   151,      --请求创建子弹
+    GameEvent_BulletCollision =  153        --子弹碰撞检测请求
+
 }
 
 CC_TIME_SCALE = 1

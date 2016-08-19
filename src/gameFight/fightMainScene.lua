@@ -4,8 +4,10 @@ require("gameFight.singleStage")
 require("gameFight.singleLoadData")
 require("gameFight.data.singleGameData")
 require("gameFight.manager.singleTimeManager")
-require("gameFight.manager.singleEnemyManager")
 require("gameFight.manager.singleWaveManager")
+require("gameFight.manager.singleEnemyManager")
+require("gameFight.manager.singleTowerManager")
+require("gameFight.manager.singleBulletManager")
 require("gameFight.gameEvent.singleGameEventPool")
 --结束单键类载入
 
@@ -43,6 +45,16 @@ function fightMainScene:ctor()
 
     --加入一个波次管理器管理游戏中的波次
     local waveManager = singleWaveManager:getInstance()
+
+    --加入一个塔的管理器管理游戏的塔
+    local towerManager = singleTowerManager:getInstance()
+    towerManager:setLayer(self.m_MainLayer)
+    singleTimeManager:getInstance():addTimer(towerManager)
+
+    --加入一个子弹的管理器管理游戏的子弹
+    local bulletManager = singleBulletManager:getInstance()
+    bulletManager:setLayer(self.m_MainLayer)
+    singleTimeManager:getInstance():addTimer(bulletManager)
 
     --创建一个事件池
     local singEventPool = singleGameEventPool:getInstance()
