@@ -1,6 +1,7 @@
 {
   "map": {
     "bgimage": "map/map1.png",
+    "bgtopimage": "map/map1_top.png",
     "roadsigns": {
       "-name": "map/map1.png",
       "roadsign": [

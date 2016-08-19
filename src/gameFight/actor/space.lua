@@ -36,7 +36,6 @@ function space:spaceSpTouchEnded()
 	--判定金币是否足够
 	local towerData = cs.conf.a("tower" , towerID)
 	local nowGold = singleGameData:getInstance():getStageData().gold
-
 	if nowGold < towerData['gunbuildGold'] then
 		--没钱造个JB
 		return

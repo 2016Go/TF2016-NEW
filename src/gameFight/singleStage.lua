@@ -22,6 +22,7 @@ end
 function singleStage:runStageForData(target, stageData, isDebugShow)
     --创建一个地形
     local pSprit = cc.Sprite:create(stageData["map"]["bgimage"])
+    local pTopSprit = cc.Sprite:create(stageData["map"]["bgtopimage"])
 
     --获取图片原本大小
     local bgSize = pSprit:getContentSize();
@@ -32,11 +33,17 @@ function singleStage:runStageForData(target, stageData, isDebugShow)
     --将图片扩大成背景大小
     pSprit:setScaleX(display.width/bgSize.width)
     pSprit:setScaleY(display.height/bgSize.height)
+    pTopSprit:setScaleX(display.width/bgSize.width)
+    pTopSprit:setScaleY(display.height/bgSize.height)
 
     
     pSprit:setAnchorPoint(cc.p(0,0))
     pSprit:setPosition(cc.p(0,0))
     target:addChild(pSprit , CC_GAME_LAYER_LEVEL.Layer_scene)
+
+    pTopSprit:setAnchorPoint(cc.p(0,0))
+    pTopSprit:setPosition(cc.p(0,0))
+    target:addChild(pTopSprit , CC_GAME_LAYER_LEVEL.Layer_scene_top)
 
     self.instance:showSpace(target, stageData["map"]["towers"]["tower"])
 
@@ -86,6 +93,8 @@ function singleStage:eventResponse(gameEventID, eventSender, parameter)
 
         local tower = require("gameFight.actor.tower"):create()
         tower:setPosition(cc.p(x,y))
+        tower:setTowerData(parameter)
+        tower:createTowerWithData()
         pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_space)
     end
 end

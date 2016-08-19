@@ -40,10 +40,11 @@ function singleUtil:removeAllPlist()
 end
 
 --读取地图xml信息，PngPath最后一个字符要求带有/，
-function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd)
+function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd, format)
     --约定没有特使情况的话，图片名字个数不得超过64
     iEnd = iEnd or 64
     iCount = iCount or 64
+    format = format or "%04d.png"
     --local frameArr = {}
     --local animation =cc.Animation:create()
     --local cache = cc.AnimationCache:getInstance()
@@ -60,7 +61,7 @@ function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd)
             break
         end
         --组装路径
-        local fullPath = PngPath..Prefix..string.format("%04d.png",j)
+        local fullPath = PngPath..Prefix..string.format(format,j)
         local frame = cc.SpriteFrameCache:getInstance():getSpriteFrame(fullPath)
 
         if frame ~= nil then
@@ -74,7 +75,7 @@ function singleUtil:createFrameCache(PngPath, Prefix, DelayUnit, iCount, iEnd)
     end
 
     if fristFrame == nil then
-        cs.logger.i("can not find sprite:",PngPath..Prefix..string.format("%04d.png",0))
+        cs.logger.i("can not find sprite:",PngPath..Prefix..string.format(format,0))
     end
 
     animation:setDelayPerUnit(DelayUnit)        --设置两个帧播放时间

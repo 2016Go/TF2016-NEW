@@ -5,6 +5,7 @@ function signInUI:ctor()
 	--初始化监听数据，初始化数据
 	cs.logger.i("signInUI:ctor()")
 
+	print("cs.conf.a(tower , 1)")
 	local a = cs.conf.a('tower', 1)
 	cs.util.printTable(a)
 
@@ -52,6 +53,9 @@ function signInUI:ctor()
     self.UI.passwold:setMaxLength(12)
     self.UI.passwold:setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD)
 	self:addChild(self.UI.passwold )
+
+
+
 
 	--加载游客登录
 	self.UI.touristBtn = ccui.Button:create("UI/denglu/Button_59_01.png")

@@ -118,7 +118,7 @@ end
 
 function a(name,id,default)
     local attach = attaches[name]
-    if attact == nil then 
+    if attach == nil then 
         print("attact == nil with name "..name)
     end
     if attach then

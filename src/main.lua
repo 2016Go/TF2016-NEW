@@ -49,8 +49,8 @@ local function main()
     singleUIEvent:getInstance()
 
     --载入场景
-    local signInUI = require("gameUI.signInUI"):create()
-    singleManagerUI:getInstance():changeUI({} , signInUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+    local startUI = require("gameUI.startUI"):create()
+    singleManagerUI:getInstance():changeUI({} , startUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)

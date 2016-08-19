@@ -69,6 +69,7 @@ CC_GAME_LAYER_LEVEL =
     
     Layer_scene_space = 50,     --空地所在层
     Layer_scene_enemy = 100,   --怪物所在层级
+    Layer_scene_top = 150,      --上层地形
 
     Layer_fight_main_ui = 500,   --主操作层所在层级
     Layer_max = 9999     --最高层地形
@@ -100,7 +101,9 @@ CC_PLIST =
     "plist/enemy/babyspirit.plist",
     "plist/enemy/devilobserver.plist",
     "plist/enemy/goblin.plist",
-    "plist/enemy/orcgeneral.plist"
+    "plist/enemy/orcgeneral.plist",
+    "plist/enemy/babyspirit.plist",
+    "plist/towers/parents.plist"
 }
 
 --敌人状态标记
