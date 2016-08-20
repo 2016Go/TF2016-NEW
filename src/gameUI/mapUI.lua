@@ -9,6 +9,9 @@ function mapUI:ctor()
 	self:setPosition(cc.p(0,0))
 
 	self.UI = {}
+	--用于存放所有的称号
+	self.UI.LabelBtn = {}
+	self.UI.LabelText = {"音速小子","三级苦工","Boss杀手","快枪手"}
 
 	--加载一张背景图片
 	self.UI.bgSp = cc.Sprite:create("UI/denglu/ui_map.jpg")
@@ -27,7 +30,7 @@ function mapUI:ctor()
 	self.UI.backBtn = ccui.Button:create("UI/denglu/btn_back.png")
 	self.UI.backBtn:setAnchorPoint(cc.p(0,1))
     self.UI.backBtn:setPosition(cc.p(0,display.height))
-    self:add(self.UI.backBtn)
+    self:addChild(self.UI.backBtn)
 
     --添加金币图标
     self.UI.goldPic = cc.Sprite:create("UI/denglu/gold.png")
@@ -47,10 +50,11 @@ function mapUI:ctor()
     self.UI.shopBtn:setPosition(cc.p(display.width - 160,display.height - 35))
     self:addChild(self.UI.shopBtn)
     --添加称号文本
-    self.UI.titleLabel = cc.LabelTTF:create("称号:音速小子", "Arial", 40)
+    self.UI.titleLabel = cc.Sprite:create("UI/denglu/btn_shop.png")
+    --self.UI.titleLabel:setString("sssssss")
+    --self.UI.titleLabel = cc.Label:createWithSystemFont("称号:音速小子", "Arial", 40)
     self.UI.titleLabel:setPosition(cc.p(display.cx ,display.height - 55))
-    self.UI.titleLabel:setColor(cc.c3b(0, 0, 0))
-    self.UI.titleLabel:setTag(1)
+    --self.UI.titleLabel:setColor(cc.c3b(0, 0, 0))
     self:addChild(self.UI.titleLabel)
     
     --成就按钮
@@ -75,15 +79,85 @@ function mapUI:ctor()
     self.UI.upgradeBtn:setTitleColor(cc.c3b(0, 0, 0))
     self:addChild(self.UI.upgradeBtn)
 
+    --添加按钮标志(小三角形)
+    self.UI.leftTriangle = cc.Sprite:create("UI/denglu/triangle.png")
+    self.UI.rightTriangle = cc.Sprite:create("UI/denglu/triangle.png")
+    self.UI.triangleNode = cc.Node:create()
+    self.UI.triangleNode:setPosition(self.UI.battleBtn:getPosition())
+    self.UI.leftTriangle:setPosition(cc.p(-50 , 0))
+    self.UI.rightTriangle:setPosition(cc.p(50 , 0))
+    self.UI.triangleNode:addChild(self.UI.leftTriangle)
+    self.UI.triangleNode:addChild(self.UI.rightTriangle)
+    self.UI.leftTriangle:setRotation(90)
+    self.UI.rightTriangle:setRotation(-90)
+    self:addChild(self.UI.triangleNode)
+
+    singleManagerUI:getInstance():bindListener(self.UI.titleLabel, self, "titleLabel")
     --绑定事件
     singleManagerUI:getInstance():bindListener(self.UI.backBtn,self,"backBtn")
     singleManagerUI:getInstance():bindListener(self.UI.battleBtn,self,"battleBtn")
+    singleManagerUI:getInstance():bindListener(self.UI.achievementBtn, self, "achievementBtn")
+    singleManagerUI:getInstance():bindListener(self.UI.upgradeBtn, self, "upgradeBtn")
+
     
-    self:bindLabelListener(self.UI.titleLabel)
+    cs.logger.i(self.UI.titleLabel:getBoundingBox().width..'  '..self.UI.titleLabel:getBoundingBox().height)
+    cs.logger.i("---------")
+    --self:bindLabelListener(self.UI.titleLabel)
 end
 
---标签绑定监听
+--添加一个灰色层
+function mapUI:addColorLayer()
+    cs.logger.i("addColorLayer")
+    self.UI.colorLayer = cc.LayerColor:create(cc.c4b(100,100,100,100))  --添加一个半透明的层并吞噬触摸
+    self:addChild(self.UI.colorLayer)
+   --[[ local layerListener = cc.EventListenerTouchOneByOne:create()
+    layerListener:setSwallowTouches(true)
+    layerListener:registerScriptHandler(function (touch,event) return true end,cc.Handler.EVENT_TOUCH_BEGAN)
+    cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(layerListener,self.UI.colorLayer)
 
+
+    self.UI.titleShowLabel = ccui.Button:create("UI/denglu/aboutBtn.png")   --显示选中的称号
+    self.UI.titleShowLabel:setTitleText(self.UI.titleLabel:getString())
+    self.UI.titleShowLabel:setTitleColor(cc.c3b(0,0,0))
+    self.UI.titleShowLabel:setTitleFontSize(40)
+    self.UI.titleShowLabel:setPosition(cc.p(display.cx,display.top - 100))
+    self.UI.colorLayer:addChild(self.UI.titleShowLabel)
+ 
+    for i=1,4 do      --添加不同的称号按钮
+        self.UI.LabelBtn[i] = ccui.Button:create("UI/denglu/aboutBtn.png")
+        self.UI.LabelBtn[i]:setTitleText(self.UI.LabelText[i])
+        self.UI.LabelBtn[i]:setTitleColor(cc.c3b(0,0,0))
+        self.UI.LabelBtn[i]:setTitleFontSize(40)
+        self.UI.LabelBtn[i]:setPosition(cc.p(180 + (i + 1) % 2 * 300,1000 - math.floor((i + 1) / 2) *100))
+        self.UI.colorLayer:addChild(self.UI.LabelBtn[i])
+
+        self["LabelBtn"..i.."TouchEnded"] = function ()
+            cs.logger.i("LabelBtn"..i.."TouchEnded")
+            self.UI.titleShowLabel:setTitleText("称号:"..self.UI.LabelText[i])
+        end
+        singleManagerUI:getInstance():bindListener(self.UI.LabelBtn[i], self, "LabelBtn"..i)
+    end
+
+    self.UI.backToMapBtn = ccui.Button:create("UI/denglu/btn_back.png")
+    self.UI.backToMapBtn:setAnchorPoint(cc.p(0,1))
+    self.UI.backToMapBtn:setPosition(cc.p(0,display.height))
+    self.UI.colorLayer:addChild(self.UI.backToMapBtn)
+
+    --绑定事件
+    singleManagerUI:getInstance():bindListener(self.UI.backToMapBtn, self, "backToMapBtn")]]
+end
+
+--删除灰色层
+function mapUI:removeColorLayer()
+    cs.logger.i("removeColorLayer")
+    if self.UI.colorLayer ~= nil then
+        self.UI.titleLabel:setString(self.UI.titleShowLabel:getTitleText())
+        self.UI.colorLayer:removeFromParent()
+    end
+end
+
+--[[
+--地图层标签绑定监听
 function mapUI:bindLabelListener(node)
 	local labelListener = cc.EventListenerTouchOneByOne:create()
 
@@ -93,37 +167,58 @@ function mapUI:bindLabelListener(node)
 	    local rect = cc.rect(0,0,nodeContent.width,nodeContent.height)
 
 		if cc.rectContainsPoint(rect,locationInNode)  then
+            cs.logger.i("labelTouchBegan")
 			return true
 		end
 		return false
     end
 
 	local touchEnded = function(touch,event)
-       	local locationInNode = node:convertToNodeSpace(touch:getLocation())s
+       	local locationInNode = node:convertToNodeSpace(touch:getLocation())
 	    local nodeContent = node:getContentSize()
 	    local rect = cc.rect(0,0,nodeContent.width,nodeContent.height)
 
 		if cc.rectContainsPoint(rect,locationInNode)  then
 			cs.logger.i("labelTouchEnded")
-			if node:getTag() == 1 then   --点击标签为地图层称号标签时
-				local colorLayer = cc.LayerColor:create(cc.c4b(100,100,100,100))
-				self:getParent():add(colorLayer, 100)
-                local layerListener = cc.cc.EventListenerTouchOneByOne:create()
-                LayerListener:setSwallowTouches(true)
-                labelListener:registerScriptHandler(function (touch,event) return false end,cc.Handler.EVENT_TOUCH_BEGAN)
-  	            cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(layerListener, colorLayer)
-			else
-				----
-			end
+            self:addColorLayer()
 		end
 	end
 	labelListener:registerScriptHandler(touchBegan,cc.Handler.EVENT_TOUCH_BEGAN)
 	labelListener:registerScriptHandler(touchEnded,cc.Handler.EVENT_TOUCH_ENDED)
 	cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(labelListener, node)
+end]]
+
+--更新三角形图标状态
+function mapUI:refreshTriangle(type)
+    if type == 1 then
+        self.UI.leftTriangle:setVisible(false)
+        self.UI.rightTriangle:setVisible(true)
+        self.UI.triangleNode:setPosition(self.UI.achievementBtn:getPosition())
+    elseif type == 2 then
+        self.UI.leftTriangle:setVisible(true)
+        self.UI.rightTriangle:setVisible(true)
+        self.UI.triangleNode:setPosition(self.UI.battleBtn:getPosition())
+    elseif type == 3 then
+        self.UI.leftTriangle:setVisible(true)
+        self.UI.rightTriangle:setVisible(false)
+        self.UI.triangleNode:setPosition(self.UI.upgradeBtn:getPosition())
+    end
 end
 
-
 --按钮监听事件函数
+
+function mapUI:titleLabelTouchEnded()
+    cs.logger.i("titleLabelTouchEnded")
+    --显示所有称号
+    --self:addColorLayer()
+end
+
+function mapUI:backToMapBtnTouchEnded()
+    cs.logger.i("backToMapBtnEnded")
+    --返回地图层
+    self:removeColorLayer()
+end
+
 function mapUI:backBtnTouchEnded()
 	cs.logger.i("backBtnTouchEnded")
 	--返回开始界面
@@ -133,11 +228,13 @@ end
 
 function mapUI:achievementBtnTouchEnded()
 	cs.logger.i("achievementBtnTouchEnded")
-
+    self.UI.triangleNode:setPosition(self.UI.achievementBtn:getPosition())
+    self:refreshTriangle(1)
 end
 
 function mapUI:battleBtnTouchEnded()
 	cs.logger.i("battleBtnTouchEnded")
+    self:refreshTriangle(2)
     --进入战斗界面
     local fightMainScene = require("gameFight.fightMainScene"):create()
     singleManagerUI:getInstance():changeUI({} , fightMainScene , CC_UI_GOTO_TPYE.UI_Rep_Scene)
@@ -145,7 +242,8 @@ end
 
 function mapUI:upgradeBtnTouchEnded()
 	cs.logger.i("upgradeBtnTouchEnded")
-	
+    self:refreshTriangle(3)	
+
 end
 
 function mapUI:enter()

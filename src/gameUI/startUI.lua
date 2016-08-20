@@ -55,18 +55,32 @@ function startUI:ctor()
     self.UI.versionLabel:setPosition(cc.p(display.width - 200,100))
     self:addChild(self.UI.versionLabel)
 
+    cs.logger.i("gameName************1")
+    singleManagerUI:getInstance():bindListener(self.UI.gameName,self,"gameName")   
+    cs.logger.i("gameName************2")
+    --singleManagerUI:getInstance():bindListener(self.UI.bgSp,self,"bgSp")
+
     --绑定事件
 	singleManagerUI:getInstance():bindListener(self.UI.startBtn,self,"startBtn")
 	singleManagerUI:getInstance():bindListener(self.UI.clearBtn,self,"clearBtn")
 	singleManagerUI:getInstance():bindListener(self.UI.aboutBtn,self,"aboutBtn")
 end
 
+function startUI:bgSpTouchEnded()
+    cs.logger.i("bgSP************")
+end
+
+function startUI:gameNameTouchEnded()
+    cs.logger.i("gameName*********")
+
+end
+
 --按钮监听事件函数
 function startUI:startBtnTouchEnded()
 	cs.logger.i("startBtnTouchEnded")
 	--进入选关界面
-    local selectMapUI = require("gameUI.selectMapUI"):create()
-    singleManagerUI:getInstance():changeUI({} , selectMapUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+    local mapUI = require("gameUI.mapUI"):create()
+    singleManagerUI:getInstance():changeUI({} , mapUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
 end
 
 function startUI:enter()

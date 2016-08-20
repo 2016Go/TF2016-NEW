@@ -54,9 +54,6 @@ function signInUI:ctor()
     self.UI.passwold:setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD)
 	self:addChild(self.UI.passwold )
 
-
-
-
 	--加载游客登录
 	self.UI.touristBtn = ccui.Button:create("UI/denglu/Button_59_01.png")
 	self.UI.touristBtn:setAnchorPoint(cc.p(0.5,0.5))

@@ -25,6 +25,11 @@ function singleGameData:setStageData(data)
 	self.mainUIData.bgm = data.bgm
 	self.mainUIData.towersindex = data.towersindex
 	self.mainUIData.waveLimit = data.waveLimit    --波次上限
+
+    --应该有一个地方标注当前关卡的可以建筑塔ID
+    --这里临时构建
+    self.towerData = {}
+    self.towerData.canBuild = { 1,2,3,4 }
 end
 
 function singleGameData:getStageData()

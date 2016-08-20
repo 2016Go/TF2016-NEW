@@ -42,8 +42,8 @@ function bullet:born(bulletData)
     self.bulletData.speedY = self.bulletData.speed * (subY  / (math.abs(subX) + math.abs(subY)))
 
     --旋转
-    local t2 = math.atan2( (self.bulletData.speedY),math.abs(self.bulletData.speedX)) * 180/3.14159;
-    self.mainSprite:setRotation(t2) 
+    local t2 = math.atan2( (self.bulletData.speedY),(self.bulletData.speedX)) * 180/3.14159
+    self.mainSprite:setRotation(-t2 ) 
 end
 
 
@@ -64,7 +64,7 @@ function bullet:UpData(dt)
             local sendData = {}
             sendData.targetEnemy = self.targetEnemy
             sendData.aoe = self.bulletData["aoe"]
-            sendData.att = 100
+            sendData.att = self.bulletData['att']
             singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletCollision, self, sendData)
         else
             self:setPosition(newPos)
@@ -78,7 +78,7 @@ function bullet:UpData(dt)
             local sendData = {}
             sendData.targetEnemy = self.targetEnemy
             sendData.aoe = self.bulletData["aoe"]
-            sendData.att = 10
+            sendData.att = self.bulletData['att']
             singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletCollision, self, sendData)
         else
             self:setPosition(newPos)

@@ -61,7 +61,7 @@ end
 function singleManagerUI:bindListener(node,target,name)
 	-- 分类型绑定
     local type = tolua.type(node)
-
+    cs.logger.i("bindListener************"..type)
     --不绑定Node
     if type == 'cc.Node' then
         return
@@ -84,10 +84,28 @@ function singleManagerUI:bindListener(node,target,name)
     elseif type == 'ccui.PageView' then---
         --_do_bind_pageView_(node,target)
         --_bindTouch(node,target,name,'PageView')
+    elseif type == 'cc.Sprite' then
+        cs.logger.i("bindListener************2222")
+        self:_do_bind_cc(node,target, name, 'cc.Sprite')
+    elseif type == 'cc.Label' then
+        self:_do_bind_cc(node,target,name, 'cc.Label') 
+    elseif type == 'cc.Layer' then
+        self:_do_bind_cc(node,target,name, 'cc.Layer')
+    elseif type == 'cc.LayerColor' then
+        self:_do_bind_cc(node,target,name, 'cc.LayerColor')
     else
         cs.logger.i("_bindTouch")
         self:_bindTouch(node,target,name)
     end
+end
+
+function singleManagerUI:contains(node, point) 
+    local anchorPoint = node:getAnchorPoint()
+    local rect = node:getBoundingBox()
+    local worldPoint = node:convertToWorldSpace(cc.p(rect.x, rect.y))
+    rect.x = worldPoint.x
+    rect.y = worldPoint.y
+    return  point.x > rect.x and point.x < (rect.x + rect.width) and point.y > rect.y and point.y < (rect.y + rect.height)
 end
 
 local _createEventFunc = function(widget,eventName)
@@ -97,6 +115,44 @@ local _createEventFunc = function(widget,eventName)
             cs.util.call(eventInterceptor,"after",widget,eventName,...)
         end
     end
+end
+
+-- 绑定精灵
+function singleManagerUI:_do_bind_cc(node, target , name, typeName)
+    local sprite = tolua.cast(node, typeName)
+    local listener = cc.EventListenerTouchOneByOne:create()
+    --listener:setSwallowTouches(true)
+    
+    -- 开始点击
+    listener:registerScriptHandler(
+    function (touch, event )
+
+        local isTrue = self:contains(sprite, touch:getLocation()) 
+        if isTrue then
+            if target[name..'TouchBegan'] ~= nil then
+                target[name..'TouchBegan'](target)
+            end
+        end
+        return isTrue
+    end, cc.Handler.EVENT_TOUCH_BEGAN)
+
+    -- 移动
+    local moved = false
+    listener:registerScriptHandler(function (touch, event)
+        moved = true
+    end, cc.Handler.EVENT_TOUCH_MOVED)
+
+    -- 结束点击
+    listener:registerScriptHandler(function( touch, event )
+        if not moved then
+            target[name..'TouchEnded'](target)
+        else
+            moved = false
+        end
+    end, cc.Handler.EVENT_TOUCH_ENDED)
+
+    local dispacher = sprite:getEventDispatcher()
+    dispacher:addEventListenerWithSceneGraphPriority(listener, sprite)
 end
 
 function singleManagerUI:_bindTouch(node,target,name)
@@ -120,7 +176,7 @@ function singleManagerUI:_bindTouch(node,target,name)
         -- 播放声音
         -- to do youwei
         --制作播放声音代码
-        cs.logger.i("listener"..type)
+        --cs.logger.i("listener"..type)
         cs.util.call(mapping[type], target, sender, type)
     end
 

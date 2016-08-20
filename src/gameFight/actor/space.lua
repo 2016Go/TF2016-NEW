@@ -22,6 +22,35 @@ function space:enter()
 end
 
 function space:spaceSpTouchEnded()
+---创建一个出现动画
+	local buildTower = require("gameFight.fightUI.buildTowerUI"):create()
+	buildTower:createUI(self)
+--[[
+	local sp = cc.Sprite:create("fightUI/sele_towe.png")
+	sp:setAnchorPoint(cc.p(0.5,0.5))  --设定根节点的锚点
+	sp:setScale(0.5)
+	sp:setOpacity(0)
+	--sp:setTouchEnabled(false)
+
+	
+
+	--cc.Sequence:create(action) 
+	local bAction1 = cc.Spawn:create(cc.ScaleTo:create(0.25,1.3),cc.FadeIn:create(0.2)) 
+	local bAction2 = cc.Sequence:create(bAction1,cc.ScaleTo:create(0.08,0.9),cc.ScaleTo:create(0.04,1)) 
+
+
+	sp:runAction(bAction2)
+	self:addChild(sp)
+]]
+	
+
+---
+--[[
+	local canBuildID = singleGameData:getInstance():towerData.canBuild
+
+	for k,v in pairs(canBuildID) do
+		print(k,v)
+	end
 	--获得塔ID
 	local towerID = 1
 
@@ -38,6 +67,7 @@ function space:spaceSpTouchEnded()
 	--销毁自己
 	--发送建造塔的消息。
 	singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildTower, self , towerData)
+	]]
 end
 
 return space

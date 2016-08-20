@@ -112,7 +112,7 @@ CC_PLIST =
     "plist/enemy/goblin.plist",
     "plist/enemy/orcgeneral.plist",
     "plist/enemy/babyspirit.plist",
-    "plist/towers/parents.plist",
+    "plist/towers/tower.plist",
     "plist/bullet/bullet1.plist",
 }
 
