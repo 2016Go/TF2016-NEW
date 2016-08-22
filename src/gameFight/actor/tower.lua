@@ -26,16 +26,17 @@ function tower:setTowerData(data)
 end
 
 function tower:createTowerWithData()
-
     print("createTowerWithData = "..self.towerData['png'])
     local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.towerData['png'] ,"/standby/", 0.25, 9, 20, "%02d.png")
     
     if fristFrame == nil then
         print(" fristFrame == nil "..self.towerData['png'])
+        return
     end
 
     if animation == nil then
         print(" animation == nil "..self.towerData['png'])
+        return
     end
 
     self.mainSprite:setSpriteFrame(fristFrame)
@@ -51,7 +52,7 @@ function tower:UpData(dt)
         return
     end 
     
-    local  myPos    = cc.p( self:getPosition() )
+    local  myPos = cc.p( self:getPosition() )
     
     --检查范围内是否有怪物存在
     --获取所有怪物

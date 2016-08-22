@@ -275,6 +275,140 @@
 		15EFA64E198B3342000C57D3 /* lua.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ABCA1E718CD8F470087CE3A /* lua.h */; };
 		15EFA64F198B3342000C57D3 /* luaconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ABCA1E818CD8F470087CE3A /* luaconf.h */; };
 		15EFA650198B3342000C57D3 /* lualib.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ABCA1E918CD8F470087CE3A /* lualib.h */; };
+		1808570D1D6AA3A000358A01 /* DHActionAnimate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856CC1D6AA3A000358A01 /* DHActionAnimate.cpp */; };
+		1808570E1D6AA3A000358A01 /* DHActionAnimate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856CC1D6AA3A000358A01 /* DHActionAnimate.cpp */; };
+		1808570F1D6AA3A000358A01 /* DHActionAnimate.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856CD1D6AA3A000358A01 /* DHActionAnimate.h */; };
+		180857101D6AA3A000358A01 /* DHActionAnimate.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856CD1D6AA3A000358A01 /* DHActionAnimate.h */; };
+		180857111D6AA3A000358A01 /* DHActionRegisterAnimate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856CE1D6AA3A000358A01 /* DHActionRegisterAnimate.cpp */; };
+		180857121D6AA3A000358A01 /* DHActionRegisterAnimate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856CE1D6AA3A000358A01 /* DHActionRegisterAnimate.cpp */; };
+		180857131D6AA3A000358A01 /* DHActionRegisterAnimate.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856CF1D6AA3A000358A01 /* DHActionRegisterAnimate.h */; };
+		180857141D6AA3A000358A01 /* DHActionRegisterAnimate.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856CF1D6AA3A000358A01 /* DHActionRegisterAnimate.h */; };
+		180857151D6AA3A000358A01 /* DHAnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D01D6AA3A000358A01 /* DHAnimationData.cpp */; };
+		180857161D6AA3A000358A01 /* DHAnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D01D6AA3A000358A01 /* DHAnimationData.cpp */; };
+		180857171D6AA3A000358A01 /* DHAnimationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D11D6AA3A000358A01 /* DHAnimationData.h */; };
+		180857181D6AA3A000358A01 /* DHAnimationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D11D6AA3A000358A01 /* DHAnimationData.h */; };
+		180857191D6AA3A000358A01 /* DHAnimationInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D21D6AA3A000358A01 /* DHAnimationInfo.cpp */; };
+		1808571A1D6AA3A000358A01 /* DHAnimationInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D21D6AA3A000358A01 /* DHAnimationInfo.cpp */; };
+		1808571B1D6AA3A000358A01 /* DHAnimationInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D31D6AA3A000358A01 /* DHAnimationInfo.h */; };
+		1808571C1D6AA3A000358A01 /* DHAnimationInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D31D6AA3A000358A01 /* DHAnimationInfo.h */; };
+		1808571D1D6AA3A000358A01 /* DHAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D41D6AA3A000358A01 /* DHAttachment.cpp */; };
+		1808571E1D6AA3A000358A01 /* DHAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D41D6AA3A000358A01 /* DHAttachment.cpp */; };
+		1808571F1D6AA3A000358A01 /* DHAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D51D6AA3A000358A01 /* DHAttachment.h */; };
+		180857201D6AA3A000358A01 /* DHAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D51D6AA3A000358A01 /* DHAttachment.h */; };
+		180857211D6AA3A000358A01 /* DHBone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D61D6AA3A000358A01 /* DHBone.cpp */; };
+		180857221D6AA3A000358A01 /* DHBone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D61D6AA3A000358A01 /* DHBone.cpp */; };
+		180857231D6AA3A000358A01 /* DHBone.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D71D6AA3A000358A01 /* DHBone.h */; };
+		180857241D6AA3A000358A01 /* DHBone.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D71D6AA3A000358A01 /* DHBone.h */; };
+		180857251D6AA3A000358A01 /* DHBoneData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D81D6AA3A000358A01 /* DHBoneData.cpp */; };
+		180857261D6AA3A000358A01 /* DHBoneData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856D81D6AA3A000358A01 /* DHBoneData.cpp */; };
+		180857271D6AA3A000358A01 /* DHBoneData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D91D6AA3A000358A01 /* DHBoneData.h */; };
+		180857281D6AA3A000358A01 /* DHBoneData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856D91D6AA3A000358A01 /* DHBoneData.h */; };
+		180857291D6AA3A000358A01 /* DHBoneTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856DA1D6AA3A000358A01 /* DHBoneTransform.cpp */; };
+		1808572A1D6AA3A000358A01 /* DHBoneTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856DA1D6AA3A000358A01 /* DHBoneTransform.cpp */; };
+		1808572B1D6AA3A000358A01 /* DHBoneTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856DB1D6AA3A000358A01 /* DHBoneTransform.h */; };
+		1808572C1D6AA3A000358A01 /* DHBoneTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856DB1D6AA3A000358A01 /* DHBoneTransform.h */; };
+		1808572D1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856DC1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp */; };
+		1808572E1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856DC1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp */; };
+		1808572F1D6AA3A000358A01 /* DHBoundingBoxAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856DD1D6AA3A000358A01 /* DHBoundingBoxAttachment.h */; };
+		180857301D6AA3A000358A01 /* DHBoundingBoxAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856DD1D6AA3A000358A01 /* DHBoundingBoxAttachment.h */; };
+		180857311D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856DE1D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp */; };
+		180857321D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856DE1D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp */; };
+		180857331D6AA3A000358A01 /* DHClippingSkeletonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856DF1D6AA3A000358A01 /* DHClippingSkeletonAnimation.h */; };
+		180857341D6AA3A000358A01 /* DHClippingSkeletonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856DF1D6AA3A000358A01 /* DHClippingSkeletonAnimation.h */; };
+		180857351D6AA3A000358A01 /* DHDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E01D6AA3A000358A01 /* DHDictionary.cpp */; };
+		180857361D6AA3A000358A01 /* DHDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E01D6AA3A000358A01 /* DHDictionary.cpp */; };
+		180857371D6AA3A000358A01 /* DHDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E11D6AA3A000358A01 /* DHDictionary.h */; };
+		180857381D6AA3A000358A01 /* DHDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E11D6AA3A000358A01 /* DHDictionary.h */; };
+		180857391D6AA3A000358A01 /* DHFFDTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E21D6AA3A000358A01 /* DHFFDTransform.cpp */; };
+		1808573A1D6AA3A000358A01 /* DHFFDTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E21D6AA3A000358A01 /* DHFFDTransform.cpp */; };
+		1808573B1D6AA3A000358A01 /* DHFFDTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E31D6AA3A000358A01 /* DHFFDTransform.h */; };
+		1808573C1D6AA3A000358A01 /* DHFFDTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E31D6AA3A000358A01 /* DHFFDTransform.h */; };
+		1808573D1D6AA3A000358A01 /* DHGlobal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E41D6AA3A000358A01 /* DHGlobal.cpp */; };
+		1808573E1D6AA3A000358A01 /* DHGlobal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E41D6AA3A000358A01 /* DHGlobal.cpp */; };
+		1808573F1D6AA3A000358A01 /* DHGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E51D6AA3A000358A01 /* DHGlobal.h */; };
+		180857401D6AA3A000358A01 /* DHGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E51D6AA3A000358A01 /* DHGlobal.h */; };
+		180857411D6AA3A000358A01 /* DHIkConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E61D6AA3A000358A01 /* DHIkConstraint.cpp */; };
+		180857421D6AA3A000358A01 /* DHIkConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E61D6AA3A000358A01 /* DHIkConstraint.cpp */; };
+		180857431D6AA3A000358A01 /* DHIkConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E71D6AA3A000358A01 /* DHIkConstraint.h */; };
+		180857441D6AA3A000358A01 /* DHIkConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E71D6AA3A000358A01 /* DHIkConstraint.h */; };
+		180857451D6AA3A000358A01 /* DHIkConstraintData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E81D6AA3A000358A01 /* DHIkConstraintData.cpp */; };
+		180857461D6AA3A000358A01 /* DHIkConstraintData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856E81D6AA3A000358A01 /* DHIkConstraintData.cpp */; };
+		180857471D6AA3A000358A01 /* DHIkConstraintData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E91D6AA3A000358A01 /* DHIkConstraintData.h */; };
+		180857481D6AA3A000358A01 /* DHIkConstraintData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856E91D6AA3A000358A01 /* DHIkConstraintData.h */; };
+		180857491D6AA3A000358A01 /* DHIkConstraintTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856EA1D6AA3A000358A01 /* DHIkConstraintTransform.cpp */; };
+		1808574A1D6AA3A000358A01 /* DHIkConstraintTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856EA1D6AA3A000358A01 /* DHIkConstraintTransform.cpp */; };
+		1808574B1D6AA3A000358A01 /* DHIkConstraintTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856EB1D6AA3A000358A01 /* DHIkConstraintTransform.h */; };
+		1808574C1D6AA3A000358A01 /* DHIkConstraintTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856EB1D6AA3A000358A01 /* DHIkConstraintTransform.h */; };
+		1808574D1D6AA3A000358A01 /* DHJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856EC1D6AA3A000358A01 /* DHJson.cpp */; };
+		1808574E1D6AA3A000358A01 /* DHJson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856EC1D6AA3A000358A01 /* DHJson.cpp */; };
+		1808574F1D6AA3A000358A01 /* DHJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856ED1D6AA3A000358A01 /* DHJson.h */; };
+		180857501D6AA3A000358A01 /* DHJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856ED1D6AA3A000358A01 /* DHJson.h */; };
+		180857511D6AA3A000358A01 /* DHMeshAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856EE1D6AA3A000358A01 /* DHMeshAttachment.cpp */; };
+		180857521D6AA3A000358A01 /* DHMeshAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856EE1D6AA3A000358A01 /* DHMeshAttachment.cpp */; };
+		180857531D6AA3A000358A01 /* DHMeshAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856EF1D6AA3A000358A01 /* DHMeshAttachment.h */; };
+		180857541D6AA3A000358A01 /* DHMeshAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856EF1D6AA3A000358A01 /* DHMeshAttachment.h */; };
+		180857551D6AA3A000358A01 /* DHPolygonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F01D6AA3A000358A01 /* DHPolygonBatch.cpp */; };
+		180857561D6AA3A000358A01 /* DHPolygonBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F01D6AA3A000358A01 /* DHPolygonBatch.cpp */; };
+		180857571D6AA3A000358A01 /* DHPolygonBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F11D6AA3A000358A01 /* DHPolygonBatch.h */; };
+		180857581D6AA3A000358A01 /* DHPolygonBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F11D6AA3A000358A01 /* DHPolygonBatch.h */; };
+		180857591D6AA3A000358A01 /* DHRegionAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F21D6AA3A000358A01 /* DHRegionAttachment.cpp */; };
+		1808575A1D6AA3A000358A01 /* DHRegionAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F21D6AA3A000358A01 /* DHRegionAttachment.cpp */; };
+		1808575B1D6AA3A000358A01 /* DHRegionAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F31D6AA3A000358A01 /* DHRegionAttachment.h */; };
+		1808575C1D6AA3A000358A01 /* DHRegionAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F31D6AA3A000358A01 /* DHRegionAttachment.h */; };
+		1808575D1D6AA3A000358A01 /* DHSkeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F41D6AA3A000358A01 /* DHSkeleton.cpp */; };
+		1808575E1D6AA3A000358A01 /* DHSkeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F41D6AA3A000358A01 /* DHSkeleton.cpp */; };
+		1808575F1D6AA3A000358A01 /* DHSkeleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F51D6AA3A000358A01 /* DHSkeleton.h */; };
+		180857601D6AA3A000358A01 /* DHSkeleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F51D6AA3A000358A01 /* DHSkeleton.h */; };
+		180857611D6AA3A000358A01 /* DHSkeletonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F61D6AA3A000358A01 /* DHSkeletonAnimation.cpp */; };
+		180857621D6AA3A000358A01 /* DHSkeletonAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F61D6AA3A000358A01 /* DHSkeletonAnimation.cpp */; };
+		180857631D6AA3A000358A01 /* DHSkeletonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F71D6AA3A000358A01 /* DHSkeletonAnimation.h */; };
+		180857641D6AA3A000358A01 /* DHSkeletonAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F71D6AA3A000358A01 /* DHSkeletonAnimation.h */; };
+		180857651D6AA3A000358A01 /* DHSkeletonData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F81D6AA3A000358A01 /* DHSkeletonData.cpp */; };
+		180857661D6AA3A000358A01 /* DHSkeletonData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856F81D6AA3A000358A01 /* DHSkeletonData.cpp */; };
+		180857671D6AA3A000358A01 /* DHSkeletonData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F91D6AA3A000358A01 /* DHSkeletonData.h */; };
+		180857681D6AA3A000358A01 /* DHSkeletonData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856F91D6AA3A000358A01 /* DHSkeletonData.h */; };
+		180857691D6AA3A000358A01 /* DHSkeletonDataCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856FA1D6AA3A000358A01 /* DHSkeletonDataCache.cpp */; };
+		1808576A1D6AA3A000358A01 /* DHSkeletonDataCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856FA1D6AA3A000358A01 /* DHSkeletonDataCache.cpp */; };
+		1808576B1D6AA3A000358A01 /* DHSkeletonDataCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856FB1D6AA3A000358A01 /* DHSkeletonDataCache.h */; };
+		1808576C1D6AA3A000358A01 /* DHSkeletonDataCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856FB1D6AA3A000358A01 /* DHSkeletonDataCache.h */; };
+		1808576D1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856FC1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp */; };
+		1808576E1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856FC1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp */; };
+		1808576F1D6AA3A000358A01 /* DHSkeletonProgressTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856FD1D6AA3A000358A01 /* DHSkeletonProgressTimer.h */; };
+		180857701D6AA3A000358A01 /* DHSkeletonProgressTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856FD1D6AA3A000358A01 /* DHSkeletonProgressTimer.h */; };
+		180857711D6AA3A000358A01 /* DHSkin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856FE1D6AA3A000358A01 /* DHSkin.cpp */; };
+		180857721D6AA3A000358A01 /* DHSkin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180856FE1D6AA3A000358A01 /* DHSkin.cpp */; };
+		180857731D6AA3A000358A01 /* DHSkin.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856FF1D6AA3A000358A01 /* DHSkin.h */; };
+		180857741D6AA3A000358A01 /* DHSkin.h in Headers */ = {isa = PBXBuildFile; fileRef = 180856FF1D6AA3A000358A01 /* DHSkin.h */; };
+		180857751D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857001D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp */; };
+		180857761D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857001D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp */; };
+		180857771D6AA3A000358A01 /* DHSkinnedMeshAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857011D6AA3A000358A01 /* DHSkinnedMeshAttachment.h */; };
+		180857781D6AA3A000358A01 /* DHSkinnedMeshAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857011D6AA3A000358A01 /* DHSkinnedMeshAttachment.h */; };
+		180857791D6AA3A000358A01 /* DHSlot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857021D6AA3A000358A01 /* DHSlot.cpp */; };
+		1808577A1D6AA3A000358A01 /* DHSlot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857021D6AA3A000358A01 /* DHSlot.cpp */; };
+		1808577B1D6AA3A000358A01 /* DHSlot.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857031D6AA3A000358A01 /* DHSlot.h */; };
+		1808577C1D6AA3A000358A01 /* DHSlot.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857031D6AA3A000358A01 /* DHSlot.h */; };
+		1808577D1D6AA3A000358A01 /* DHSlotData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857041D6AA3A000358A01 /* DHSlotData.cpp */; };
+		1808577E1D6AA3A000358A01 /* DHSlotData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857041D6AA3A000358A01 /* DHSlotData.cpp */; };
+		1808577F1D6AA3A000358A01 /* DHSlotData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857051D6AA3A000358A01 /* DHSlotData.h */; };
+		180857801D6AA3A000358A01 /* DHSlotData.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857051D6AA3A000358A01 /* DHSlotData.h */; };
+		180857811D6AA3A000358A01 /* DHSlotTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857061D6AA3A000358A01 /* DHSlotTransform.cpp */; };
+		180857821D6AA3A000358A01 /* DHSlotTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857061D6AA3A000358A01 /* DHSlotTransform.cpp */; };
+		180857831D6AA3A000358A01 /* DHSlotTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857071D6AA3A000358A01 /* DHSlotTransform.h */; };
+		180857841D6AA3A000358A01 /* DHSlotTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857071D6AA3A000358A01 /* DHSlotTransform.h */; };
+		180857851D6AA3A000358A01 /* DHSpine.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857081D6AA3A000358A01 /* DHSpine.h */; };
+		180857861D6AA3A000358A01 /* DHSpine.h in Headers */ = {isa = PBXBuildFile; fileRef = 180857081D6AA3A000358A01 /* DHSpine.h */; };
+		180857871D6AA3A000358A01 /* DHSpineLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857091D6AA3A000358A01 /* DHSpineLoader.cpp */; };
+		180857881D6AA3A000358A01 /* DHSpineLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 180857091D6AA3A000358A01 /* DHSpineLoader.cpp */; };
+		180857891D6AA3A000358A01 /* DHSpineLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1808570A1D6AA3A000358A01 /* DHSpineLoader.h */; };
+		1808578A1D6AA3A000358A01 /* DHSpineLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1808570A1D6AA3A000358A01 /* DHSpineLoader.h */; };
+		1808578B1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808570B1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp */; };
+		1808578C1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808570B1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp */; };
+		1808578D1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1808570C1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp */; };
+		1808578E1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1808570C1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp */; };
+		180857911D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808578F1D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp */; };
+		180857921D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1808578F1D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp */; };
+		180857931D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 180857901D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp */; };
+		180857941D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 180857901D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp */; };
 		3E2BDB0519C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDB0319C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.cpp */; };
 		3E2BDB0619C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E2BDB0419C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp */; };
 		3E2BDB0A19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDB0819C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp */; };
@@ -283,14 +417,14 @@
 		566F016019B5EB0F00FCA620 /* CustomGUIReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 566F015D19B5EB0F00FCA620 /* CustomGUIReader.cpp */; };
 		566F016119B5EB0F00FCA620 /* CustomGUIReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 566F015E19B5EB0F00FCA620 /* CustomGUIReader.h */; };
 		566F016219B5EB0F00FCA620 /* CustomGUIReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 566F015E19B5EB0F00FCA620 /* CustomGUIReader.h */; };
-		BA0CBB5E1BB0756F00003364 /* CCComponentLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA0CBB5C1BB0756F00003364 /* CCComponentLua.cpp */; settings = {ASSET_TAGS = (); }; };
-		BA0CBB5F1BB0756F00003364 /* CCComponentLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA0CBB5C1BB0756F00003364 /* CCComponentLua.cpp */; settings = {ASSET_TAGS = (); }; };
-		BA0CBB601BB0756F00003364 /* CCComponentLua.h in Headers */ = {isa = PBXBuildFile; fileRef = BA0CBB5D1BB0756F00003364 /* CCComponentLua.h */; settings = {ASSET_TAGS = (); }; };
-		BA0CBB611BB0756F00003364 /* CCComponentLua.h in Headers */ = {isa = PBXBuildFile; fileRef = BA0CBB5D1BB0756F00003364 /* CCComponentLua.h */; settings = {ASSET_TAGS = (); }; };
 		ADAC23ED1C2044A60049A6A2 /* lua_module_register.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADD1C0D21C196B9500733781 /* lua_module_register.cpp */; };
 		ADD1C0D51C196B9500733781 /* lua_module_register.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADD1C0D21C196B9500733781 /* lua_module_register.cpp */; };
 		ADD1C0D61C196B9500733781 /* lua_module_register.h in Headers */ = {isa = PBXBuildFile; fileRef = ADD1C0D31C196B9500733781 /* lua_module_register.h */; };
 		ADD1C0D71C196B9500733781 /* Lua-BindingsExport.h in Headers */ = {isa = PBXBuildFile; fileRef = ADD1C0D41C196B9500733781 /* Lua-BindingsExport.h */; };
+		BA0CBB5E1BB0756F00003364 /* CCComponentLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA0CBB5C1BB0756F00003364 /* CCComponentLua.cpp */; };
+		BA0CBB5F1BB0756F00003364 /* CCComponentLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BA0CBB5C1BB0756F00003364 /* CCComponentLua.cpp */; };
+		BA0CBB601BB0756F00003364 /* CCComponentLua.h in Headers */ = {isa = PBXBuildFile; fileRef = BA0CBB5D1BB0756F00003364 /* CCComponentLua.h */; };
+		BA0CBB611BB0756F00003364 /* CCComponentLua.h in Headers */ = {isa = PBXBuildFile; fileRef = BA0CBB5D1BB0756F00003364 /* CCComponentLua.h */; };
 		F4FE0D5719ECD00100B8B12B /* luasocket_scripts.c in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0D5519ECD00100B8B12B /* luasocket_scripts.c */; };
 		F4FE0D5819ECD00100B8B12B /* luasocket_scripts.c in Sources */ = {isa = PBXBuildFile; fileRef = F4FE0D5519ECD00100B8B12B /* luasocket_scripts.c */; };
 		F4FE0D5919ECD00100B8B12B /* luasocket_scripts.h in Headers */ = {isa = PBXBuildFile; fileRef = F4FE0D5619ECD00100B8B12B /* luasocket_scripts.h */; };
@@ -402,6 +536,73 @@
 		15EFA616198B2DAA000C57D3 /* libluacocos2d iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libluacocos2d iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EFA694198B668C000C57D3 /* lua_cocos2dx_network_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_network_manual.cpp; sourceTree = "<group>"; };
 		15EFA695198B668C000C57D3 /* lua_cocos2dx_network_manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_cocos2dx_network_manual.h; sourceTree = "<group>"; };
+		180856CC1D6AA3A000358A01 /* DHActionAnimate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHActionAnimate.cpp; sourceTree = "<group>"; };
+		180856CD1D6AA3A000358A01 /* DHActionAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHActionAnimate.h; sourceTree = "<group>"; };
+		180856CE1D6AA3A000358A01 /* DHActionRegisterAnimate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHActionRegisterAnimate.cpp; sourceTree = "<group>"; };
+		180856CF1D6AA3A000358A01 /* DHActionRegisterAnimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHActionRegisterAnimate.h; sourceTree = "<group>"; };
+		180856D01D6AA3A000358A01 /* DHAnimationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHAnimationData.cpp; sourceTree = "<group>"; };
+		180856D11D6AA3A000358A01 /* DHAnimationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHAnimationData.h; sourceTree = "<group>"; };
+		180856D21D6AA3A000358A01 /* DHAnimationInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHAnimationInfo.cpp; sourceTree = "<group>"; };
+		180856D31D6AA3A000358A01 /* DHAnimationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHAnimationInfo.h; sourceTree = "<group>"; };
+		180856D41D6AA3A000358A01 /* DHAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHAttachment.cpp; sourceTree = "<group>"; };
+		180856D51D6AA3A000358A01 /* DHAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHAttachment.h; sourceTree = "<group>"; };
+		180856D61D6AA3A000358A01 /* DHBone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHBone.cpp; sourceTree = "<group>"; };
+		180856D71D6AA3A000358A01 /* DHBone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHBone.h; sourceTree = "<group>"; };
+		180856D81D6AA3A000358A01 /* DHBoneData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHBoneData.cpp; sourceTree = "<group>"; };
+		180856D91D6AA3A000358A01 /* DHBoneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHBoneData.h; sourceTree = "<group>"; };
+		180856DA1D6AA3A000358A01 /* DHBoneTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHBoneTransform.cpp; sourceTree = "<group>"; };
+		180856DB1D6AA3A000358A01 /* DHBoneTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHBoneTransform.h; sourceTree = "<group>"; };
+		180856DC1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHBoundingBoxAttachment.cpp; sourceTree = "<group>"; };
+		180856DD1D6AA3A000358A01 /* DHBoundingBoxAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHBoundingBoxAttachment.h; sourceTree = "<group>"; };
+		180856DE1D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHClippingSkeletonAnimation.cpp; sourceTree = "<group>"; };
+		180856DF1D6AA3A000358A01 /* DHClippingSkeletonAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHClippingSkeletonAnimation.h; sourceTree = "<group>"; };
+		180856E01D6AA3A000358A01 /* DHDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHDictionary.cpp; sourceTree = "<group>"; };
+		180856E11D6AA3A000358A01 /* DHDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHDictionary.h; sourceTree = "<group>"; };
+		180856E21D6AA3A000358A01 /* DHFFDTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHFFDTransform.cpp; sourceTree = "<group>"; };
+		180856E31D6AA3A000358A01 /* DHFFDTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHFFDTransform.h; sourceTree = "<group>"; };
+		180856E41D6AA3A000358A01 /* DHGlobal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHGlobal.cpp; sourceTree = "<group>"; };
+		180856E51D6AA3A000358A01 /* DHGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGlobal.h; sourceTree = "<group>"; };
+		180856E61D6AA3A000358A01 /* DHIkConstraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHIkConstraint.cpp; sourceTree = "<group>"; };
+		180856E71D6AA3A000358A01 /* DHIkConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHIkConstraint.h; sourceTree = "<group>"; };
+		180856E81D6AA3A000358A01 /* DHIkConstraintData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHIkConstraintData.cpp; sourceTree = "<group>"; };
+		180856E91D6AA3A000358A01 /* DHIkConstraintData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHIkConstraintData.h; sourceTree = "<group>"; };
+		180856EA1D6AA3A000358A01 /* DHIkConstraintTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHIkConstraintTransform.cpp; sourceTree = "<group>"; };
+		180856EB1D6AA3A000358A01 /* DHIkConstraintTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHIkConstraintTransform.h; sourceTree = "<group>"; };
+		180856EC1D6AA3A000358A01 /* DHJson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHJson.cpp; sourceTree = "<group>"; };
+		180856ED1D6AA3A000358A01 /* DHJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHJson.h; sourceTree = "<group>"; };
+		180856EE1D6AA3A000358A01 /* DHMeshAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHMeshAttachment.cpp; sourceTree = "<group>"; };
+		180856EF1D6AA3A000358A01 /* DHMeshAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHMeshAttachment.h; sourceTree = "<group>"; };
+		180856F01D6AA3A000358A01 /* DHPolygonBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHPolygonBatch.cpp; sourceTree = "<group>"; };
+		180856F11D6AA3A000358A01 /* DHPolygonBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHPolygonBatch.h; sourceTree = "<group>"; };
+		180856F21D6AA3A000358A01 /* DHRegionAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHRegionAttachment.cpp; sourceTree = "<group>"; };
+		180856F31D6AA3A000358A01 /* DHRegionAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHRegionAttachment.h; sourceTree = "<group>"; };
+		180856F41D6AA3A000358A01 /* DHSkeleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkeleton.cpp; sourceTree = "<group>"; };
+		180856F51D6AA3A000358A01 /* DHSkeleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkeleton.h; sourceTree = "<group>"; };
+		180856F61D6AA3A000358A01 /* DHSkeletonAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkeletonAnimation.cpp; sourceTree = "<group>"; };
+		180856F71D6AA3A000358A01 /* DHSkeletonAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkeletonAnimation.h; sourceTree = "<group>"; };
+		180856F81D6AA3A000358A01 /* DHSkeletonData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkeletonData.cpp; sourceTree = "<group>"; };
+		180856F91D6AA3A000358A01 /* DHSkeletonData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkeletonData.h; sourceTree = "<group>"; };
+		180856FA1D6AA3A000358A01 /* DHSkeletonDataCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkeletonDataCache.cpp; sourceTree = "<group>"; };
+		180856FB1D6AA3A000358A01 /* DHSkeletonDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkeletonDataCache.h; sourceTree = "<group>"; };
+		180856FC1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkeletonProgressTimer.cpp; sourceTree = "<group>"; };
+		180856FD1D6AA3A000358A01 /* DHSkeletonProgressTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkeletonProgressTimer.h; sourceTree = "<group>"; };
+		180856FE1D6AA3A000358A01 /* DHSkin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkin.cpp; sourceTree = "<group>"; };
+		180856FF1D6AA3A000358A01 /* DHSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkin.h; sourceTree = "<group>"; };
+		180857001D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSkinnedMeshAttachment.cpp; sourceTree = "<group>"; };
+		180857011D6AA3A000358A01 /* DHSkinnedMeshAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSkinnedMeshAttachment.h; sourceTree = "<group>"; };
+		180857021D6AA3A000358A01 /* DHSlot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSlot.cpp; sourceTree = "<group>"; };
+		180857031D6AA3A000358A01 /* DHSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSlot.h; sourceTree = "<group>"; };
+		180857041D6AA3A000358A01 /* DHSlotData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSlotData.cpp; sourceTree = "<group>"; };
+		180857051D6AA3A000358A01 /* DHSlotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSlotData.h; sourceTree = "<group>"; };
+		180857061D6AA3A000358A01 /* DHSlotTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSlotTransform.cpp; sourceTree = "<group>"; };
+		180857071D6AA3A000358A01 /* DHSlotTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSlotTransform.h; sourceTree = "<group>"; };
+		180857081D6AA3A000358A01 /* DHSpine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSpine.h; sourceTree = "<group>"; };
+		180857091D6AA3A000358A01 /* DHSpineLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DHSpineLoader.cpp; sourceTree = "<group>"; };
+		1808570A1D6AA3A000358A01 /* DHSpineLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHSpineLoader.h; sourceTree = "<group>"; };
+		1808570B1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_dhspine_manual.cpp; sourceTree = "<group>"; };
+		1808570C1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_dhspine_manual.hpp; sourceTree = "<group>"; };
+		1808578F1D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_cocos2dx_dhspine.cpp; sourceTree = "<group>"; };
+		180857901D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_dhspine.hpp; sourceTree = "<group>"; };
 		1A262AB718BEEF5900D2DB92 /* tolua_fix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tolua_fix.cpp; sourceTree = "<group>"; };
 		1AACE74918BC45C200215002 /* lua_cocos2dx_auto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = lua_cocos2dx_auto.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		1AACE74A18BC45C200215002 /* lua_cocos2dx_auto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua_cocos2dx_auto.hpp; sourceTree = "<group>"; };
@@ -632,9 +833,83 @@
 			path = cocostudio;
 			sourceTree = "<group>";
 		};
+		180856CB1D6AA3A000358A01 /* dhspine */ = {
+			isa = PBXGroup;
+			children = (
+				180856CC1D6AA3A000358A01 /* DHActionAnimate.cpp */,
+				180856CD1D6AA3A000358A01 /* DHActionAnimate.h */,
+				180856CE1D6AA3A000358A01 /* DHActionRegisterAnimate.cpp */,
+				180856CF1D6AA3A000358A01 /* DHActionRegisterAnimate.h */,
+				180856D01D6AA3A000358A01 /* DHAnimationData.cpp */,
+				180856D11D6AA3A000358A01 /* DHAnimationData.h */,
+				180856D21D6AA3A000358A01 /* DHAnimationInfo.cpp */,
+				180856D31D6AA3A000358A01 /* DHAnimationInfo.h */,
+				180856D41D6AA3A000358A01 /* DHAttachment.cpp */,
+				180856D51D6AA3A000358A01 /* DHAttachment.h */,
+				180856D61D6AA3A000358A01 /* DHBone.cpp */,
+				180856D71D6AA3A000358A01 /* DHBone.h */,
+				180856D81D6AA3A000358A01 /* DHBoneData.cpp */,
+				180856D91D6AA3A000358A01 /* DHBoneData.h */,
+				180856DA1D6AA3A000358A01 /* DHBoneTransform.cpp */,
+				180856DB1D6AA3A000358A01 /* DHBoneTransform.h */,
+				180856DC1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp */,
+				180856DD1D6AA3A000358A01 /* DHBoundingBoxAttachment.h */,
+				180856DE1D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp */,
+				180856DF1D6AA3A000358A01 /* DHClippingSkeletonAnimation.h */,
+				180856E01D6AA3A000358A01 /* DHDictionary.cpp */,
+				180856E11D6AA3A000358A01 /* DHDictionary.h */,
+				180856E21D6AA3A000358A01 /* DHFFDTransform.cpp */,
+				180856E31D6AA3A000358A01 /* DHFFDTransform.h */,
+				180856E41D6AA3A000358A01 /* DHGlobal.cpp */,
+				180856E51D6AA3A000358A01 /* DHGlobal.h */,
+				180856E61D6AA3A000358A01 /* DHIkConstraint.cpp */,
+				180856E71D6AA3A000358A01 /* DHIkConstraint.h */,
+				180856E81D6AA3A000358A01 /* DHIkConstraintData.cpp */,
+				180856E91D6AA3A000358A01 /* DHIkConstraintData.h */,
+				180856EA1D6AA3A000358A01 /* DHIkConstraintTransform.cpp */,
+				180856EB1D6AA3A000358A01 /* DHIkConstraintTransform.h */,
+				180856EC1D6AA3A000358A01 /* DHJson.cpp */,
+				180856ED1D6AA3A000358A01 /* DHJson.h */,
+				180856EE1D6AA3A000358A01 /* DHMeshAttachment.cpp */,
+				180856EF1D6AA3A000358A01 /* DHMeshAttachment.h */,
+				180856F01D6AA3A000358A01 /* DHPolygonBatch.cpp */,
+				180856F11D6AA3A000358A01 /* DHPolygonBatch.h */,
+				180856F21D6AA3A000358A01 /* DHRegionAttachment.cpp */,
+				180856F31D6AA3A000358A01 /* DHRegionAttachment.h */,
+				180856F41D6AA3A000358A01 /* DHSkeleton.cpp */,
+				180856F51D6AA3A000358A01 /* DHSkeleton.h */,
+				180856F61D6AA3A000358A01 /* DHSkeletonAnimation.cpp */,
+				180856F71D6AA3A000358A01 /* DHSkeletonAnimation.h */,
+				180856F81D6AA3A000358A01 /* DHSkeletonData.cpp */,
+				180856F91D6AA3A000358A01 /* DHSkeletonData.h */,
+				180856FA1D6AA3A000358A01 /* DHSkeletonDataCache.cpp */,
+				180856FB1D6AA3A000358A01 /* DHSkeletonDataCache.h */,
+				180856FC1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp */,
+				180856FD1D6AA3A000358A01 /* DHSkeletonProgressTimer.h */,
+				180856FE1D6AA3A000358A01 /* DHSkin.cpp */,
+				180856FF1D6AA3A000358A01 /* DHSkin.h */,
+				180857001D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp */,
+				180857011D6AA3A000358A01 /* DHSkinnedMeshAttachment.h */,
+				180857021D6AA3A000358A01 /* DHSlot.cpp */,
+				180857031D6AA3A000358A01 /* DHSlot.h */,
+				180857041D6AA3A000358A01 /* DHSlotData.cpp */,
+				180857051D6AA3A000358A01 /* DHSlotData.h */,
+				180857061D6AA3A000358A01 /* DHSlotTransform.cpp */,
+				180857071D6AA3A000358A01 /* DHSlotTransform.h */,
+				180857081D6AA3A000358A01 /* DHSpine.h */,
+				180857091D6AA3A000358A01 /* DHSpineLoader.cpp */,
+				1808570A1D6AA3A000358A01 /* DHSpineLoader.h */,
+				1808570B1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp */,
+				1808570C1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp */,
+			);
+			path = dhspine;
+			sourceTree = "<group>";
+		};
 		1AACE74818BC45C200215002 /* auto */ = {
 			isa = PBXGroup;
 			children = (
+				1808578F1D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp */,
+				180857901D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp */,
 				150983CE1B1C0554007F3818 /* lua_cocos2dx_navmesh_auto.cpp */,
 				150983CF1B1C0554007F3818 /* lua_cocos2dx_navmesh_auto.hpp */,
 				15A561E31B00A09A005D4720 /* lua_cocos2dx_physics3d_auto.cpp */,
@@ -675,6 +950,7 @@
 		1AACE75B18BC45C200215002 /* manual */ = {
 			isa = PBXGroup;
 			children = (
+				180856CB1D6AA3A000358A01 /* dhspine */,
 				150983D41B1C3F2D007F3818 /* navmesh */,
 				15A561E91B00A3D0005D4720 /* physics3d */,
 				3E2BDB0719C5E6100055CDCD /* audioengine */,
@@ -853,69 +1129,103 @@
 				15EFA1F71989E582000C57D3 /* lua_cocos2dx_experimental_auto.hpp in Headers */,
 				15415AA719A71A53004F1E71 /* auxiliar.h in Headers */,
 				155C7E1019A71C9D00F08B25 /* lua_extensions.h in Headers */,
+				1808570F1D6AA3A000358A01 /* DHActionAnimate.h in Headers */,
 				15A561E71B00A09A005D4720 /* lua_cocos2dx_physics3d_auto.hpp in Headers */,
 				15415ABF19A71A53004F1E71 /* mime.h in Headers */,
 				15AC69E21987712500D17520 /* tolua_event.h in Headers */,
 				15415AD719A71A53004F1E71 /* udp.h in Headers */,
 				15AC69E31987712500D17520 /* tolua++.h in Headers */,
+				180857731D6AA3A000358A01 /* DHSkin.h in Headers */,
+				1808573F1D6AA3A000358A01 /* DHGlobal.h in Headers */,
 				15415ADB19A71A53004F1E71 /* unix.h in Headers */,
+				180857271D6AA3A000358A01 /* DHBoneData.h in Headers */,
 				155C7DF419A71C3700F08B25 /* lua_cocos2dx_3d_manual.h in Headers */,
 				15415ABB19A71A53004F1E71 /* luasocket.h in Headers */,
+				1808571F1D6AA3A000358A01 /* DHAttachment.h in Headers */,
 				159552421A25E4B8001E9FC9 /* lua_cocos2dx_csloader_manual.hpp in Headers */,
 				155C7E2419A71CD800F08B25 /* lua_cocos2dx_experimental_video_manual.hpp in Headers */,
+				180857671D6AA3A000358A01 /* DHSkeletonData.h in Headers */,
 				15415ACF19A71A53004F1E71 /* tcp.h in Headers */,
 				15415AAB19A71A53004F1E71 /* buffer.h in Headers */,
 				15AC69DE1987711400D17520 /* lauxlib.h in Headers */,
+				1808572B1D6AA3A000358A01 /* DHBoneTransform.h in Headers */,
+				180857231D6AA3A000358A01 /* DHBone.h in Headers */,
 				155C7E1419A71CA800F08B25 /* Lua_web_socket.h in Headers */,
 				ADD1C0D61C196B9500733781 /* lua_module_register.h in Headers */,
+				1808572F1D6AA3A000358A01 /* DHBoundingBoxAttachment.h in Headers */,
 				15AC69DF1987711400D17520 /* lua.h in Headers */,
 				15AC69E01987711400D17520 /* luaconf.h in Headers */,
+				180857431D6AA3A000358A01 /* DHIkConstraint.h in Headers */,
+				180857931D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp in Headers */,
 				155C7DF819A71C4400F08B25 /* lua_cocos2dx_cocosdenshion_manual.h in Headers */,
 				15415AAF19A71A53004F1E71 /* except.h in Headers */,
+				1808571B1D6AA3A000358A01 /* DHAnimationInfo.h in Headers */,
 				150906F319D556D1002C4D97 /* lua_cocos2dx_audioengine_manual.h in Headers */,
+				1808573B1D6AA3A000358A01 /* DHFFDTransform.h in Headers */,
+				180857171D6AA3A000358A01 /* DHAnimationData.h in Headers */,
 				155C7E0419A71C6D00F08B25 /* lua_cocos2dx_cocosbuilder_manual.h in Headers */,
 				15415ACB19A71A53004F1E71 /* socket.h in Headers */,
 				15415ADF19A71A53004F1E71 /* usocket.h in Headers */,
 				15415AC319A71A53004F1E71 /* options.h in Headers */,
+				180857371D6AA3A000358A01 /* DHDictionary.h in Headers */,
 				15AC69E11987711400D17520 /* lualib.h in Headers */,
 				15C1C2E719874CBE00A46ACC /* CCLuaBridge.h in Headers */,
 				15C1C2E819874CBE00A46ACC /* CCLuaEngine.h in Headers */,
+				1808577B1D6AA3A000358A01 /* DHSlot.h in Headers */,
 				15C1C2E919874CBE00A46ACC /* CCLuaStack.h in Headers */,
 				15B575511A6F4D1500041C20 /* lua-cocos-studio-conversions.h in Headers */,
 				15C1C2EA19874CBE00A46ACC /* CCLuaValue.h in Headers */,
+				180857851D6AA3A000358A01 /* DHSpine.h in Headers */,
+				1808576B1D6AA3A000358A01 /* DHSkeletonDataCache.h in Headers */,
 				155C7E0C19A71C9000F08B25 /* lua_cocos2dx_network_manual.h in Headers */,
 				15C1C2EB19874CBE00A46ACC /* Cocos2dxLuaLoader.h in Headers */,
 				15C1C2EC19874CBE00A46ACC /* LuaBasicConversions.h in Headers */,
 				15415AB319A71A53004F1E71 /* inet.h in Headers */,
 				15C1C2ED19874CBE00A46ACC /* CCLuaObjcBridge.h in Headers */,
+				180857471D6AA3A000358A01 /* DHIkConstraintData.h in Headers */,
+				180857331D6AA3A000358A01 /* DHClippingSkeletonAnimation.h in Headers */,
 				15C1C2EE19874CBE00A46ACC /* tolua_fix.h in Headers */,
 				155C7E2019A71CCC00F08B25 /* LuaSkeletonAnimation.h in Headers */,
 				150983D91B1C3F3E007F3818 /* lua_cocos2dx_navmesh_manual.h in Headers */,
 				1595523C1A25E1C5001E9FC9 /* lua_cocos2dx_csloader_auto.hpp in Headers */,
 				15415AB719A71A53004F1E71 /* io.h in Headers */,
+				1808575F1D6AA3A000358A01 /* DHSkeleton.h in Headers */,
+				1808574F1D6AA3A000358A01 /* DHJson.h in Headers */,
 				150983DF1B1C4860007F3818 /* lua_cocos2dx_navmesh_conversions.h in Headers */,
+				1808575B1D6AA3A000358A01 /* DHRegionAttachment.h in Headers */,
 				566F016119B5EB0F00FCA620 /* CustomGUIReader.h in Headers */,
 				15C1C2DC19874B4400A46ACC /* xxtea.h in Headers */,
+				1808577F1D6AA3A000358A01 /* DHSlotData.h in Headers */,
 				15415AD319A71A53004F1E71 /* timeout.h in Headers */,
+				180857631D6AA3A000358A01 /* DHSkeletonAnimation.h in Headers */,
+				1808576F1D6AA3A000358A01 /* DHSkeletonProgressTimer.h in Headers */,
 				15C1C2D5198749BC00A46ACC /* LuaOpengl.h in Headers */,
 				15A561EE1B00A3F1005D4720 /* lua_cocos2dx_physics3d_manual.h in Headers */,
+				180857771D6AA3A000358A01 /* DHSkinnedMeshAttachment.h in Headers */,
 				ADD1C0D71C196B9500733781 /* Lua-BindingsExport.h in Headers */,
 				155C7E2819A71CE600F08B25 /* lua_cocos2dx_ui_manual.hpp in Headers */,
+				180857571D6AA3A000358A01 /* DHPolygonBatch.h in Headers */,
 				15C1C2D6198749BC00A46ACC /* lua_cocos2dx_deprecated.h in Headers */,
 				15C1C2D7198749BC00A46ACC /* lua_cocos2dx_experimental_manual.hpp in Headers */,
+				180857831D6AA3A000358A01 /* DHSlotTransform.h in Headers */,
 				15C1C2D8198749BC00A46ACC /* lua_cocos2dx_manual.hpp in Headers */,
 				155C7E0819A71C7B00F08B25 /* lua_cocos2dx_extension_manual.h in Headers */,
+				180857531D6AA3A000358A01 /* DHMeshAttachment.h in Headers */,
 				155C7E1819A71CB300F08B25 /* lua_xml_http_request.h in Headers */,
 				150983D21B1C0554007F3818 /* lua_cocos2dx_navmesh_auto.hpp in Headers */,
 				155C7DFC19A71C5300F08B25 /* lua_cocos2dx_coco_studio_manual.hpp in Headers */,
+				180857891D6AA3A000358A01 /* DHSpineLoader.h in Headers */,
+				1808574B1D6AA3A000358A01 /* DHIkConstraintTransform.h in Headers */,
 				15C1C2D9198749BC00A46ACC /* lua_cocos2dx_physics_manual.hpp in Headers */,
 				15C1C2DA198749BC00A46ACC /* LuaScriptHandlerMgr.h in Headers */,
 				15AC69D619876EA200D17520 /* lua_cocos2dx_physics_auto.hpp in Headers */,
 				155C7E0019A71C6000F08B25 /* CCBProxy.h in Headers */,
 				15415AC719A71A53004F1E71 /* select.h in Headers */,
+				1808578D1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp in Headers */,
 				155C7E1C19A71CC200F08B25 /* lua_cocos2dx_spine_manual.hpp in Headers */,
 				BA0CBB601BB0756F00003364 /* CCComponentLua.h in Headers */,
 				15C1C2D41987499F00A46ACC /* lua_cocos2dx_auto.hpp in Headers */,
+				180857131D6AA3A000358A01 /* DHActionRegisterAnimate.h in Headers */,
 				150906F119D556C8002C4D97 /* lua_cocos2dx_audioengine_auto.hpp in Headers */,
 				F4FE0D5919ECD00100B8B12B /* luasocket_scripts.h in Headers */,
 			);
@@ -928,69 +1238,103 @@
 				150983E01B1C4860007F3818 /* lua_cocos2dx_navmesh_conversions.h in Headers */,
 				15EFA64D198B3342000C57D3 /* lauxlib.h in Headers */,
 				15415AA819A71A53004F1E71 /* auxiliar.h in Headers */,
+				180857101D6AA3A000358A01 /* DHActionAnimate.h in Headers */,
 				155C7E1119A71C9F00F08B25 /* lua_extensions.h in Headers */,
 				15415AC019A71A53004F1E71 /* mime.h in Headers */,
 				15EFA64E198B3342000C57D3 /* lua.h in Headers */,
 				15415AD819A71A53004F1E71 /* udp.h in Headers */,
 				15EFA64F198B3342000C57D3 /* luaconf.h in Headers */,
+				180857741D6AA3A000358A01 /* DHSkin.h in Headers */,
+				180857401D6AA3A000358A01 /* DHGlobal.h in Headers */,
 				15415ADC19A71A53004F1E71 /* unix.h in Headers */,
+				180857281D6AA3A000358A01 /* DHBoneData.h in Headers */,
 				155C7DF519A71C3900F08B25 /* lua_cocos2dx_3d_manual.h in Headers */,
 				15415ABC19A71A53004F1E71 /* luasocket.h in Headers */,
+				180857201D6AA3A000358A01 /* DHAttachment.h in Headers */,
 				159552431A25E4B8001E9FC9 /* lua_cocos2dx_csloader_manual.hpp in Headers */,
 				155C7E2519A71CDA00F08B25 /* lua_cocos2dx_experimental_video_manual.hpp in Headers */,
+				180857681D6AA3A000358A01 /* DHSkeletonData.h in Headers */,
 				15415AD019A71A53004F1E71 /* tcp.h in Headers */,
 				BA0CBB611BB0756F00003364 /* CCComponentLua.h in Headers */,
 				15415AAC19A71A53004F1E71 /* buffer.h in Headers */,
+				1808572C1D6AA3A000358A01 /* DHBoneTransform.h in Headers */,
+				180857241D6AA3A000358A01 /* DHBone.h in Headers */,
 				15EFA650198B3342000C57D3 /* lualib.h in Headers */,
 				155C7E1519A71CAA00F08B25 /* Lua_web_socket.h in Headers */,
+				180857301D6AA3A000358A01 /* DHBoundingBoxAttachment.h in Headers */,
 				15EFA64B198B3320000C57D3 /* tolua_event.h in Headers */,
 				15A561EF1B00A3F1005D4720 /* lua_cocos2dx_physics3d_manual.h in Headers */,
+				180857441D6AA3A000358A01 /* DHIkConstraint.h in Headers */,
+				180857941D6AA7AA00358A01 /* lua_cocos2dx_dhspine.hpp in Headers */,
 				15EFA64C198B3320000C57D3 /* tolua++.h in Headers */,
 				155C7DF919A71C4500F08B25 /* lua_cocos2dx_cocosdenshion_manual.h in Headers */,
+				1808571C1D6AA3A000358A01 /* DHAnimationInfo.h in Headers */,
 				15415AB019A71A53004F1E71 /* except.h in Headers */,
+				1808573C1D6AA3A000358A01 /* DHFFDTransform.h in Headers */,
+				180857181D6AA3A000358A01 /* DHAnimationData.h in Headers */,
 				3E2BDB0B19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.h in Headers */,
 				155C7E0519A71C6F00F08B25 /* lua_cocos2dx_cocosbuilder_manual.h in Headers */,
 				15415ACC19A71A53004F1E71 /* socket.h in Headers */,
 				15415AE019A71A53004F1E71 /* usocket.h in Headers */,
+				180857381D6AA3A000358A01 /* DHDictionary.h in Headers */,
 				15415AC419A71A53004F1E71 /* options.h in Headers */,
 				15EFA644198B32D5000C57D3 /* xxtea.h in Headers */,
 				15EFA63B198B32BB000C57D3 /* CCLuaBridge.h in Headers */,
+				1808577C1D6AA3A000358A01 /* DHSlot.h in Headers */,
 				15EFA63C198B32BB000C57D3 /* CCLuaEngine.h in Headers */,
 				15EFA63D198B32BB000C57D3 /* CCLuaStack.h in Headers */,
 				15B575521A6F4D1500041C20 /* lua-cocos-studio-conversions.h in Headers */,
+				180857861D6AA3A000358A01 /* DHSpine.h in Headers */,
+				1808576C1D6AA3A000358A01 /* DHSkeletonDataCache.h in Headers */,
 				15EFA63E198B32BB000C57D3 /* CCLuaValue.h in Headers */,
 				155C7E0D19A71C9300F08B25 /* lua_cocos2dx_network_manual.h in Headers */,
 				15EFA63F198B32BB000C57D3 /* Cocos2dxLuaLoader.h in Headers */,
 				15EFA640198B32BB000C57D3 /* LuaBasicConversions.h in Headers */,
 				150983D31B1C0554007F3818 /* lua_cocos2dx_navmesh_auto.hpp in Headers */,
+				180857481D6AA3A000358A01 /* DHIkConstraintData.h in Headers */,
+				180857341D6AA3A000358A01 /* DHClippingSkeletonAnimation.h in Headers */,
 				15415AB419A71A53004F1E71 /* inet.h in Headers */,
 				15EFA641198B32BB000C57D3 /* CCLuaObjcBridge.h in Headers */,
 				15EFA642198B32BB000C57D3 /* tolua_fix.h in Headers */,
 				155C7E2119A71CCE00F08B25 /* LuaSkeletonAnimation.h in Headers */,
 				1595523D1A25E1C5001E9FC9 /* lua_cocos2dx_csloader_auto.hpp in Headers */,
+				180857601D6AA3A000358A01 /* DHSkeleton.h in Headers */,
+				180857501D6AA3A000358A01 /* DHJson.h in Headers */,
 				15415AB819A71A53004F1E71 /* io.h in Headers */,
+				1808575C1D6AA3A000358A01 /* DHRegionAttachment.h in Headers */,
 				566F016219B5EB0F00FCA620 /* CustomGUIReader.h in Headers */,
 				15EFA62B198B3220000C57D3 /* LuaOpengl.h in Headers */,
+				180857801D6AA3A000358A01 /* DHSlotData.h in Headers */,
 				15415AD419A71A53004F1E71 /* timeout.h in Headers */,
+				180857641D6AA3A000358A01 /* DHSkeletonAnimation.h in Headers */,
+				180857701D6AA3A000358A01 /* DHSkeletonProgressTimer.h in Headers */,
 				15EFA62C198B3220000C57D3 /* lua_cocos2dx_deprecated.h in Headers */,
 				155C7E2919A71CE800F08B25 /* lua_cocos2dx_ui_manual.hpp in Headers */,
+				180857781D6AA3A000358A01 /* DHSkinnedMeshAttachment.h in Headers */,
 				15EFA62D198B3220000C57D3 /* lua_cocos2dx_experimental_manual.hpp in Headers */,
 				15C9A1131AE4973400C15443 /* lua_cocos2dx_experimental_webview_manual.hpp in Headers */,
+				180857581D6AA3A000358A01 /* DHPolygonBatch.h in Headers */,
 				15EFA62E198B3220000C57D3 /* lua_cocos2dx_manual.hpp in Headers */,
 				15C9A10F1AE4972500C15443 /* lua_cocos2dx_experimental_webview_auto.hpp in Headers */,
+				180857841D6AA3A000358A01 /* DHSlotTransform.h in Headers */,
 				150983DA1B1C3F3E007F3818 /* lua_cocos2dx_navmesh_manual.h in Headers */,
 				15EFA62F198B3220000C57D3 /* lua_cocos2dx_physics_manual.hpp in Headers */,
+				180857541D6AA3A000358A01 /* DHMeshAttachment.h in Headers */,
 				155C7E0919A71C8500F08B25 /* lua_cocos2dx_extension_manual.h in Headers */,
 				155C7E1919A71CB500F08B25 /* lua_xml_http_request.h in Headers */,
 				155C7DFD19A71C5400F08B25 /* lua_cocos2dx_coco_studio_manual.hpp in Headers */,
+				1808578A1D6AA3A000358A01 /* DHSpineLoader.h in Headers */,
+				1808574C1D6AA3A000358A01 /* DHIkConstraintTransform.h in Headers */,
 				15EFA630198B3220000C57D3 /* LuaScriptHandlerMgr.h in Headers */,
 				15EFA622198B2E74000C57D3 /* lua_cocos2dx_experimental_auto.hpp in Headers */,
 				15EFA623198B2E74000C57D3 /* lua_cocos2dx_auto.hpp in Headers */,
 				155C7E0119A71C6300F08B25 /* CCBProxy.h in Headers */,
 				15A561E81B00A09A005D4720 /* lua_cocos2dx_physics3d_auto.hpp in Headers */,
+				1808578E1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.hpp in Headers */,
 				15415AC819A71A53004F1E71 /* select.h in Headers */,
 				155C7E1D19A71CC300F08B25 /* lua_cocos2dx_spine_manual.hpp in Headers */,
 				15EFA624198B2E74000C57D3 /* lua_cocos2dx_physics_auto.hpp in Headers */,
+				180857141D6AA3A000358A01 /* DHActionRegisterAnimate.h in Headers */,
 				3E2BDB0619C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.hpp in Headers */,
 				F4FE0D5A19ECD00100B8B12B /* luasocket_scripts.h in Headers */,
 			);
@@ -1066,7 +1410,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				15415A7219A718FB004F1E71 /* lua_cocos2dx_3d_auto.cpp in Sources */,
+				180857791D6AA3A000358A01 /* DHSlot.cpp in Sources */,
+				180857491D6AA3A000358A01 /* DHIkConstraintTransform.cpp in Sources */,
 				15415A7319A718FB004F1E71 /* lua_cocos2dx_cocosbuilder_auto.cpp in Sources */,
+				1808576D1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp in Sources */,
+				180857691D6AA3A000358A01 /* DHSkeletonDataCache.cpp in Sources */,
 				150906F219D556CE002C4D97 /* lua_cocos2dx_audioengine_manual.cpp in Sources */,
 				15415A7519A718FB004F1E71 /* lua_cocos2dx_experimental_video_auto.cpp in Sources */,
 				150983DD1B1C4860007F3818 /* lua_cocos2dx_navmesh_conversions.cpp in Sources */,
@@ -1077,16 +1425,22 @@
 				15415A7819A718FB004F1E71 /* lua_cocos2dx_studio_auto.cpp in Sources */,
 				155C7DEC19A71BF200F08B25 /* lua_cocos2dx_cocosdenshion_auto.cpp in Sources */,
 				15AC69D91987710400D17520 /* tolua_event.c in Sources */,
+				1808572D1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp in Sources */,
 				15AC69DA1987710400D17520 /* tolua_is.c in Sources */,
 				15415ACD19A71A53004F1E71 /* tcp.c in Sources */,
 				15AC69DB1987710400D17520 /* tolua_map.c in Sources */,
 				ADD1C0D51C196B9500733781 /* lua_module_register.cpp in Sources */,
 				15415AD519A71A53004F1E71 /* udp.c in Sources */,
 				150983D01B1C0554007F3818 /* lua_cocos2dx_navmesh_auto.cpp in Sources */,
+				1808578B1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp in Sources */,
+				180857391D6AA3A000358A01 /* DHFFDTransform.cpp in Sources */,
 				15415ADD19A71A53004F1E71 /* usocket.c in Sources */,
 				15AC69DC1987710400D17520 /* tolua_push.c in Sources */,
+				180857291D6AA3A000358A01 /* DHBoneTransform.cpp in Sources */,
 				15AC69DD1987710400D17520 /* tolua_to.c in Sources */,
+				180857411D6AA3A000358A01 /* DHIkConstraint.cpp in Sources */,
 				15415AAD19A71A53004F1E71 /* except.c in Sources */,
+				180857811D6AA3A000358A01 /* DHSlotTransform.cpp in Sources */,
 				15415ABD19A71A53004F1E71 /* mime.c in Sources */,
 				15C1C2E519874C9200A46ACC /* CCLuaObjcBridge.mm in Sources */,
 				155C7E1619A71CAD00F08B25 /* lua_xml_http_request.cpp in Sources */,
@@ -1094,50 +1448,73 @@
 				15C1C2E219874BA100A46ACC /* LuaBasicConversions.cpp in Sources */,
 				F4FE0D5719ECD00100B8B12B /* luasocket_scripts.c in Sources */,
 				15415AC519A71A53004F1E71 /* select.c in Sources */,
+				180857451D6AA3A000358A01 /* DHIkConstraintData.cpp in Sources */,
 				155C7DFE19A71C5A00F08B25 /* CCBProxy.cpp in Sources */,
 				1595523A1A25E1C5001E9FC9 /* lua_cocos2dx_csloader_auto.cpp in Sources */,
 				15415AD919A71A53004F1E71 /* unix.c in Sources */,
 				155C7E0619A71C7600F08B25 /* lua_cocos2dx_extension_manual.cpp in Sources */,
 				15C1C2DD19874B8800A46ACC /* CCLuaBridge.cpp in Sources */,
+				1808575D1D6AA3A000358A01 /* DHSkeleton.cpp in Sources */,
 				15C1C2DE19874B8800A46ACC /* CCLuaEngine.cpp in Sources */,
 				15415AC919A71A53004F1E71 /* serial.c in Sources */,
 				BA0CBB5E1BB0756F00003364 /* CCComponentLua.cpp in Sources */,
+				1808573D1D6AA3A000358A01 /* DHGlobal.cpp in Sources */,
 				155C7E0219A71C6700F08B25 /* lua_cocos2dx_cocosbuilder_manual.cpp in Sources */,
+				180857711D6AA3A000358A01 /* DHSkin.cpp in Sources */,
 				15C1C2DF19874B8800A46ACC /* CCLuaStack.cpp in Sources */,
 				15C1C2E019874B8800A46ACC /* CCLuaValue.cpp in Sources */,
 				155C7DF219A71C3200F08B25 /* lua_cocos2dx_3d_manual.cpp in Sources */,
+				180857151D6AA3A000358A01 /* DHAnimationData.cpp in Sources */,
+				1808571D1D6AA3A000358A01 /* DHAttachment.cpp in Sources */,
 				15415AB119A71A53004F1E71 /* inet.c in Sources */,
+				180857111D6AA3A000358A01 /* DHActionRegisterAnimate.cpp in Sources */,
 				15C1C2E119874B8800A46ACC /* Cocos2dxLuaLoader.cpp in Sources */,
 				15C1C2DB19874B3D00A46ACC /* xxtea.cpp in Sources */,
 				155C7E0E19A71C9600F08B25 /* lua_extensions.c in Sources */,
 				15EFA1F61989E528000C57D3 /* lua_cocos2dx_experimental_auto.cpp in Sources */,
+				180857871D6AA3A000358A01 /* DHSpineLoader.cpp in Sources */,
+				180857611D6AA3A000358A01 /* DHSkeletonAnimation.cpp in Sources */,
+				1808570D1D6AA3A000358A01 /* DHActionAnimate.cpp in Sources */,
 				15AC69D519876E9300D17520 /* lua_cocos2dx_physics_auto.cpp in Sources */,
 				155C7E1E19A71CC700F08B25 /* LuaSkeletonAnimation.cpp in Sources */,
 				15415AB519A71A53004F1E71 /* io.c in Sources */,
 				15C1C2CE1987498B00A46ACC /* LuaOpengl.cpp in Sources */,
 				566F015F19B5EB0F00FCA620 /* CustomGUIReader.cpp in Sources */,
+				180857191D6AA3A000358A01 /* DHAnimationInfo.cpp in Sources */,
+				180857651D6AA3A000358A01 /* DHSkeletonData.cpp in Sources */,
 				15415AC119A71A53004F1E71 /* options.c in Sources */,
 				150906F019D556C5002C4D97 /* lua_cocos2dx_audioengine_auto.cpp in Sources */,
+				180857551D6AA3A000358A01 /* DHPolygonBatch.cpp in Sources */,
 				155C7E0A19A71C8B00F08B25 /* lua_cocos2dx_network_manual.cpp in Sources */,
+				180857211D6AA3A000358A01 /* DHBone.cpp in Sources */,
+				180857251D6AA3A000358A01 /* DHBoneData.cpp in Sources */,
 				15415AD119A71A53004F1E71 /* timeout.c in Sources */,
 				15C1C2CF1987498B00A46ACC /* lua_cocos2dx_deprecated.cpp in Sources */,
+				1808577D1D6AA3A000358A01 /* DHSlotData.cpp in Sources */,
 				155C7E2219A71CD300F08B25 /* lua_cocos2dx_experimental_video_manual.cpp in Sources */,
 				155C7DFA19A71C4C00F08B25 /* lua_cocos2dx_coco_studio_manual.cpp in Sources */,
 				155C7E2619A71CDD00F08B25 /* lua_cocos2dx_ui_manual.cpp in Sources */,
 				150983D71B1C3F3E007F3818 /* lua_cocos2dx_navmesh_manual.cpp in Sources */,
+				180857751D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp in Sources */,
 				15415A7019A71768004F1E71 /* lua_cocos2dx_extension_auto.cpp in Sources */,
+				180857591D6AA3A000358A01 /* DHRegionAttachment.cpp in Sources */,
+				180857511D6AA3A000358A01 /* DHMeshAttachment.cpp in Sources */,
 				155C7DF619A71C3E00F08B25 /* lua_cocos2dx_cocosdenshion_manual.cpp in Sources */,
+				180857311D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp in Sources */,
 				15415AA519A71A53004F1E71 /* auxiliar.c in Sources */,
 				155C7E1A19A71CBC00F08B25 /* lua_cocos2dx_spine_manual.cpp in Sources */,
 				15A561EC1B00A3F1005D4720 /* lua_cocos2dx_physics3d_manual.cpp in Sources */,
 				15C1C2D01987498B00A46ACC /* lua_cocos2dx_experimental_manual.cpp in Sources */,
 				15C1C2D11987498B00A46ACC /* lua_cocos2dx_manual.cpp in Sources */,
 				15C1C2D21987498B00A46ACC /* lua_cocos2dx_physics_manual.cpp in Sources */,
+				1808574D1D6AA3A000358A01 /* DHJson.cpp in Sources */,
 				15C1C2D31987498B00A46ACC /* LuaScriptHandlerMgr.cpp in Sources */,
 				15415AA919A71A53004F1E71 /* buffer.c in Sources */,
 				15C1C2CD1987495500A46ACC /* lua_cocos2dx_auto.cpp in Sources */,
 				15415AB919A71A53004F1E71 /* luasocket.c in Sources */,
 				159552401A25E4B8001E9FC9 /* lua_cocos2dx_csloader_manual.cpp in Sources */,
+				180857351D6AA3A000358A01 /* DHDictionary.cpp in Sources */,
+				180857911D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp in Sources */,
 				155C7E1219A71CA200F08B25 /* Lua_web_socket.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1147,9 +1524,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADAC23ED1C2044A60049A6A2 /* lua_module_register.cpp in Sources */,
+				1808578C1D6AA3A000358A01 /* lua_cocos2dx_dhspine_manual.cpp in Sources */,
+				180857321D6AA3A000358A01 /* DHClippingSkeletonAnimation.cpp in Sources */,
 				15415AC619A71A53004F1E71 /* select.c in Sources */,
+				1808571E1D6AA3A000358A01 /* DHAttachment.cpp in Sources */,
 				15A561ED1B00A3F1005D4720 /* lua_cocos2dx_physics3d_manual.cpp in Sources */,
 				15EFA646198B3311000C57D3 /* tolua_event.c in Sources */,
+				180857821D6AA3A000358A01 /* DHSlotTransform.cpp in Sources */,
+				1808570E1D6AA3A000358A01 /* DHActionAnimate.cpp in Sources */,
 				3E2BDB0A19C5E6100055CDCD /* lua_cocos2dx_audioengine_manual.cpp in Sources */,
 				15415AA619A71A53004F1E71 /* auxiliar.c in Sources */,
 				15B575501A6F4D1500041C20 /* lua-cocos-studio-conversions.cpp in Sources */,
@@ -1159,57 +1541,84 @@
 				15EFA64A198B3311000C57D3 /* tolua_to.c in Sources */,
 				15415AC219A71A53004F1E71 /* options.c in Sources */,
 				15EFA645198B32DB000C57D3 /* xxtea.cpp in Sources */,
+				1808574E1D6AA3A000358A01 /* DHJson.cpp in Sources */,
 				15EFA632198B328B000C57D3 /* CCLuaBridge.cpp in Sources */,
 				150983D11B1C0554007F3818 /* lua_cocos2dx_navmesh_auto.cpp in Sources */,
+				1808575E1D6AA3A000358A01 /* DHSkeleton.cpp in Sources */,
 				15EFA633198B328B000C57D3 /* CCLuaEngine.cpp in Sources */,
 				155C7DEE19A71BFC00F08B25 /* lua_cocos2dx_experimental_video_auto.cpp in Sources */,
 				15EFA634198B328B000C57D3 /* CCLuaStack.cpp in Sources */,
 				15EFA635198B328B000C57D3 /* CCLuaValue.cpp in Sources */,
+				180857361D6AA3A000358A01 /* DHDictionary.cpp in Sources */,
 				15EFA636198B328B000C57D3 /* Cocos2dxLuaLoader.cpp in Sources */,
 				155C7DEB19A71BE900F08B25 /* lua_cocos2dx_cocosbuilder_auto.cpp in Sources */,
 				150983DE1B1C4860007F3818 /* lua_cocos2dx_navmesh_conversions.cpp in Sources */,
+				180857421D6AA3A000358A01 /* DHIkConstraint.cpp in Sources */,
 				15EFA637198B328B000C57D3 /* LuaBasicConversions.cpp in Sources */,
 				15EFA638198B328B000C57D3 /* CCLuaObjcBridge.mm in Sources */,
 				155C7E1719A71CAF00F08B25 /* lua_xml_http_request.cpp in Sources */,
 				15415ACE19A71A53004F1E71 /* tcp.c in Sources */,
+				1808577E1D6AA3A000358A01 /* DHSlotData.cpp in Sources */,
 				15415AD219A71A53004F1E71 /* timeout.c in Sources */,
+				1808573E1D6AA3A000358A01 /* DHGlobal.cpp in Sources */,
+				180857881D6AA3A000358A01 /* DHSpineLoader.cpp in Sources */,
 				F4FE0D5819ECD00100B8B12B /* luasocket_scripts.c in Sources */,
+				180857661D6AA3A000358A01 /* DHSkeletonData.cpp in Sources */,
 				15EFA639198B328B000C57D3 /* tolua_fix.cpp in Sources */,
 				15A561E61B00A09A005D4720 /* lua_cocos2dx_physics3d_auto.cpp in Sources */,
 				155C7DFF19A71C5C00F08B25 /* CCBProxy.cpp in Sources */,
 				1595523B1A25E1C5001E9FC9 /* lua_cocos2dx_csloader_auto.cpp in Sources */,
+				1808577A1D6AA3A000358A01 /* DHSlot.cpp in Sources */,
 				15C9A1121AE4973400C15443 /* lua_cocos2dx_experimental_webview_manual.cpp in Sources */,
 				155C7DF019A71C1E00F08B25 /* lua_cocos2dx_spine_auto.cpp in Sources */,
+				180857161D6AA3A000358A01 /* DHAnimationData.cpp in Sources */,
 				155C7E0719A71C7800F08B25 /* lua_cocos2dx_extension_manual.cpp in Sources */,
 				15EFA625198B31FB000C57D3 /* LuaOpengl.cpp in Sources */,
+				180857721D6AA3A000358A01 /* DHSkin.cpp in Sources */,
 				15EFA626198B31FB000C57D3 /* lua_cocos2dx_deprecated.cpp in Sources */,
+				180857761D6AA3A000358A01 /* DHSkinnedMeshAttachment.cpp in Sources */,
 				15EFA627198B31FB000C57D3 /* lua_cocos2dx_experimental_manual.cpp in Sources */,
 				155C7E0319A71C6900F08B25 /* lua_cocos2dx_cocosbuilder_manual.cpp in Sources */,
 				15415ABE19A71A53004F1E71 /* mime.c in Sources */,
 				15415ADA19A71A53004F1E71 /* unix.c in Sources */,
 				155C7DF319A71C3400F08B25 /* lua_cocos2dx_3d_manual.cpp in Sources */,
+				1808571A1D6AA3A000358A01 /* DHAnimationInfo.cpp in Sources */,
 				15415ADE19A71A53004F1E71 /* usocket.c in Sources */,
 				155C7DED19A71BF400F08B25 /* lua_cocos2dx_cocosdenshion_auto.cpp in Sources */,
+				180857921D6AA7AA00358A01 /* lua_cocos2dx_dhspine.cpp in Sources */,
 				15EFA628198B31FB000C57D3 /* lua_cocos2dx_manual.cpp in Sources */,
+				1808572E1D6AA3A000358A01 /* DHBoundingBoxAttachment.cpp in Sources */,
 				155C7E0F19A71C9800F08B25 /* lua_extensions.c in Sources */,
 				BA0CBB5F1BB0756F00003364 /* CCComponentLua.cpp in Sources */,
 				15415AD619A71A53004F1E71 /* udp.c in Sources */,
+				180857461D6AA3A000358A01 /* DHIkConstraintData.cpp in Sources */,
 				15415ABA19A71A53004F1E71 /* luasocket.c in Sources */,
 				155C7E1F19A71CC800F08B25 /* LuaSkeletonAnimation.cpp in Sources */,
 				15415ACA19A71A53004F1E71 /* serial.c in Sources */,
+				180857121D6AA3A000358A01 /* DHActionRegisterAnimate.cpp in Sources */,
 				155C7DEA19A71BDA00F08B25 /* lua_cocos2dx_3d_auto.cpp in Sources */,
+				1808575A1D6AA3A000358A01 /* DHRegionAttachment.cpp in Sources */,
+				1808576A1D6AA3A000358A01 /* DHSkeletonDataCache.cpp in Sources */,
 				566F016019B5EB0F00FCA620 /* CustomGUIReader.cpp in Sources */,
 				155C7DF119A71C2300F08B25 /* lua_cocos2dx_studio_auto.cpp in Sources */,
+				180857261D6AA3A000358A01 /* DHBoneData.cpp in Sources */,
+				1808576E1D6AA3A000358A01 /* DHSkeletonProgressTimer.cpp in Sources */,
 				3E2BDB0519C5E5FE0055CDCD /* lua_cocos2dx_audioengine_auto.cpp in Sources */,
 				155C7E0B19A71C8D00F08B25 /* lua_cocos2dx_network_manual.cpp in Sources */,
+				180857221D6AA3A000358A01 /* DHBone.cpp in Sources */,
 				15415AAE19A71A53004F1E71 /* except.c in Sources */,
+				1808572A1D6AA3A000358A01 /* DHBoneTransform.cpp in Sources */,
 				15C9A10E1AE4972500C15443 /* lua_cocos2dx_experimental_webview_auto.cpp in Sources */,
 				15415AAA19A71A53004F1E71 /* buffer.c in Sources */,
 				155C7E2319A71CD500F08B25 /* lua_cocos2dx_experimental_video_manual.cpp in Sources */,
 				150983D81B1C3F3E007F3818 /* lua_cocos2dx_navmesh_manual.cpp in Sources */,
 				155C7DFB19A71C4E00F08B25 /* lua_cocos2dx_coco_studio_manual.cpp in Sources */,
+				180857561D6AA3A000358A01 /* DHPolygonBatch.cpp in Sources */,
+				180857521D6AA3A000358A01 /* DHMeshAttachment.cpp in Sources */,
 				155C7E2719A71CDE00F08B25 /* lua_cocos2dx_ui_manual.cpp in Sources */,
+				1808574A1D6AA3A000358A01 /* DHIkConstraintTransform.cpp in Sources */,
 				15415AB619A71A53004F1E71 /* io.c in Sources */,
+				1808573A1D6AA3A000358A01 /* DHFFDTransform.cpp in Sources */,
 				155C7DF719A71C4000F08B25 /* lua_cocos2dx_cocosdenshion_manual.cpp in Sources */,
 				155C7DEF19A71C0900F08B25 /* lua_cocos2dx_ui_auto.cpp in Sources */,
 				155C7E1B19A71CBE00F08B25 /* lua_cocos2dx_spine_manual.cpp in Sources */,
@@ -1218,6 +1627,7 @@
 				15EFA62A198B31FB000C57D3 /* LuaScriptHandlerMgr.cpp in Sources */,
 				15EFA617198B2E2B000C57D3 /* lua_cocos2dx_experimental_auto.cpp in Sources */,
 				15EFA618198B2E2B000C57D3 /* lua_cocos2dx_auto.cpp in Sources */,
+				180857621D6AA3A000358A01 /* DHSkeletonAnimation.cpp in Sources */,
 				15EFA619198B2E2B000C57D3 /* lua_cocos2dx_physics_auto.cpp in Sources */,
 				15415AB219A71A53004F1E71 /* inet.c in Sources */,
 				159552411A25E4B8001E9FC9 /* lua_cocos2dx_csloader_manual.cpp in Sources */,

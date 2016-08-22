@@ -21,6 +21,8 @@ require("gameUI.gameUIBase.singleUIData")
 require("gameUI.gameUIBase.singleUIEvent")
 require("gameUI.gameUIBase.singleManagerUI")
 
+print("test  ", DHSkeletonAnimation, type(DHSkeletonAnimation))
+
 
 -- 简单的报错（可能要写一套更加完善的）
 local cclog = function(...)

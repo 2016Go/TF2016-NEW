@@ -26,7 +26,7 @@ function space:spaceSpTouchEnded()
 	local buildTower = require("gameFight.fightUI.buildTowerUI"):create()
 	buildTower:createUI(self)
 --[[
-	local sp = cc.Sprite:create("fightUI/sele_towe.png")
+	local sp = cc.Sprite:create("fightUI/sele_tower.png")
 	sp:setAnchorPoint(cc.p(0.5,0.5))  --设定根节点的锚点
 	sp:setScale(0.5)
 	sp:setOpacity(0)

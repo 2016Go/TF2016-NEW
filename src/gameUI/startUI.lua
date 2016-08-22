@@ -55,10 +55,10 @@ function startUI:ctor()
     self.UI.versionLabel:setPosition(cc.p(display.width - 200,100))
     self:addChild(self.UI.versionLabel)
 
-    cs.logger.i("gameName************1")
+ 
     singleManagerUI:getInstance():bindListener(self.UI.gameName,self,"gameName")   
     cs.logger.i("gameName************2")
-    --singleManagerUI:getInstance():bindListener(self.UI.bgSp,self,"bgSp")
+    singleManagerUI:getInstance():bindListener(self.UI.bgSp,self,"bgSp")
 
     --绑定事件
 	singleManagerUI:getInstance():bindListener(self.UI.startBtn,self,"startBtn")
@@ -66,11 +66,11 @@ function startUI:ctor()
 	singleManagerUI:getInstance():bindListener(self.UI.aboutBtn,self,"aboutBtn")
 end
 
-function startUI:bgSpTouchEnded()
+function startUI:bgSpTouchBegan()
     cs.logger.i("bgSP************")
 end
 
-function startUI:gameNameTouchEnded()
+function startUI:gameNameTouchBegan()
     cs.logger.i("gameName*********")
 
 end

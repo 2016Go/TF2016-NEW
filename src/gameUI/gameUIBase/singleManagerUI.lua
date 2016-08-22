@@ -58,17 +58,16 @@ function singleManagerUI:changeUI(nowUI , changeUI, changeTpye)
 end
 
 --绑定某一个控件的监听事件
-function singleManagerUI:bindListener(node,target,name)
+function singleManagerUI:bindListener(node,target,name,parameter,isSoallowTouches)
 	-- 分类型绑定
     local type = tolua.type(node)
-    cs.logger.i("bindListener************"..type)
     --不绑定Node
     if type == 'cc.Node' then
         return
     end
 
     if type == 'ccui.Button' then
-        self:_bindTouch(node,target,name)
+        self:_bindTouch(node,target,name,parameter)
     elseif type == 'ccui.CheckBox' then
         --_do_bind_checkBox_(node,target)
         --_bindTouch(node,target,name,'CheckBox')
@@ -85,27 +84,33 @@ function singleManagerUI:bindListener(node,target,name)
         --_do_bind_pageView_(node,target)
         --_bindTouch(node,target,name,'PageView')
     elseif type == 'cc.Sprite' then
-        cs.logger.i("bindListener************2222")
-        self:_do_bind_cc(node,target, name, 'cc.Sprite')
+        self:_do_bind_cc(node,target, name, 'cc.Sprite', parameter, isSoallowTouches)
     elseif type == 'cc.Label' then
-        self:_do_bind_cc(node,target,name, 'cc.Label') 
+        self:_do_bind_cc(node,target,name, 'cc.Label', parameter, isSoallowTouches) 
     elseif type == 'cc.Layer' then
-        self:_do_bind_cc(node,target,name, 'cc.Layer')
+        self:_do_bind_cc(node,target,name, 'cc.Layer', parameter, isSoallowTouches)
     elseif type == 'cc.LayerColor' then
-        self:_do_bind_cc(node,target,name, 'cc.LayerColor')
+        self:_do_bind_cc(node,target,name, 'cc.LayerColor', parameter, isSoallowTouches)
     else
         cs.logger.i("_bindTouch")
         self:_bindTouch(node,target,name)
     end
 end
 
-function singleManagerUI:contains(node, point) 
-    local anchorPoint = node:getAnchorPoint()
+function singleManagerUI:contains(node, touch) 
+    if node:isVisible() == false then
+        return false
+    end
+
     local rect = node:getBoundingBox()
-    local worldPoint = node:convertToWorldSpace(cc.p(rect.x, rect.y))
-    rect.x = worldPoint.x
-    rect.y = worldPoint.y
-    return  point.x > rect.x and point.x < (rect.x + rect.width) and point.y > rect.y and point.y < (rect.y + rect.height)
+    local pt = node:convertTouchToNodeSpace(touch)
+    local rc = cc.rect(0, 0, rect.width, rect.height)
+    if cc.rectContainsPoint(rc, pt)  then
+        print("contains is true")
+        return true
+    end
+    print("contains is false")
+    return false
 end
 
 local _createEventFunc = function(widget,eventName)
@@ -118,19 +123,20 @@ local _createEventFunc = function(widget,eventName)
 end
 
 -- 绑定精灵
-function singleManagerUI:_do_bind_cc(node, target , name, typeName)
+function singleManagerUI:_do_bind_cc(node, target , name, typeName , parameter, isSoallowTouches)
     local sprite = tolua.cast(node, typeName)
     local listener = cc.EventListenerTouchOneByOne:create()
-    --listener:setSwallowTouches(true)
+
+    isSoallowTouches = isSoallowTouches or true
+    listener:setSwallowTouches(isSoallowTouches)
     
     -- 开始点击
     listener:registerScriptHandler(
     function (touch, event )
-
-        local isTrue = self:contains(sprite, touch:getLocation()) 
-        if isTrue then
+        local isTrue = self:contains(sprite, touch) 
+        if isTrue  then
             if target[name..'TouchBegan'] ~= nil then
-                target[name..'TouchBegan'](target)
+                target[name..'TouchBegan'](target, parameter)
             end
         end
         return isTrue
@@ -139,16 +145,22 @@ function singleManagerUI:_do_bind_cc(node, target , name, typeName)
     -- 移动
     local moved = false
     listener:registerScriptHandler(function (touch, event)
-        moved = true
+        --moved = true
     end, cc.Handler.EVENT_TOUCH_MOVED)
 
     -- 结束点击
     listener:registerScriptHandler(function( touch, event )
         if not moved then
-            target[name..'TouchEnded'](target)
+            local isTrue = self:contains(sprite, touch) 
+            if isTrue  then
+                if target[name..'TouchEnded'] ~= nil then
+                    target[name..'TouchEnded'](target, parameter)
+                end
+            end
         else
             moved = false
         end
+        return isTrue
     end, cc.Handler.EVENT_TOUCH_ENDED)
 
     local dispacher = sprite:getEventDispatcher()

@@ -33,7 +33,7 @@ CC_CONFIG =
 }
 
 --是否显示DEBUG编辑器模式下的圈绘图
-CC_IS_SHOW_DEBUG = true
+CC_IS_SHOW_DEBUG = false
 
 -----------------------------------------------------
 -----界面方面的枚举标记
@@ -145,6 +145,7 @@ CC_GAME_EVENT =
 
     GameEvent_MainUIDataChange = 100,     --游戏场景数据变化
     GameEvent_GoldChange    =   101,     --金币数据变更      
+    GameEvent_GoldPoor      =   102,     --游戏中金币不足  
 
     GameEvent_BuildTower    =   150,     --建造防御塔
     GameEvent_BuildBullet   =   151,      --请求创建子弹

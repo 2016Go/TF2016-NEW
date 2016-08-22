@@ -56,7 +56,7 @@ function singleStage:runStageForData(target, stageData, isDebugShow)
 
 
     if isDebugShow == true then
-        --self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
+        self.instance:ShowTheDebug(target, stageData["map"]["roads"]["road"])
     end
 end
 
@@ -108,10 +108,27 @@ function singleStage:eventResponse(gameEventID, eventSender, parameter)
         tower:createTowerWithData()
         singleTowerManager:getInstance():addTower(tower)
         pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_tower)
+    elseif gameEventID == CC_GAME_EVENT.GameEvent_GoldPoor then
+        local goldLabel = cc.LabelTTF:create("", "ttf/fangzhenglier.ttf", 50)  
+        goldLabel:setAnchorPoint(cc.p(0.5,0.5))
+        goldLabel:setPosition(cc.p(display.width/2 , display.height/2 ))
+        goldLabel:setColor(cc.c3b(1,1,1))
+        goldLabel:setString("show me the money??")
+        local mainLayer = singleGameData:getInstance():getMainLayer()
+        mainLayer:addChild(goldLabel,CC_GAME_LAYER_LEVEL.Layer_fight_main_ui)
+
+        local callBack = cc.CallFunc:create(function ( ... )
+            goldLabel:removeFromParent()
+        end)
+        local bAction1 = cc.Spawn:create(cc.MoveBy:create(1.5,cc.p(0,100)),cc.FadeOut:create(1.5)) 
+        local bAction2 = cc.Sequence:create(bAction1,callBack) 
+        goldLabel:runAction(bAction2)
     end
 end
 
 function singleStage:_init()
     -- body
+    
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_GoldPoor, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_BuildTower, self)
 end
