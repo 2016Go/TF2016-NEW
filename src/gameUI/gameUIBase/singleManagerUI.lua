@@ -105,6 +105,9 @@ function singleManagerUI:contains(node, touch)
     local rect = node:getBoundingBox()
     local pt = node:convertTouchToNodeSpace(touch)
     local rc = cc.rect(0, 0, rect.width, rect.height)
+    pt.x = pt.x * node:getScaleX()
+    pt.y = pt.y * node:getScaleY()
+
     if cc.rectContainsPoint(rc, pt)  then
         print("contains is true")
         return true

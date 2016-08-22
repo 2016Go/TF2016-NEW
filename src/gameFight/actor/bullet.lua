@@ -14,7 +14,8 @@ end
 --子弹出生
 --给出子弹的ID和子弹将要过去的点
 function bullet:born(bulletData)
-    self.bulletData = cs.conf.a("bullet",bulletData.bulletID)
+
+    self.bulletData = cs.util.tablecpy(cs.conf.a("bullet",bulletData.bulletID))
     print("createbullet = "..self.bulletData['png'])
     local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.bulletData['png'] ,"/walk/", 0.25, 2, 10, "%02d.png")
 
@@ -29,7 +30,6 @@ function bullet:born(bulletData)
     self.mainSprite:setSpriteFrame(fristFrame)
     self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
     self:addChild(self.mainSprite , 10)
-
     self:setPosition(bulletData.bulletPos)
 
     --保存目标信息
@@ -38,6 +38,7 @@ function bullet:born(bulletData)
 
     local subX = bulletData.bulletTargetPos.x - bulletData.bulletPos.x
     local subY = bulletData.bulletTargetPos.y - bulletData.bulletPos.y
+
     self.bulletData.speedX = self.bulletData.speed * (subX  / (math.abs(subX) + math.abs(subY)))
     self.bulletData.speedY = self.bulletData.speed * (subY  / (math.abs(subX) + math.abs(subY)))
 

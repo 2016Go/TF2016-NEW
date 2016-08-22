@@ -53,20 +53,20 @@ end
 
 function singleBulletManager:eventResponse(gameEventID, eventSender, parameter)
     if gameEventID == CC_GAME_EVENT.GameEvent_BuildBullet then
-        local myBullet = require("gameFight.actor.bullet"):create()
-
+        local thisBullet = require("gameFight.actor.bullet"):create()
         --在其出生里面设定坐标位置
-        myBullet:born(parameter)
-        self.mainLayer:addChild( myBullet , CC_GAME_LAYER_LEVEL.Layer_scene_bullet )
-        self:addBullet(myBullet)
+        thisBullet:born(parameter)
+        self.mainLayer:addChild( thisBullet , CC_GAME_LAYER_LEVEL.Layer_scene_bullet )
+        self:addBullet(thisBullet)
     elseif gameEventID == CC_GAME_EVENT.GameEvent_BulletCollision then
 
         --非AOE单体伤害
-        if parameter.aoe == 0 then
+        print("-----GameEvent_BulletCollision-----"..parameter.att)
+        --if parameter.aoe == 0 then
             if self:_checkBulletTarget(parameter.targetEnemy) == true then
+                print("-----parameter.targetEnemy.actorData.life-----"..parameter.targetEnemy.actorData.life)
                 parameter.targetEnemy.actorData.life = parameter.targetEnemy.actorData.life - parameter.att
             end
-        end
 
         --删除子弹
         self:removeBulletNextFrame(eventSender)

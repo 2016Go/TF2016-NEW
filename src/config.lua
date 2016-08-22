@@ -113,7 +113,7 @@ CC_PLIST =
     "plist/enemy/orcgeneral.plist",
     "plist/enemy/babyspirit.plist",
     "plist/towers/tower.plist",
-    "plist/bullet/bullet1.plist",
+    "plist/bullet/bullet.plist",
 }
 
 --敌人状态标记

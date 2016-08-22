@@ -54,6 +54,11 @@ function tower:UpData(dt)
     
     local  myPos = cc.p( self:getPosition() )
     
+    --检查是否存在瞄准目标
+    if self:targetEnemyCheck() == true then
+        return
+    end
+
     --检查范围内是否有怪物存在
     --获取所有怪物
     local  allEnemy = singleEnemyManager:getInstance():getAllEnemy()
@@ -75,6 +80,8 @@ function tower:UpData(dt)
             --自身的CD等变化
             self.fireCD = self.towerData['pInterval'] / 1000
             self.targetEnemy = v
+
+            return
         end
     end
 end
@@ -111,7 +118,7 @@ function tower:targetEnemyCheck()
     local sendData = {}
     sendData.bulletID = self.towerData["bulletID"]
     sendData.bulletPos = myPos
-    sendData.targetEnemy = targetEnemy
+    sendData.targetEnemy = self.targetEnemy
     sendData.bulletTargetPos = cc.p(self.targetEnemy:getPosition())
     singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildBullet, self, sendData)
   
