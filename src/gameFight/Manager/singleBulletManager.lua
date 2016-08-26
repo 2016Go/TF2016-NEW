@@ -56,22 +56,25 @@ function singleBulletManager:eventResponse(gameEventID, eventSender, parameter)
         local thisBullet = require("gameFight.actor.bullet"):create()
         --在其出生里面设定坐标位置
         thisBullet:born(parameter)
+        thisBullet:setFirer(eventSender)
         self.mainLayer:addChild( thisBullet , CC_GAME_LAYER_LEVEL.Layer_scene_bullet )
         self:addBullet(thisBullet)
     elseif gameEventID == CC_GAME_EVENT.GameEvent_BulletCollision then
-
-        --非AOE单体伤害
-        print("-----GameEvent_BulletCollision-----"..parameter.att)
         --if parameter.aoe == 0 then
-            if self:_checkBulletTarget(parameter.targetEnemy) == true then
-                print("-----parameter.targetEnemy.actorData.life-----"..parameter.targetEnemy.actorData.life)
-                parameter.targetEnemy.actorData.life = parameter.targetEnemy.actorData.life - parameter.att
-            end
 
-        --删除子弹
-        self:removeBulletNextFrame(eventSender)
-    end
+        --对敌方造成伤害
+        for k,v in pairs(parameter.targetEnemy) do
+            if self:_checkBulletTarget(v) == true then
+                v:Hit(parameter)
+            end
+        end
+    --删除子弹
+    elseif gameEventID == CC_GAME_EVENT.GameEvent_BulletDie then
+            print("move")
+            self:removeBulletNextFrame(eventSender)
+    end 
 end
+
 
 --检测子弹目标的有效性
 function singleBulletManager:_checkBulletTarget(targetEnemy)
@@ -112,6 +115,7 @@ function singleBulletManager:_init()
     self.nextFrameAddBullet = {}
     self.allBullet = {}
 
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_BulletDie, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_BuildBullet, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_BulletCollision, self)
 end

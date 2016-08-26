@@ -21,9 +21,11 @@ end
 --设定主要的时间调度层，来为整个时间调度
 function singleTimeManager:setMainLayerForTime(MainLayer)
 	self.m_MainLayer = MainLayer
+end
 
-	self.m_MainLayer:scheduleUpdateWithPriorityLua(
-		function(dt)
+function singleTimeManager:startTime()
+        self.m_MainLayer:scheduleUpdateWithPriorityLua(
+        function(dt)
             --单双加 1
             self.iCountTime  = self.iCountTime  + 1
             if self.iCountTime >= 2 then
@@ -31,29 +33,29 @@ function singleTimeManager:setMainLayerForTime(MainLayer)
             end
 
             --开始调度每个时间
-			for i,v in pairs(self.allTimer) do
-				v:UpData(dt , self.iCountTime)
-			end
-    		
-    		--清理所有的时间调度者
-    		if self.isNextFrameRemoveAll == true then
-    			self.isNextFrameRemoveAll = false
-    			self.allTimer = {}
-    		end
-    		
-    		--清理部分时间调度者
-    		for i,v in pairs(self.nextRemoveTimer) do
-    			self:_removeTimer(v)
-    		end
+            for i,v in pairs(self.allTimer) do
+                v:UpData(dt , self.iCountTime)
+            end
+            
+            --清理所有的时间调度者
+            if self.isNextFrameRemoveAll == true then
+                self.isNextFrameRemoveAll = false
+                self.allTimer = {}
+            end
+            
+            --清理部分时间调度者
+            for i,v in pairs(self.nextRemoveTimer) do
+                self:_removeTimer(v)
+            end
 
-    		--加入部分时间调度者
-    		for i,v in pairs(self.nextAddTimer) do
-    			table.insert(self.allTimer, v)
-    		end
+            --加入部分时间调度者
+            for i,v in pairs(self.nextAddTimer) do
+                table.insert(self.allTimer, v)
+            end
 
-    		self.nextRemoveTimer = {}
-    		self.nextAddTimer = {}
-    	end,
+            self.nextRemoveTimer = {}
+            self.nextAddTimer = {}
+        end,
     0)
 end
 

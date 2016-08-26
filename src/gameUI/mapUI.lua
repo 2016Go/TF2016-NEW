@@ -120,9 +120,14 @@ function mapUI:addColorLayer()
     singleManagerUI:getInstance():bindListener(self.UI.backToMapBtn, self, "backToMapBtn")
 
     --添加不同的称号按钮并添加监听
-    for i=1,4 do  
+    for i = 1, 20 do  
+        local title = cs.conf.a("title",i)
+        if title == nil then
+            return
+        end
+
         self.UI.LabelBtn[i] = ccui.Button:create("UI/denglu/aboutBtn.png","UI/denglu/aboutBtn.png")
-        self.UI.LabelBtn[i]:setTitleText(self.UI.LabelText[i])
+        self.UI.LabelBtn[i]:setTitleText(title["name"])
         self.UI.LabelBtn[i]:setTitleColor(cc.c3b(0,0,0))
         self.UI.LabelBtn[i]:setTitleFontSize(40)
         self.UI.LabelBtn[i]:setBright(true)
@@ -131,7 +136,7 @@ function mapUI:addColorLayer()
         
         self["LabelBtn"..i.."TouchEnded"] = function ()
             cs.logger.i("LabelBtn"..i.."TouchEnded")
-            self.UI.titleShowLabel:setTitleText("称号:"..self.UI.LabelText[i])
+            self.UI.titleShowLabel:setTitleText("称号:"..self.UI.LabelBtn[i]:getTitleText())
             self:showRect(self.UI.LabelBtn[i])
         end
         singleManagerUI:getInstance():bindListener(self.UI.LabelBtn[i], self, "LabelBtn"..i)

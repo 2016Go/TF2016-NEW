@@ -52,7 +52,9 @@ function singleUIData:_setNewPlayerData()
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_PlayName , "游客" )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Wallet , 300 )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Level , 0 )
+    cs.util.writeUD( CC_UI_DATA_TPYE.UI_MissionNum , 0)
     cs.util.flushUD()
+    self[CC_UI_DATA_TPYE.UI_MissionNum] = 0
 end 
 
 function singleUIData:_saveData(key , data)

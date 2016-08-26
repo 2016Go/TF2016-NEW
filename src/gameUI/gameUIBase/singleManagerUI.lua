@@ -93,7 +93,7 @@ function singleManagerUI:bindListener(node,target,name,parameter,isSoallowTouche
         self:_do_bind_cc(node,target,name, 'cc.LayerColor', parameter, isSoallowTouches)
     else
         cs.logger.i("_bindTouch")
-        self:_bindTouch(node,target,name)
+        self:_bindTouch(node,target,name,parameter)
     end
 end
 
@@ -109,10 +109,8 @@ function singleManagerUI:contains(node, touch)
     pt.y = pt.y * node:getScaleY()
 
     if cc.rectContainsPoint(rc, pt)  then
-        print("contains is true")
         return true
     end
-    print("contains is false")
     return false
 end
 
@@ -191,7 +189,7 @@ function singleManagerUI:_bindTouch(node,target,name)
         -- 播放声音
         -- to do youwei
         --制作播放声音代码
-        --cs.logger.i("listener"..type)
+        cs.logger.i("listener"..type)
         cs.util.call(mapping[type], target, sender, type)
     end
 

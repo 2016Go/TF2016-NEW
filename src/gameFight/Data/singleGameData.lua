@@ -18,7 +18,7 @@ function singleGameData:getInstance()
     return self.instance  
 end 
 
-function singleGameData:setStageData(data)
+function singleGameData:setStageData(data,canBuild)
 	self.mainUIData.life = data.life
 	self.mainUIData.gold = data.gold
 	self.mainUIData.wave = data.wave
@@ -29,7 +29,7 @@ function singleGameData:setStageData(data)
     --应该有一个地方标注当前关卡的可以建筑塔ID
     --这里临时构建
     self.towerData = {}
-    self.towerData.canBuild = { 1,2,3,4 }
+    --self.towerData.canBuild = canBuild
 end
 
 function singleGameData:getStageData()

@@ -9,12 +9,11 @@ function startUI:ctor()
 	self:setPosition(cc.p(0,0))
 
 	self.UI = {}
-
-	--加载一张背景图片
+	
+    --加载一张背景图片
     self.UI.bgSp = cc.Sprite:create("UI/denglu/bgPic.jpg")
     self.UI.bgSp:setAnchorPoint(cc.p(0,0))
     self.UI.bgSp:setPosition(cc.p(0,0))
-
     --获取背景图片大小
     local bgSize = self.UI.bgSp:getContentSize()
 
@@ -24,10 +23,16 @@ function startUI:ctor()
 	self:addChild(self.UI.bgSp)
 
     --添加游戏名称图片
-    self.UI.gameName = cc.Sprite:create("UI/denglu/gameTitle.png")
+    self.UI.gameName = ccui.ImageView:create("UI/denglu/gameTitle.png")
     self.UI.gameName:setPosition(cc.p(display.cx,display.cy + 200))
     self.UI.gameName:setScale(0.7)
     self:addChild(self.UI.gameName)
+
+    local finalImage = cc.Image:new()     
+
+    finalImage:initWithImageFile("UI/denglu/gameTitle.png")
+    local pData = finalImage:getHeight()
+
 
     --添加开始游戏按钮
     self.UI.startBtn = ccui.Button:create("UI/denglu/startBtn.png")
@@ -55,7 +60,7 @@ function startUI:ctor()
     self.UI.versionLabel:setPosition(cc.p(display.width - 200,100))
     self:addChild(self.UI.versionLabel)
 
- 
+    self.UI.gameName:setTouchEnabled(true)
     singleManagerUI:getInstance():bindListener(self.UI.gameName,self,"gameName")   
     cs.logger.i("gameName************2")
     singleManagerUI:getInstance():bindListener(self.UI.bgSp,self,"bgSp")
@@ -64,15 +69,41 @@ function startUI:ctor()
 	singleManagerUI:getInstance():bindListener(self.UI.startBtn,self,"startBtn")
 	singleManagerUI:getInstance():bindListener(self.UI.clearBtn,self,"clearBtn")
 	singleManagerUI:getInstance():bindListener(self.UI.aboutBtn,self,"aboutBtn")
+
+
+    --载入shader
+    self.ShaderManager = require("gameUI.gameUIBase.ShaderManager")
+    self.ShaderManager:load()
+
+
+    for i=1,10 do
+        local uuu = cs.conf.a("uiMapPos",i)
+        if uuu == nil then
+            return
+        end
+        local xxx = uuu["number"]
+
+        print("number is = "..xxx)
+    end
 end
+
 
 function startUI:bgSpTouchBegan()
-    cs.logger.i("bgSP************")
+    print("bgSpTouchBegan")
+    --self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.HIGHTLIGHT))
+    self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.COFFEE))
+    --self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.GRAY))
 end
 
-function startUI:gameNameTouchBegan()
-    cs.logger.i("gameName*********")
+function startUI:bgSpTouchEnd()
 
+
+end
+
+
+
+function startUI:gameNameTouchBegan()
+   -- self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.TIMER_GRAY))
 end
 
 --按钮监听事件函数
@@ -81,6 +112,10 @@ function startUI:startBtnTouchEnded()
 	--进入选关界面
     local mapUI = require("gameUI.mapUI"):create()
     singleManagerUI:getInstance():changeUI({} , mapUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+end
+
+function startUI:clearBtnTouchEnded()
+    singleUIData:getInstance():_setNewPlayerData()
 end
 
 function startUI:enter()

@@ -28,8 +28,12 @@ CC_DESIGN_RESOLUTION = {
 --配置预加载
 CC_CONFIG = 
 {
-    { src = 'conf/tower.conf', name = 'tower' },              --塔的配置
-    { src = 'conf/bullet.conf', name = 'bullet' },            --子弹的配置
+    { src = 'conf/tower.conf', name = 'tower'   },        --塔的配置
+    { src = 'conf/bullet.conf', name = 'bullet' },        --子弹的配置
+    { src = 'conf/buff.conf', name = 'buff'     },        --buff的配置
+    { src = 'conf/trick.conf', name = 'trick'   },        --机关的配置
+    { src = 'conf/title.conf', name = 'title'   },        --称号表
+    { src = 'conf/uiMapPos.conf', name = 'uiMapPos'},        --map地图的关卡信息表
 }
 
 --是否显示DEBUG编辑器模式下的圈绘图
@@ -59,7 +63,9 @@ CC_UI_DATA_TPYE =
 {
     UI_PlayName    = "PlayName",           --玩家数据
     UI_Wallet      = "Wallet",             --钱包数据
-    UI_Level       = "Level"               --等级信息
+    UI_Level       = "Level" ,             --等级信息
+    UI_MissionNum  = "MissionNum",          --最大通关数
+    UI_Title       = "Title"               --游戏称号 
 }
 
 -----------------------------------------------------
@@ -69,11 +75,12 @@ CC_UI_DATA_TPYE =
 CC_GAME_LAYER_LEVEL = 
 {
     Layer_scene = 10,    --最底层的地形层 
-    Layer_scene_debug = 11,    --最底层的地形层上的debug模式绘制层
+
     
     Layer_scene_space = 50,     --空地所在层
     Layer_scene_enemy = 100,   --怪物所在层级
     Layer_scene_top = 150,      --上层地形
+    Layer_scene_debug = 151,    --最底层的地形层上的debug模式绘制层
     Layer_scene_tower = 180,    --塔所在层
     Layer_scene_bullet = 190,    --子弹所在的层
 
@@ -140,6 +147,9 @@ CC_GAME_EVENT =
 {
     GameEvent_EnemyGoOver = 1,      -- 怪物走到了最后的出口
     GameEvent_LifeDie = 2,          -- 生命体被击杀
+
+    GameEvent_LodingRun = 20,       -- 读取进度条界面
+    
     GameEvent_WaveDataReady = 50,   -- 当前波次信息准备Ok,附带波次数据
     GameEvent_NextWaveNeed  = 51,    -- 请求下一个波次的怪物，
 
@@ -149,6 +159,7 @@ CC_GAME_EVENT =
 
     GameEvent_BuildTower    =   150,     --建造防御塔
     GameEvent_BuildBullet   =   151,      --请求创建子弹
+    GameEvent_BulletDie   =   152,      --说明子弹自身死亡，请求销毁
     GameEvent_BulletCollision =  153        --子弹碰撞检测请求
 
 }

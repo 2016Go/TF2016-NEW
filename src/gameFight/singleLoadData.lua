@@ -41,6 +41,16 @@ function singleLoadData:getTestWave()
     return self.enemyLevelData["level"]["waves"]["wave"][1]
 end
 
+--获取机关方面的数据trick
+function singleLoadData:getTrick()
+    return self.mapData["map"]["trick"]
+end
+
+--获取当前关卡可以建造的塔的类型
+function singleLoadData:getCanBuildTower()
+    return self.enemyLevelData["level"]["tower"]
+end
+
 --读取敌人表格信息
 function singleLoadData:loadEnemy(namePath)
     cs.logger.d("loadEnemy",namePath)

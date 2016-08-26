@@ -22,9 +22,8 @@ function enemy:setData(actorData)
     self.actorData.mainRes      = actorData.mainRes         -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
     self.actorData.road         = actorData.road            -- 行走道路ID
     self.actorData.punishHP     = actorData.punishHP        -- 被干掉的HP
-    self.actorData.gold         = actorData.gold                                                                                                                                                                                                                                                                                                            -- 击杀怪物获得的金币
+    self.actorData.gold         = actorData.gold            -- 获取金币                                                                                                                                                                                                                                                                                              -- 击杀怪物获得的金币
     
-
     if singleLoadData:getInstance().mapData["map"]["roads"] == nil then
         print("singleLoadData:getInstance().mapData == nil")
     end
@@ -156,6 +155,9 @@ end
 
 function enemy:UpData(dt)
 
+    --跟新BUFF
+    self:_upDataBuff(dt) 
+    
     --更新时间
     if self.actorTime > 0 then
         self.actorTime = self.actorTime - dt
@@ -163,7 +165,7 @@ function enemy:UpData(dt)
     end
 
     --如果生命检测失败，无生命
-    if self:_checklief() == false then
+    if self:_checklife() == false then
         return
     end
 

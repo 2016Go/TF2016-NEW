@@ -58,8 +58,8 @@ function buildTowerUI:createUI(target)
 end
 
 function buildTowerUI:createTowerIcon(sp)
-	local towerData = singleGameData:getInstance().towerData.canBuild
-	for k,v in pairs(towerData) do
+	local towerDataVec = singleLoadData:getInstance():getCanBuildTower()
+	for k,v in pairs(towerDataVec) do
 		--判定金币是否足够
 		local towerData = cs.conf.a("tower" , v)
 
@@ -80,13 +80,12 @@ function buildTowerUI:createTowerIcon(sp)
     	local anchorPoint = towerSp:getAnchorPoint()
     	local rect = towerSp:getBoundingBox()
     	local worldPoint = towerSp:convertToWorldSpace(cc.p(rect.x, rect.y))
-		self["towerSp"..k] = towerSp
-		singleManagerUI:getInstance():bindListener(towerSp,self,"towerSp", k)
+		self["towerSp"..towerData["id"]] = towerSp
+		singleManagerUI:getInstance():bindListener(towerSp,self,"towerSp", towerData["id"])
 	end
 end
 
 function buildTowerUI:towerSpTouchBegan(towerID)
-	print("towerSpTouchBegan1")
 	--self:removeFromParent()
 
 	--读取当前塔的数据
@@ -113,7 +112,7 @@ function buildTowerUI:towerSpTouchBegan(towerID)
 	
 	--循环隐藏以前的塔
 	for i=1,4 do
-		self["towerSp"..i]:setVisible(false)
+		self["towerSp"..towerID]:setVisible(false)
 	end
 
 	--加入一个确认按钮
@@ -137,6 +136,7 @@ function buildTowerUI:towerOkTouchEnded(towerID)
 
 	--销毁自己
 	--发送建造塔的消息。
+	cs.util.printTable(towerData)
 	singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildTower, self.target , towerData)
 	self:removeFromParent()
 end

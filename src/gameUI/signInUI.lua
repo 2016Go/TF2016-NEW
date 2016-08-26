@@ -5,10 +5,6 @@ function signInUI:ctor()
 	--初始化监听数据，初始化数据
 	cs.logger.i("signInUI:ctor()")
 
-	print("cs.conf.a(tower , 1)")
-	local a = cs.conf.a('tower', 1)
-	cs.util.printTable(a)
-
 	self:setAnchorPoint(cc.p(0,0))
 	self:setPosition(cc.p(0,0))
 
