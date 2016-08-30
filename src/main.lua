@@ -6,6 +6,7 @@ print("<<<<<cc.FileUtils:getInstance():setPopupNotify(false)>>>>")
 cc.FileUtils:getInstance():setPopupNotify(false)
 cc.FileUtils:getInstance():addSearchPath("src/")
 cc.FileUtils:getInstance():addSearchPath("res/")
+
 require ("NativeHotUpdate"):init()
 require "config"
 

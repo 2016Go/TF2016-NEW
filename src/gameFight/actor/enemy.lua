@@ -9,10 +9,6 @@ function enemy:ctor()
     self.nowPosID = 1 --当前行动节点ID
     self.nowState = CC_ENEMY_STATE.State_Ready --设定为准备
     self.actorTime = 0 -- 当前行为时间
-    --创建怪物蹄片
-    self.mainSprite = cc.Sprite:create()
-    self.mainSprite:setAnchorPoint(cc.p(0.5,0.3))
-    self.lifeLayer:addChild(self.mainSprite , 10)
 end
 
 function enemy:setData(actorData)
@@ -20,6 +16,7 @@ function enemy:setData(actorData)
     self.actorData.life         = actorData.life            -- 生命值
     self.actorData.speed        = actorData.speed           -- 速度值
     self.actorData.mainRes      = actorData.mainRes         -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
+    self.actorData.sclase       = actorData.sclase          -- 行走道路ID
     self.actorData.road         = actorData.road            -- 行走道路ID
     self.actorData.punishHP     = actorData.punishHP        -- 被干掉的HP
     self.actorData.gold         = actorData.gold            -- 获取金币                                                                                                                                                                                                                                                                                              -- 击杀怪物获得的金币
@@ -43,10 +40,21 @@ function enemy:born()
     self.nowState = CC_ENEMY_STATE.State_Walk
 
     --动作行为切换为行走
-    local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,"/walk/walk", 0.25,7)
-    self.mainSprite:setSpriteFrame(fristFrame)
-    self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
-    self:_setActorTime(-1)
+
+        --创建怪物蹄片
+    self.mainSprite = DHSkeletonAnimation:createWithFile(self.actorData.mainRes);
+    self.mainSprite:setAnchorPoint(cc.p(0.5,0.3))
+
+    self.mainSprite:setScale(self.actorData.sclase)
+    self.lifeLayer:addChild(self.mainSprite , 10)
+
+    self.mainSprite:scheduleUpdateLua()
+    self.mainSprite:playAnimation("walk",-1)
+
+    --local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.actorData.mainRes ,"/walk/walk", 0.25,7)
+    --self.mainSprite:setSpriteFrame(fristFrame)
+    --self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
+    --self:_setActorTime(-1)
 end
 
 function enemy:walkUpData(dt)
@@ -132,6 +140,7 @@ function enemy:UpDataAniForWalk( differenceX,differenceY )
     end
 
     --变更移动行为
+    --[[
     self.actorData.direction = direction
     local fristFrame , animation
     if direction == CC_LIFT_WALK_DIR.Walk_Up then
@@ -151,6 +160,7 @@ function enemy:UpDataAniForWalk( differenceX,differenceY )
         self.mainSprite:setScaleX(-1)
     end
     self:_setActorTime(-1)
+    ]]
 end
 
 function enemy:UpData(dt)

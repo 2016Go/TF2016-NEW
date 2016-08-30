@@ -3,10 +3,11 @@
     "e": [
       {
         "-id": "0",
-        "-name": "peo",
-        "-anim": "goblin",
+        "-name": "slime1",
+        "-anim": "animation/enemy_json/slime_1.json",
         "-baseHP": "250",
         "-speed": "37.8",
+        "-sclase": "0.5",
         "-antiNormal": "1.0",
         "-antiPhysical": "1.0",
         "-antiMagic": "1.0",
@@ -19,10 +20,11 @@
       },
       {
         "-id": "1",
-        "-name": "gno",
-        "-anim": "gnome",
+        "-name": "slime2",
+        "-anim": "animation/enemy_json/slime_2.json",
         "-baseHP": "360",
-        "-speed": "37.8",
+        "-speed": "50",
+        "-sclase": "0.75",
         "-antiPhysical": "0.75",
         "-attackDamage": "100",
         "-punishHP": "1",

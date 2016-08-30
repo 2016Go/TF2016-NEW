@@ -190,6 +190,7 @@ function singleEnemyManager:_AddEnemt(enemyItemData,nowItem)
         actorData.name         = enemyItemData["-name"]                   -- 怪物名字
         actorData.life         = tonumber(enemyItemData["-baseHP"]) or 20 -- 生命值
         actorData.speed        = tonumber(enemyItemData["-speed"]) or 30  -- 速度值
+        actorData.sclase       = tonumber(enemyItemData["-sclase"]) or 1 -- 放大缩小
         actorData.mainRes      = enemyItemData["-anim"]                   -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
         actorData.gold         = tonumber(enemyItemData["-gold"]) or 1    -- 获得资源
         actorData.punishHP     = tonumber(enemyItemData["-punishHP"]) or 1 -- 进入通道造成的伤害

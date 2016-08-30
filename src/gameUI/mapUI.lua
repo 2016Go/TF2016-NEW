@@ -11,7 +11,6 @@ function mapUI:ctor()
 	self.UI = {}
 	--用于存放所有的称号
 	self.UI.LabelBtn = {}
-	self.UI.LabelText = {"音速小子","三级苦工","Boss杀手","快枪手"}
 
     --添加底部层
     self.UI.bottomLayer = cc.Layer:create()
@@ -38,6 +37,7 @@ function mapUI:ctor()
     self.UI.goldLabel:setAnchorPoint(cc.p(0,1))
     self.UI.goldLabel:setPosition(cc.p(display.width - 120,display.height - 40))
     self.UI.goldLabel:setColor(cc.c3b(0,0,0))
+    self.UI.goldLabel:setString(singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_Wallet])
     self.UI.btnLayer:addChild(self.UI.goldLabel)
     --添加商城按钮
     self.UI.shopBtn = ccui.Button:create("UI/denglu/btn_shop.png")
@@ -49,6 +49,7 @@ function mapUI:ctor()
     self.UI.titleLabel = cc.Label:createWithSystemFont("称号:音速小子", "Arial", 40)
     self.UI.titleLabel:setPosition(cc.p(display.cx ,display.height - 55))
     self.UI.titleLabel:setColor(cc.c3b(0, 0, 0))
+    self.UI.titleLabel:setString("称号:"..singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_Title])
     self.UI.btnLayer:addChild(self.UI.titleLabel)
     
     --成就按钮
@@ -92,6 +93,7 @@ function mapUI:ctor()
     singleManagerUI:getInstance():bindListener(self.UI.achievementBtn, self, "achievementBtn")
     singleManagerUI:getInstance():bindListener(self.UI.upgradeBtn, self, "upgradeBtn")
     singleManagerUI:getInstance():bindListener(self.UI.titleLabel, self, "titleLabel")
+    singleManagerUI:getInstance():bindListener(self.UI.shopBtn, self, "shopBtn")
 end
 
 --添加一个灰色层
@@ -147,7 +149,9 @@ end
 function mapUI:removeColorLayer()
     cs.logger.i("removeColorLayer")
     if self.UI.colorLayer ~= nil then
-        self.UI.titleLabel:setString(self.UI.titleShowLabel:getTitleText())
+        local aaa = string.sub(self.UI.titleShowLabel:getTitleText(),8)
+        print("************"..aaa)
+        singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_Title, string.sub(self.UI.titleShowLabel:getTitleText(),8))
         self.UI.colorLayer:removeFromParent()
         self.UI.drawNode = nil
     end
@@ -186,6 +190,22 @@ function mapUI:showRect(node)
 end
 
 --按钮监听事件函数
+function mapUI:refreshUI(event,eventSender,data)
+    cs.logger.i("refreshUI")
+    if event == CC_UI_DATA_TPYE.UI_Wallet then
+        self.UI.goldLabel:setString(data) 
+    end
+    if event == CC_UI_DATA_TPYE.UI_Title then
+        self.UI.titleLabel:setString(data) 
+        self.UI.titleLabel:setString("称号:"..self.UI.titleLabel:getString())     
+    end
+end
+
+function mapUI:shopBtnTouchEnded()
+    cs.logger.i("shopBtnTouchEnded")
+    singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_Wallet, singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_Wallet] + 1 )
+end
+
 function mapUI:titleLabelTouchEnded()
     cs.logger.i("titleLabelTouchEnded")
     --显示所有称号
@@ -224,6 +244,8 @@ end
 
 function mapUI:enter()
     cs.logger.i("enter****************")
+    singleUIEvent:getInstance():addEventListenerInPool(CC_UI_DATA_TPYE.UI_Wallet, self)
+    singleUIEvent:getInstance():addEventListenerInPool(CC_UI_DATA_TPYE.UI_Title, self)
 end
 
 function mapUI:enterTransitionFinish()
@@ -232,6 +254,8 @@ end
 
 function mapUI:exit()
     cs.logger.i("exit*****************************")
+    singleUIEvent:getInstance():removeEventListenerInPool(CC_UI_DATA_TPYE.UI_Wallet, self)
+    singleUIEvent:getInstance():removeEventListenerInPool(CC_UI_DATA_TPYE.UI_Title, self)
 end
 
 function mapUI:exitTransitionStart()

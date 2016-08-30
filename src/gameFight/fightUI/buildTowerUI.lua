@@ -64,16 +64,17 @@ function buildTowerUI:createTowerIcon(sp)
 		local towerData = cs.conf.a("tower" , v)
 
 		--加入塔的图片
-		print(towerData["png"].."/".."icon.png")
-		local pngFrame = cc.SpriteFrameCache:getInstance():getSpriteFrame(towerData["png"].."/".."icon.png")
-		local towerSp = cc.Sprite:createWithSpriteFrame(pngFrame)
+		local frame = cc.SpriteFrameCache:getInstance():getSpriteFrame(towerData["icon"])
+		local towerSp = cc.Sprite:createWithSpriteFrame(frame)
+		towerSp:setName(v)
+
 		towerSp:setPosition(self.iconPos[""..k])
 		sp:addChild(towerSp)
 		
 		--加入塔的价格
 		local goldLabel = cc.LabelTTF:create("", "ttf/fangzhenglier.ttf", 25)  
     	goldLabel:setAnchorPoint(cc.p(0,0.5))
-    	goldLabel:setPosition(cc.p( 15,40))
+    	goldLabel:setPosition(cc.p( 15,0))
     	goldLabel:setString(""..towerData['gunbuildGold'] )
     	towerSp:addChild(goldLabel )
 
@@ -91,14 +92,36 @@ function buildTowerUI:towerSpTouchBegan(towerID)
 	--读取当前塔的数据
 	local towerData = cs.conf.a("tower" , towerID)
 
+	local towerDataVec = singleLoadData:getInstance():getCanBuildTower()
+	for k,v in pairs(towerDataVec) do
+		if v ~= towerID then
+			local w = self.seleTower:getChildByName(v)
+			if w ~= nil then
+				w:setVisible(false)
+			end
+		end
+	end
+
 	--创建一个演示塔在地址上
+	local mainSprite = DHSkeletonAnimation:createWithFile(towerData["png"]);
+    mainSprite:setAnchorPoint(cc.p(0.5,0.5))
+    mainSprite:setOpacity(150)
+    local seleTowerSize = cc.p( self.seleTower:getContentSize().width, self.seleTower:getContentSize().height)
+    mainSprite:setPosition( cc.pMul(seleTowerSize,0.5) )
+    mainSprite:setScale(0.5)
+    self.seleTower:addChild(mainSprite)
+
+
+    --self.mainSprite:scheduleUpdateLua()
+    --self.mainSprite:playAnimation("walk",-1)
+--[[
 	local pngFrame = cc.SpriteFrameCache:getInstance():getSpriteFrame(towerData["png"].."/".."icon.png")
 	local towerSp  = cc.Sprite:createWithSpriteFrame(pngFrame)
 	towerSp:setAnchorPoint(cc.p(0.5,0.3))
 	towerSp:setOpacity(150)
 	local seleTowerSize = cc.p( self.seleTower:getContentSize().width, self.seleTower:getContentSize().height)
 	towerSp:setPosition( cc.pMul(seleTowerSize,0.5) )
-	self.seleTower:addChild(towerSp)
+	self.seleTower:addChild(towerSp)]]
 
 	--创建一个演示攻击圈
 	local pDrawNode = cc.DrawNode:create(1)

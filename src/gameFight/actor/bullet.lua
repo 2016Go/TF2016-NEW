@@ -29,9 +29,17 @@ function bullet:born(bulletData)
         print(" animation == nil "..self.bulletData['png'])
     end
 
+    --如果没有敌人目标，说明是伴生子弹，强制改变子弹部分属性
+    if bulletData.targetEnemy == nil then
+        self.bulletData['damageType']['mode']='roadAtt'
+        self.bulletData['aoe'] = 1
+        self.bulletData['pRange'] = 36
+    end
+
     self.mainSprite:setSpriteFrame(fristFrame)
     self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
     self:addChild(self.mainSprite , 10)
+    
     self:setPosition(bulletData.bulletPos)
 
     --上一个计算点的初始化，这个值特殊用于路径攻击的一个计算量
@@ -75,15 +83,28 @@ end
 function bullet:_cheakSendBullt(willMoveX, willMoveY,newPos)
     --如果是目标攻击模式，在到达目标后发送目标到达消息，并进行攻击
     if self.bulletData['damageType']["mode"] == "targetAtt" then
+        
+        --如果子弹不是弹射类型
         --如果该子弹已经造成过一次伤害，说子弹是不消失类型，但也不会再次造成伤害
-        if self.isAtt == true then
-            return
+        if self.bulletData["fireMode"]["mode"] ~= 3 then
+            if self.isAtt == true then
+                print("self.isAtt is true")
+                return
+            end
+        else
+            if self.bulletData["fireMode"]["iTime"] < 0 then
+                print("self.fireMode iTime < 0")
+                return
+            end
         end
         
         if willMoveX < 0 then
             if newPos.x <= self.bulletTargetPos.x then            
                 local targetEnemyVec = {}
                 table.insert( targetEnemyVec, self.targetEnemy )
+
+                print("222")
+
                 self:sendBullt(targetEnemyVec)
                 return
             end  
@@ -91,6 +112,7 @@ function bullet:_cheakSendBullt(willMoveX, willMoveY,newPos)
             if newPos.x >= self.bulletTargetPos.x then
                 local targetEnemyVec = {}
                 table.insert( targetEnemyVec, self.targetEnemy )
+                print("333")
                 self:sendBullt(targetEnemyVec)
                 return
             end
@@ -151,8 +173,10 @@ end
 --发送子弹攻击事件
 function bullet:sendBullt(targetEnemy)
     if next(targetEnemy) == nil then
+        print("targetEnemy is nil")
         return
     end
+
     --发送子弹到达目的地时间
     local sendData = {}
     sendData.targetEnemy = targetEnemy
@@ -160,6 +184,11 @@ function bullet:sendBullt(targetEnemy)
     sendData.att = self.bulletData['att']
     sendData.attType = self.bulletData['attType']
     sendData.buffId = self.bulletData['buffId']
+
+    if self.bulletData['fireMode']["mode"] == 3 then
+        print("fireMode = 3")
+    end
+
     singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletCollision, self, sendData)
     self.isAtt = true
 end
@@ -196,45 +225,46 @@ function bullet:cheakDie(newPos)
             end
         
         --如果子弹可以弹射的话，那么要计算子弹的弹射数值
-        elseif fireMode["mode"] == 3 then
-            self.bulletData['fireMode']["iTime"] = self.bulletData['fireMode']["iTime"] -1
-            
-            --如果已经弹射完毕
-            if fireMode["iTime"] < 0 then
-                singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
-                return
-            end
+        elseif self.bulletData['fireMode']["mode"] == 3 then     
+            if self.isAtt == true then
+                            --如果已经弹射完毕
+                if self.bulletData['fireMode']["iTime"] < 0 then
+                    print("bulletData is die1")
+                    singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
+                    return
+                end
 
-            --如果找不到合适的弹射目标
-            if self:_catapultFindTarget() ~= true then
-                singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
-                return
-            end
+                --如果找不到合适的弹射目标
+                if self:_catapultFindTarget() ~= true then
+                    print("bulletData is die2")
+                    singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
+                    return
+                end
+            end       
         end
     end
 
-    --如果是出屏幕消失模式,在其他地方检测子弹是否应该消失
-    if self.bulletData['disappear'] == "out" then
-        if newPos.x < -10 then 
-            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
-            return
-        end
-
-        if newPos.y < -10 then 
-            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
-            return
-        end
-
-        if newPos.x > display.width + 10 then 
-            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
-            return
-        end
-
-        if newPos.y > display.height + 10 then
-            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
-            return
-        end
+    --如果是出屏幕消失模式,在其他地方检测子弹是否应该消失,所有子弹出屏均消失
+    if newPos.x < -10 then 
+        singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
+        return
     end
+
+    if newPos.y < -10 then 
+        singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
+        return
+    end
+
+    if newPos.x > display.width + 10 then 
+        singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
+        return
+    end
+
+    if newPos.y > display.height + 10 then
+        singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BulletDie, self, nil)
+        return
+    end
+    
 end
 
 --弹射子弹寻找另外的射击膜表
@@ -260,6 +290,7 @@ function bullet:_catapultFindTarget()
                     sendData.bulletTargetPos = cc.p(v:getPosition())
 
                     --自身的等变化
+                    print("_setTargetData  ")
                     self:_setTargetData(sendData)
                     return true
                 end
@@ -284,8 +315,14 @@ end
 
 --设定目标数据
 function bullet:_setTargetData(bulletData)
+    self.isAtt = false
     self.bulletTargetPos = bulletData.bulletTargetPos
-    self.targetEnemy = bulletData.targetEnemy
+
+    if bulletData.targetEnemy ~= nil then
+        self.targetEnemy = bulletData.targetEnemy
+    else
+        print(bulletData.targetEnemy == nil)
+    end
 
     local subX = bulletData.bulletTargetPos.x - bulletData.bulletPos.x
     local subY = bulletData.bulletTargetPos.y - bulletData.bulletPos.y

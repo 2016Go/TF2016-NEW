@@ -69,7 +69,7 @@ function singleManagerUI:bindListener(node,target,name,parameter,isSoallowTouche
     if type == 'ccui.Button' then
         self:_bindTouch(node,target,name,parameter)
     elseif type == 'ccui.CheckBox' then
-        --_do_bind_checkBox_(node,target)
+        self:_do_bind_checkBox_(node,target,name,parameter)
         --_bindTouch(node,target,name,'CheckBox')
     elseif type == 'ccui.LoadingBar' then
        -- _bindTouch(node,target,name,'LoadingBar')
@@ -196,3 +196,21 @@ function singleManagerUI:_bindTouch(node,target,name)
     -- 添加触控事件侦听器
     widget:addTouchEventListener(listener)
 end
+
+-- 绑定复选框
+local function _do_bind_checkBox_(node,target,name,parameter)
+    local checkBox = tolua.cast(node,'ccui.CheckBox')
+    local select = name..'Select'
+    local unselect = name..'Unselect'
+    local listener = function(sender,type)
+        if type == ccui.CheckBoxEventType.selected then
+            cs.util.callm(target,select,sender,type)
+        elseif type == ccui.CheckBoxEventType.unselected then
+            cs.util.callm(target,unselect,sender,type)
+        else
+            cs.logger.e(_NAME,'unknown checkBox event ['..type..']')
+        end
+    end
+    checkBox:addEventListener(listener)
+end
+

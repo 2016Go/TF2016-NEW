@@ -68,6 +68,11 @@ function singleBulletManager:eventResponse(gameEventID, eventSender, parameter)
                 v:Hit(parameter)
             end
         end
+
+        --如果为弹射子弹，子弹弹射次数减少1次
+        if eventSender.bulletData['fireMode']["mode"] == 3 then
+            eventSender.bulletData['fireMode']["iTime"] = eventSender.bulletData['fireMode']["iTime"] -1
+        end
     --删除子弹
     elseif gameEventID == CC_GAME_EVENT.GameEvent_BulletDie then
             print("move")

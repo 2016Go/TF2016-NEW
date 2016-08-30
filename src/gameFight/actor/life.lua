@@ -66,23 +66,22 @@ function life:removeBuffDataForID(buffID)
 end
 
 --被击事件处理
-function life:Hit(parameter)
+function life:Hit(parameter, targetEnemy)
     if self.actorData.immine > parameter.attType then
         return
     end
 
     --buff方面
     if parameter.buffId ~= 0 then
-        parameter.targetEnemy:addBuffDataForID(parameter.buffId)
+        --检查错误
+        self:addBuffDataForID(parameter.buffId)
     end
-
     self.actorData.life = self.actorData.life - parameter.att
 
     --判断有没有攻击消失的BUFF
     for k,v in pairs(self.buffData) do
         --如果是被击打消失
         if v['loseType'] == "Hit" then
-            print("loseType = hit")
             table.insert(self.buffNextRemove,v["id"])
         end
     end

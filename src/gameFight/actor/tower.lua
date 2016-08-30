@@ -5,12 +5,6 @@ function tower:ctor()
     tower.super.ctor(self)
     self:setActorCamp( CC_CAMP.Camp_Own)
     self:setAnchorPoint(cc.p(0.5,0.5))  --设定根节点的锚点
-
-    --创建一个塔的造型空图片
-    self.mainSprite = cc.Sprite:create()
-    self.mainSprite:setAnchorPoint(cc.p(0.5,0.3))
-    self.mainSprite:setPosition(cc.p(0,0))
-
 	--singleManagerUI:getInstance():bindListener(self.lifeLayer,self,"towerImage")
 end
 
@@ -37,21 +31,39 @@ function tower:setTowerData(data)
 end
 
 function tower:createTowerWithData()
-    local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.towerData['png'] ,"/standby/", 0.25, 9, 20, "%02d.png")
+    --local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.towerData['png'] ,"/standby/", 0.25, 9, 20, "%02d.png")
     
-    if fristFrame == nil then
-        return
-    end
+    --if fristFrame == nil then
+    --    return
+    --end
 
-    if animation == nil then
-        return
-    end
+    --if animation == nil then
+    --    return
+    --end
 
-    self.mainSprite:setSpriteFrame(fristFrame)
-    self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
+    --self.mainSprite:setSpriteFrame(fristFrame)
+    --self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
+    --self.lifeLayer:addChild(self.mainSprite , 10)
+    
+    self.mainSprite = DHSkeletonAnimation:createWithFile(self.towerData['png']);
+    self.mainSprite:setAnchorPoint(cc.p(0.5,0.5))
+
     self.lifeLayer:addChild(self.mainSprite , 10)
+    self.mainSprite:setScale(0.5)
+    self.mainSprite:scheduleUpdateLua()
+
+    local aa = function ( eventName,test2 )
+        if eventName == "attEvent" then
+            self:_sendBulletEvent()
+        end
+    end
+
+    self.mainSprite:registerLuaHandler( aa )
+    self.mainSprite:playAnimation("stand",-1)
+
     self:ShowTheDebug()
 end
+
 
 function tower:UpData(dt)
     --检查CD是否OK
@@ -140,15 +152,15 @@ function tower:targetEnemyCheck()
 end
 
 function tower:sendBulletEvent(targetEnemy,myPos)
-    --发送创建子弹消息
-    local sendData = {}
-    sendData.bulletID = self.towerData["bulletID"]
-    sendData.bulletPos = myPos
-    sendData.targetEnemy = targetEnemy
-    self.targetEnemy = targetEnemy
-    sendData.bulletTargetPos = cc.p(targetEnemy:getPosition())
-    singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildBullet, self, sendData)
-    
+    print("sendBulletEvent**************")
+    --存储必要数据
+    self.__sendBulletEventTargetEnemy = targetEnemy
+    self.__sendBulletEventTargetEnemyPos = cc.p(targetEnemy:getPosition())
+    self.__sendBulletEventmyPos = myPos
+
+    --播放事件，由事件去处理
+    self.mainSprite:playAnimation("att")
+
     --该值，只对等待子弹有效果
     self.isCanFire = false
 
@@ -156,6 +168,73 @@ function tower:sendBulletEvent(targetEnemy,myPos)
     self.fireCD = self.towerData['pInterval'] / 1000
     self.targetEnemy = targetEnemy
 end
+
+--真正的发送事件
+function tower:_sendBulletEvent()
+    local targetEnemy = self.__sendBulletEventTargetEnemy
+    local targetPos = self.__sendBulletEventTargetEnemyPos
+    local myPos = self.__sendBulletEventmyPos
+
+    local sendData = {}
+    sendData.bulletID = self.towerData["bulletID"]
+    sendData.bulletPos = myPos
+    sendData.targetEnemy = targetEnemy
+    sendData.bulletTargetPos = targetPos
+
+    singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildBullet, self, sendData)
+
+    if self.towerData['bulletNum'] > 1 then 
+        local iNum = self.towerData['bulletNum'] -1
+        local  symbol = -1
+
+        for i = 1 , iNum do
+            --确定符号
+            symbol = symbol * -1
+            --确定偏移值
+            local ag = 10 * math.ceil(i/2) * symbol
+            local sendDataBan = {}
+            sendDataBan.bulletID = self.towerData["bulletID"]
+            sendDataBan.bulletPos = myPos
+            sendDataBan.bulletTargetPos = self:getOffsetbulletPos(myPos,targetPos,ag)
+
+            singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildBullet, self, sendDataBan)
+        end
+    end
+
+end
+
+--获取偏移子弹的目标位置
+function tower:getOffsetbulletPos(myPos, targetPos, angle)
+    local subX = targetPos.x - myPos.x
+    local subY = targetPos.y - myPos.y
+
+    local x = math.abs(subX)
+    local y = math.abs(subY)
+    local ag = self:getAngleByPos(cc.p(0,0) , cc.p(x, y))
+
+    --30度的偏移计算
+    local tanData = math.tan(math.rad(ag + angle))
+
+    --print("subY = "..subY)
+    local y = math.abs(subX) * tanData
+    if subX < 0 then
+        x = - x
+    end
+    if subY < 0 then
+        y = - y
+    end
+    return cc.p(x + myPos.x ,y + myPos.y)
+end
+
+--求两点之间的夹角
+function tower:getAngleByPos(p1,p2)  
+    local p = {}  
+    p.x = p2.x - p1.x  
+    p.y = p2.y - p1.y  
+             
+    local r = math.atan2(p.y,p.x)*180/math.pi  
+    return r  
+end 
 
 function tower:ShowTheDebug(stageData)
     if CC_IS_SHOW_DEBUG == false then

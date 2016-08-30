@@ -29,7 +29,7 @@ function fightMainScene:ctor()
     self.m_LoadingLayer:addChild(self.loadingSp,10)
 
     --说明文字
-    self.titleLabel = cc.Label:createWithSystemFont("Loding…………", "Arial", 50)
+    self.titleLabel = cc.Label:createWithSystemFont("Loading…………", "Arial", 50)
     self.titleLabel:setAnchorPoint(cc.p(0.5,1))
     self.titleLabel:setPosition(cc.p(display.width/2 , display.height - 50))
     self.titleLabel:setTextColor(cc.c4b(255, 255, 255 ,255))
@@ -56,12 +56,10 @@ function fightMainScene:ctor()
     self.progressbarLeft:setPosition(cc.p(display.width/2 , 130))  
     self.m_LoadingLayer:addChild(self.progressbarLeft,31)
 
-
     --载入所有的战斗plist
     local myUtil = singleUtil:getInstance()
     myUtil:addAllPlist()
 
-    --加入一个角色移动
     self.manGo = cc.Sprite:create()
     local fristFrame , animation = singleUtil:getInstance():createFrameCache("goblin" ,"/walk/walk", 0.1,7)
     self.manGo:setSpriteFrame(fristFrame)

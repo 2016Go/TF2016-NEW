@@ -114,13 +114,14 @@ CC_ACTOR_TYPE =
 --战斗缓存plist组
 CC_PLIST = 
 {
-    "plist/enemy/babyspirit.plist",
-    "plist/enemy/devilobserver.plist",
+    --"plist/enemy/babyspirit.plist",
+    --"plist/enemy/devilobserver.plist",
     "plist/enemy/goblin.plist",
-    "plist/enemy/orcgeneral.plist",
-    "plist/enemy/babyspirit.plist",
+    --"plist/enemy/orcgeneral.plist",
+    --"plist/enemy/babyspirit.plist",
     "plist/towers/tower.plist",
     "plist/bullet/bullet.plist",
+    "animation/animation.plist",
 }
 
 --敌人状态标记
@@ -147,21 +148,16 @@ CC_GAME_EVENT =
 {
     GameEvent_EnemyGoOver = 1,      -- 怪物走到了最后的出口
     GameEvent_LifeDie = 2,          -- 生命体被击杀
-
     GameEvent_LodingRun = 20,       -- 读取进度条界面
-    
     GameEvent_WaveDataReady = 50,   -- 当前波次信息准备Ok,附带波次数据
     GameEvent_NextWaveNeed  = 51,    -- 请求下一个波次的怪物，
-
     GameEvent_MainUIDataChange = 100,     --游戏场景数据变化
     GameEvent_GoldChange    =   101,     --金币数据变更      
     GameEvent_GoldPoor      =   102,     --游戏中金币不足  
-
     GameEvent_BuildTower    =   150,     --建造防御塔
     GameEvent_BuildBullet   =   151,      --请求创建子弹
     GameEvent_BulletDie   =   152,      --说明子弹自身死亡，请求销毁
     GameEvent_BulletCollision =  153        --子弹碰撞检测请求
-
 }
 
 CC_TIME_SCALE = 1
