@@ -348,6 +348,9 @@ CC_CONSTRUCTOR_ACCESS:
     virtual void doLayout() override;
 
 protected:
+    // 添加声明
+    virtual void autoScrollBegin() override;
+    
     void pageTurningEvent();
 
     virtual void remedyLayoutParameter(Widget* item)override;

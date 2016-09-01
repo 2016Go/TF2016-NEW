@@ -5,25 +5,39 @@ function signInUI:ctor()
 	--初始化监听数据，初始化数据
 	cs.logger.i("signInUI:ctor()")
 
-	self:setAnchorPoint(cc.p(0,0))
-	self:setPosition(cc.p(0,0))
+	self:setContentSize(cc.p(200,200));
 
 	self.UI = {}
-	
+	--背景灰
+	self.UI.colorLayer = cc.LayerColor:create(cc.c4b(0,0,0,100),display.size.width,display.size.height)  
+	self.UI.colorLayer:setAnchorPoint(cc.p(0.5,0.5))
+	self.UI.colorLayer:setPosition(cc.p(-display.size.width/2,-display.size.height/2))
+	self.UI.colorLayer:setSwallowsTouches(true)
+    self.UI.colorLayer:setTouchEnabled(true)
+    self:addChild(self.UI.colorLayer,1)
+
 	--加载一张背景图片
-	self.UI.bgSp = cc.Sprite:create("UI/denglu/bg.png")
-    self.UI.bgSp:setAnchorPoint(cc.p(0,0))
-	self.UI.bgSp:setPosition(cc.p(0,0))
+	self.UI.bombSp = cc.Sprite:create("UI/denglu/bg.png")
+    self.UI.bombSp:setAnchorPoint(cc.p(0.5,0.5))
+	self.UI.bombSp:setPosition(cc.p(0,0))
+
+    
 
 	--获取图片原本大小
-	local bgSize = self.UI.bgSp:getContentSize();
+	local bgSize = self.UI.bombSp:getContentSize();
 
 	--将图片扩大成背景大小
-	self.UI.bgSp:setScaleX(display.width/bgSize.width)
-	self.UI.bgSp:setScaleY(display.height/bgSize.height)
+	self:addChild(self.UI.bombSp,10)
 
-	self:addChild(self.UI.bgSp )
-
+	self.UI.touristBtn = ccui.Button:create("UI/denglu/Button_59_01.png")
+	self.UI.touristBtn:setAnchorPoint(cc.p(0.5,0.5))
+	self.UI.touristBtn:setPosition(cc.p(bgSize.width/2,bgSize.height/2))
+	self.UI.touristBtn:setTitleText("关闭")
+	self.UI.touristBtn:setTitleFontSize(25)
+	self.UI.bombSp:addChild(self.UI.touristBtn,10)
+    singleManagerUI:getInstance():bindListener(self.UI.colorLayer,self,"colorLayer")
+    singleManagerUI:getInstance():bindListener(self.UI.touristBtn,self,"touristBtn")
+	--[[
 	--加载账号密码输入框
 	self.UI.accountLabel = cc.LabelTTF:create("账号", "ttf/fangzhenglier.ttf", 30)  
     self.UI.accountLabel:setAnchorPoint(cc.p(1,0.5))
@@ -76,7 +90,10 @@ function signInUI:ctor()
 
 	--绑定事件
 	singleManagerUI:getInstance():bindListener(self.UI.registerBtn,self,"registerBtn")
+	]]
 end
+
+
 function signInUI:registerBtnTouchEnded()
 	cs.logger.i("registerBtnTouchEnded")
 
@@ -86,10 +103,10 @@ end
 
 function signInUI:touristBtnTouchEnded()
 	cs.logger.i("touristBtnTouchEnded")
-
+		self:removeFromParent()
 	--进入游戏
-    local fightMainScene = require("gameFight.fightMainScene"):create()
-    singleManagerUI:getInstance():changeUI({} , fightMainScene , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+    --local fightMainScene = require("gameFight.fightMainScene"):create()
+    --singleManagerUI:getInstance():changeUI({} , fightMainScene , CC_UI_GOTO_TPYE.UI_Rep_Scene)
 end
 
 function signInUI:refreshUI(event,eventSender,data)

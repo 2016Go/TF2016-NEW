@@ -53,7 +53,7 @@ function singleTowerManager:addTower(myTower)
 end
 
 --删除一个塔，下一帧
-function singleTowerManager:removeEnemyNextFrame(myTower)
+function singleTowerManager:removeTowerNextFrame(myTower)
     table.insert(self.nextFrameRemoveTower, myTower)
 end
 

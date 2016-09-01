@@ -14,7 +14,8 @@ function singleLoadData:getInstance()
     if self.instance == nil then  
         self.instance = self:new()  
         self.mapData = {}
-        self.enemyData = {}
+        self.enemyData = {}     --用名字作KEY的数据组
+        self.enemyDataForID = {}   --用ID做KEY的数据组，其实不想这样做，ID为string
         self.enemyLevelData = {}
     end  
     return self.instance  
@@ -41,6 +42,10 @@ function singleLoadData:getTestWave()
     return self.enemyLevelData["level"]["waves"]["wave"][1]
 end
 
+function singleLoadData:getTrickWave()
+    return self.enemyLevelData["level"]["addWaves"]
+end
+
 --获取机关方面的数据trick
 function singleLoadData:getTrick()
     return self.mapData["map"]["trick"]
@@ -62,8 +67,7 @@ function singleLoadData:loadEnemy(namePath)
         local strJson = cc.FileUtils:getInstance():getStringFromFile(fullPath);
         --开始解析
         local allData = json.decode(strJson)
-        local enemyData1 = allData["enemies"]
-        enemyData = enemyData1["e"]
+        enemyData = allData["enemies"]["e"]
     else
         cs.logger.d("can not find",namePath)
     end
@@ -72,6 +76,10 @@ function singleLoadData:loadEnemy(namePath)
     for k,v in pairs(enemyData) do
         local enemyName = v["-name"]
         self.enemyData[enemyName] = v
+    end
+
+    for k,v in pairs(enemyData) do
+        self.enemyDataForID[v["-id"]] = v
     end
 
     return self.enemyData
@@ -134,6 +142,11 @@ function singleLoadData:getEnemyItem(waveData , itemID)
     end
 
     return self.enemyData[enemyName]
+end
+
+--从怪物的ID获取怪物
+function singleLoadData:getEnemyFromEnemyID(id)
+    return self.enemyDataForID[id]
 end
 
 --传入一个波次ID，获取本关卡本波次的所有数据

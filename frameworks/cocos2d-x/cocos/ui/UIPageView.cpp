@@ -87,6 +87,11 @@ void PageView::doLayout()
     }
     _innerContainerDoLayoutDirty = false;
 }
+    
+void PageView::autoScrollBegin()
+{
+    pageTurningEvent();
+}
 
 void PageView::setDirection(PageView::Direction direction)
 {

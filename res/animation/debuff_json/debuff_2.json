@@ -1,0 +1,96 @@
+{
+"skeleton": { "hash": "4oPqk1a8CoGffrEq7jFsI4s07vY", "spine": "2.1.27", "width": 65, "height": 109.41, "images": "./../" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "fx", "parent": "root" },
+	{ "name": "guang", "parent": "root" },
+	{ "name": "buff", "parent": "fx" },
+	{ "name": "fashe", "parent": "fx", "x": -5.71, "y": 53.61 },
+	{ "name": "lizi", "parent": "fx", "y": 59.91 },
+	{ "name": "lizi2", "parent": "fx", "y": 59.91 },
+	{ "name": "lizi3", "parent": "fx", "y": 59.91 }
+],
+"slots": [
+	{ "name": "common/xugaosj01", "bone": "fashe", "color": "ffffff00", "attachment": "tower_3_eff/xugaosj01" },
+	{ "name": "common/xugaosjlizi", "bone": "lizi", "color": "ffffff00", "attachment": "tower_3_eff/xugaosjlizi" },
+	{ "name": "common/xugaosjlizi2", "bone": "lizi2", "color": "ffffff00", "attachment": "tower_3_eff/xugaosjlizi" },
+	{ "name": "common/xugaosjlizi3", "bone": "lizi3", "color": "ffffff00", "attachment": "tower_3_eff/xugaosjlizi" },
+	{ "name": "common/glow", "bone": "guang", "color": "ffffff00", "attachment": "tower_3_eff/glow", "blend": "additive" },
+	{ "name": "common/xugaobuff01i", "bone": "buff", "color": "ffffff00", "attachment": "tower_3_eff/xugaobuff01i" }
+],
+"skins": {
+	"default": {
+		"common/glow": {
+			"tower_3_eff/glow": { "width": 50, "height": 50 }
+		},
+		"common/xugaobuff01i": {
+			"tower_3_eff/xugaobuff01i": { "width": 65, "height": 46 }
+		},
+		"common/xugaosj01": {
+			"tower_3_eff/xugaosj01": { "x": 5.71, "y": 6.29, "width": 52, "height": 49 },
+			"tower_3_eff/xugaosj02": { "x": 5.71, "y": 6.29, "width": 52, "height": 49 },
+			"tower_3_eff/xugaosj03": { "x": 5.71, "y": 6.29, "width": 52, "height": 49 },
+			"tower_3_eff/xugaosj04": { "x": 5.71, "y": 6.29, "width": 52, "height": 49 },
+			"tower_3_eff/xugaosj05": { "x": 5.71, "y": 6.29, "width": 52, "height": 49 }
+		},
+		"common/xugaosjlizi": {
+			"tower_3_eff/xugaosjlizi": { "width": 12, "height": 12 }
+		},
+		"common/xugaosjlizi2": {
+			"tower_3_eff/xugaosjlizi": { "width": 12, "height": 12 }
+		},
+		"common/xugaosjlizi3": {
+			"tower_3_eff/xugaosjlizi": { "width": 12, "height": 12 }
+		}
+	}
+},
+"animations": {
+	"start": {
+		"slots": {
+			"common/xugaobuff01i": {
+				"color": [
+					{ "time": 0, "color": "ffffffff" }
+				]
+			},
+			"common/xugaosjlizi": {
+				"color": [
+					{ "time": 0, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.5333, "color": "ffffffff" },
+					{ "time": 0.6666, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"buff": {
+				"rotate": [
+					{ "time": 1.1666, "angle": 0 }
+				],
+				"translate": [
+					{ "time": 0, "x": 0, "y": 52.86 }
+				]
+			},
+			"lizi": {
+				"translate": [
+					{
+						"time": 0,
+						"x": 26.18,
+						"y": -7.94,
+						"curve": [ 0, 0.64, 0.75, 1 ]
+					},
+					{ "time": 0.6666, "x": 28.21, "y": -41.46 }
+				],
+				"scale": [
+					{ "time": 0, "x": 1, "y": 1 },
+					{ "time": 0.3666, "x": 0.952, "y": 1.347 },
+					{ "time": 0.6666, "x": 0.912, "y": 0.912 }
+				]
+			},
+			"fx": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": -40.8 }
+				]
+			}
+		}
+	}
+}
+}

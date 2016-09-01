@@ -93,19 +93,15 @@ function life:_upDataBuff(dt)
         --如果是时间结束
         if v['loseType'] == "Countdown" then
             v['duration'] = v['duration'] - dt
-
             if v['duration'] <= 0 then
-                table.insert(self.buffNextRemove,v)
+                table.insert(self.buffNextRemove,v["id"])
             end
         end
     end
 
     --删除等待中的buff
     for k,v in pairs(self.buffNextRemove) do
-
-        if v == 1003 then
-            print("loseType = hit22")
-        end
+        print("loseType = "..v)
         self:_removeBuff(v)
     end
     self.buffNextRemove = {}
@@ -147,10 +143,7 @@ function life:_firstBuff(data)
     --状态固定增加的影响
     if data['operationType'] == 'Const' then
         self.actorData[data['property']..'Buff'] = self.actorData[data['property']]
-        print("self.actorData[buffData befor= "..self.actorData[data['property']..'Buff'] )
         self.actorData[data['property']] = data['value']
-        print("property = "..self.actorData[data['property']] )
-        print("self.actorData[buffData after= "..self.actorData[data['property']..'Buff'] )
     end    
 end
 
@@ -167,7 +160,6 @@ function life:_resetBuff(buffID)
     end
 
     if buffData['operationType'] == 'Const' then
-        print("self.actorData[buffData goBack= "..self.actorData[buffData['property']..'Buff'] )
         self.actorData[buffData['property']] = self.actorData[buffData['property']..'Buff']
     end 
 end

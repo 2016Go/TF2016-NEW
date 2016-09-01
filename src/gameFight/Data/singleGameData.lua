@@ -59,12 +59,16 @@ end
 function singleGameData:eventResponse(gameEventID, eventSender, parameter)
     --请求波次
     if gameEventID == CC_GAME_EVENT.GameEvent_NextWaveNeed then
-        if self.mainUIData.wave  >= self.mainUIData.waveLimit then
+        if self.mainUIData.wave  > self.mainUIData.waveLimit then
+            cs.logger.i("wave is over and game is over, wave == "..self.mainUIData.wave )
         	--完成波次逻辑
         	return
         end
+
         self.mainUIData.wave  = self.mainUIData.wave + 1
- 		singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_MainUIDataChange, self)
+
+        cs.logger.i("***************self.mainUIData.wave == "..self.mainUIData.wave )
+ 		singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_MainUIDataChange, self, CC_GAME_EVENT.GameEvent_NextWaveNeed)
     
     elseif gameEventID == CC_GAME_EVENT.GameEvent_EnemyGoOver then
     	if self.mainUIData.life  <= 0 then --死亡逻辑

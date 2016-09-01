@@ -31,21 +31,33 @@ function singleEnemyManager:UpData(dt , iCountTime)
     if iCountTime == 1 then
         return
     end
+    --用于判断怪物的层级，约定每10帧执行一次
+    self.zoderNum = self.zoderNum + 1
+
     self.timeGo = self.timeGo + self.dt
 
-
-
     --检测是否还可以刷出怪物，如果可以刷怪，如果不可以，等待，如果没怪了，请求下一波
-    if self:_checkAddEnemt() == false then
+    if self:_checkAddEnemy() == false then
         return
     end
+
+    --检测机关刷怪是否需要
+    self:_checkAddTrickEnemy(dt) 
 
     --运行更新
     for i,v in pairs(self.allEnemy) do
         v:UpData(self.dt)
     end
-
-            --先删除
+    
+    if self.zoderNum >= 5 then
+        for i,v in pairs(self.allEnemy) do
+            local  zoder = 120 - math.floor((v:getPositionY()/10) + 0.5)
+            v:setLocalZOrder(CC_GAME_LAYER_LEVEL.Layer_scene_enemy + zoder)
+        end
+        self.zoderNum = 0
+    end
+    
+    --先删除
     for i,v in pairs(self.nextFrameRemoveEnemy) do
         self:_removeEnemy(v)
     end 
@@ -81,6 +93,43 @@ function singleEnemyManager:_removeEnemy(myEnemy)
     end
 end
 
+function singleEnemyManager:_EnemyForDie(eventSender)
+
+        local v = eventSender 
+        local ani = {}
+        if v.actorData.name == "slime1" then  
+            ani = DHSkeletonAnimation:createWithFile("animation/slime_eff_json/slime_1_eff.json");
+        else
+            ani = DHSkeletonAnimation:createWithFile("animation/slime_eff_json/slime_2_eff.json"); 
+        end
+        ani:setPosition(cc.p(v:getPosition()))
+            
+        v:getParent():addChild(ani , v:getLocalZOrder()-4)
+        ani:scheduleUpdateLua()
+            
+            --有分裂个体和没有分裂个体的不同处理方式
+        if v.actorData.division == "-1" then
+            ani:playAnimation("die")
+            ani:setScale( v.mainSprite:getScale() )
+            local bAction1 = cc.Sequence:create(cc.DelayTime:create(0.8),cc.CallFunc:create(function ()ani:removeFromParent()end))
+            ani:runAction(bAction1)
+        else
+            local data = singleLoadData:getInstance():getEnemyFromEnemyID(v.actorData.division)
+            local roadID = v.actorData.road - 1
+
+            local pos = cc.p(v:getPosition())
+            local posID = v.nowPosID
+                
+            ani:playAnimation("fen")
+            ani:setScale(v.mainSprite:getScale() + 0.5)
+            local bAction1 = cc.Sequence:create(
+            cc.DelayTime:create(0.11),cc.CallFunc:create(function ()self:_AddEnemt(data,roadID,pos,posID)end),
+            cc.DelayTime:create(0.19),cc.CallFunc:create(function ()self:_AddEnemt(data,roadID,pos,posID)end),
+            cc.DelayTime:create(0.44),cc.CallFunc:create(function ()ani:removeFromParent()end))
+            ani:runAction(bAction1)
+        end
+end
+
 --监听事件
 function singleEnemyManager:eventResponse(gameEventID, eventSender, parameter)
     --有敌方单位到达了终点位置
@@ -90,15 +139,17 @@ function singleEnemyManager:eventResponse(gameEventID, eventSender, parameter)
     --更新最新的波次信息
     elseif gameEventID == CC_GAME_EVENT.GameEvent_WaveDataReady then
         if parameter == nil then
-            cs.logger.i("parameter:parameter() == nil")
             return
         end
         singleTimeManager:getInstance():addTimer(self)
         self:setWaveData(parameter,1)
     elseif gameEventID ==  CC_GAME_EVENT.GameEvent_LifeDie then
         --if self:checkEnemyIsInManager(eventSender) == true then
+        self:_EnemyForDie(eventSender)
         self:removeEnemyNextFrame(eventSender)
         --end
+    elseif gameEventID == CC_GAME_EVENT.GameEvent_Trick_AddEnemy then
+        self.isOpenTrcikEnemy = true
     else
         cs.logger.i("this is a meng B msg")
     end
@@ -130,14 +181,22 @@ function singleEnemyManager:_init()
     self.timeGo = 0
     self.waveData = {}
     self.nowEnemyID = 1
+    
+    self.trickWaveData = singleLoadData:getInstance():getTrickWave()
+    self.trickEnemyID  = 1
+    self.trickTimeGo = 0
+
+    self.zoderNum = 0 
+    self.isOpenTrcikEnemy = false
 
     --加入一个监听事件
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_Trick_AddEnemy, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_WaveDataReady, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_EnemyGoOver, self)
     singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_LifeDie, self)
 end
 
-function singleEnemyManager:_checkAddEnemt()
+function singleEnemyManager:_checkAddEnemy()
     --如果波次信息为空（已经刷完了）
     if next(self.waveData) == nil then
         
@@ -175,7 +234,8 @@ function singleEnemyManager:_checkAddEnemt()
         end
 
         --用数据创建敌人
-        self:_AddEnemt(enemyItemData,nowItem)
+        local roadID = tonumber(nowItem["-r"]) or 1
+        self:_AddEnemt(enemyItemData,roadID)
 
         --更新数据
         self.nowEnemyID = self.nowEnemyID + 1
@@ -185,7 +245,48 @@ function singleEnemyManager:_checkAddEnemt()
     return true
 end
 
-function singleEnemyManager:_AddEnemt(enemyItemData,nowItem)
+--检测是否需要添加机关怪物
+function singleEnemyManager:_checkAddTrickEnemy(dt)
+    if self.isOpenTrcikEnemy == false then
+        return
+    end
+
+    if self.trickWaveData == nil then
+        return
+    end
+
+    self.trickTimeGo = self.trickTimeGo + dt
+    local nowItem = singleLoadData:getInstance():getEnemyItemBornData(self.trickWaveData , self.trickEnemyID)
+    if nowItem == nil then
+        --处理一波完成事件(继续行动)
+        self.trickWaveData = {}
+        self.isOpenTrcikEnemy = false
+        return
+    end    
+
+    local dTime = singleLoadData:getInstance():getEnemyItemBornTime(self.trickWaveData , self.trickEnemyID)
+    if dTime <= self.trickTimeGo then
+        --获取当前的小怪数据    
+        local enemyItemData =singleLoadData:getInstance():getEnemyItem(self.trickWaveData , self.trickEnemyID)
+        if enemyItemData == nil then 
+            --当下一个怪物不存在的时候。返回
+            self.trickWaveData = {}
+            self.isOpenTrcikEnemy = false
+            return
+        end
+
+        --用数据创建敌人
+        local roadID = tonumber(nowItem["-r"]) or 1
+        self:_AddEnemt(enemyItemData,roadID)
+
+        --更新数据
+        self.trickEnemyID = self.trickEnemyID + 1
+        self.trickTimeGo = 0 
+    end
+end
+
+--加入一个怪物，最后两个参数提供给分裂的临时怪物
+function singleEnemyManager:_AddEnemt(enemyItemData,roadID,NowPos,NowPosID)
         local actorData = {}
         actorData.name         = enemyItemData["-name"]                   -- 怪物名字
         actorData.life         = tonumber(enemyItemData["-baseHP"]) or 20 -- 生命值
@@ -194,15 +295,21 @@ function singleEnemyManager:_AddEnemt(enemyItemData,nowItem)
         actorData.mainRes      = enemyItemData["-anim"]                   -- 资源（前缀资源，要求最后一位加/ 如babyspirit/walk/）
         actorData.gold         = tonumber(enemyItemData["-gold"]) or 1    -- 获得资源
         actorData.punishHP     = tonumber(enemyItemData["-punishHP"]) or 1 -- 进入通道造成的伤害
-        actorData.road         = tonumber(nowItem["-r"]) or 1             -- 道路
-        --兼容老版本配置
-        if actorData.road == 0 then
-            actorData.road = 1
-        end
-
+        actorData.road         = roadID + 1           -- 道路
+        actorData.division     = enemyItemData["-division"] or "-1"
+            
         local enemy = require("gameFight.actor.enemy"):create()
         enemy:setData(actorData)
         enemy.nowState = CC_ENEMY_STATE.State_Born
         self:addEnemy(enemy)
+
+        if NowPos ~= nil then
+            enemy:setPosition(NowPos)
+        end
+
+        if NowPosID ~= nil then
+            enemy.nowPosID = NowPosID 
+        end
+
         singleGameData:getInstance():getMainLayer():addChild(enemy,CC_GAME_LAYER_LEVEL.Layer_scene_enemy)
 end

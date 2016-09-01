@@ -20,8 +20,9 @@ end
 
 --监听事件
 function singleTrickManager:eventResponse(gameEventID, eventSender, parameter)
-    --请求波次
-
+    if gameEventID == CC_GAME_EVENT.GameEvent_Trick_Dele then
+        self:removeTrickNextFrame(eventSender)
+    end 
 end
 
 --设定一个加载层级方便add
@@ -42,7 +43,28 @@ function singleTrickManager:UpData(dt , iCountTime)
        v:UpData(self.dt)
     end
 
+    --先删除
+    for i,v in pairs(self.nextFrameRemoveTrick) do
+        self:_removeTrick(v)
+    end 
+
+    self.nextFrameRemoveTrick = {}
     self.dt = 0
+end
+
+--删除一个机关，下一帧
+function singleTrickManager:removeTrickNextFrame(myTrick)
+    table.insert(self.nextFrameRemoveTrick, myTrick)
+end
+
+function singleTrickManager:_removeTrick(myTrick)
+    for i,v in pairs(self.allTrick) do
+        if v == myTrick then
+            table.remove( self.allTrick, i )
+            v:clear()
+            return
+        end
+    end
 end
 
 --设定并创建机关
@@ -85,8 +107,10 @@ end
 
 function singleTrickManager:_init()  
     self.allTrick = {}
+    self.nextFrameRemoveTrick = {}
     self.dt = 0
 
     --用于标记
     self.tirckTag = 0
+    singleGameEventPool:getInstance():addEventListenerInPool(CC_GAME_EVENT.GameEvent_Trick_Dele, self)
 end

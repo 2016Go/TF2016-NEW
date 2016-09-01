@@ -44,23 +44,18 @@ function tower:createTowerWithData()
     --self.mainSprite:setSpriteFrame(fristFrame)
     --self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
     --self.lifeLayer:addChild(self.mainSprite , 10)
-    
     self.mainSprite = DHSkeletonAnimation:createWithFile(self.towerData['png']);
     self.mainSprite:setAnchorPoint(cc.p(0.5,0.5))
-
     self.lifeLayer:addChild(self.mainSprite , 10)
     self.mainSprite:setScale(0.5)
     self.mainSprite:scheduleUpdateLua()
+    self.mainSprite:registerLuaHandler( function ( eventName,test2 )
+                                            if eventName == "attEvent" then
+                                                self:_sendBulletEvent()
+                                            end
+                                        end)
 
-    local aa = function ( eventName,test2 )
-        if eventName == "attEvent" then
-            self:_sendBulletEvent()
-        end
-    end
-
-    self.mainSprite:registerLuaHandler( aa )
     self.mainSprite:playAnimation("stand",-1)
-
     self:ShowTheDebug()
 end
 
@@ -196,11 +191,9 @@ function tower:_sendBulletEvent()
             sendDataBan.bulletID = self.towerData["bulletID"]
             sendDataBan.bulletPos = myPos
             sendDataBan.bulletTargetPos = self:getOffsetbulletPos(myPos,targetPos,ag)
-
             singleGameEventPool:getInstance():SendEventForListener(CC_GAME_EVENT.GameEvent_BuildBullet, self, sendDataBan)
         end
     end
-
 end
 
 --获取偏移子弹的目标位置

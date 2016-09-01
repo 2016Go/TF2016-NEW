@@ -72,8 +72,6 @@
 
 -----------------GIT
 10.0.0.88
-
-
 -----------------SVN
 svn root:
 http://10.0.0.212/svn/droidhang/android/dhArt/TF2016

@@ -19,17 +19,16 @@ function enemy:setData(actorData)
     self.actorData.sclase       = actorData.sclase          -- 行走道路ID
     self.actorData.road         = actorData.road            -- 行走道路ID
     self.actorData.punishHP     = actorData.punishHP        -- 被干掉的HP
-    self.actorData.gold         = actorData.gold            -- 获取金币                                                                                                                                                                                                                                                                                              -- 击杀怪物获得的金币
+    self.actorData.gold         = actorData.gold            -- 获取金币                  
+    self.actorData.division     = actorData.division        -- 分裂ID                                                                                                                                                                                                                                                                            -- 击杀怪物获得的金币
     
     if singleLoadData:getInstance().mapData["map"]["roads"] == nil then
         print("singleLoadData:getInstance().mapData == nil")
     end
-    --self.actorData.roadData     = singleLoadData:getInstance().mapData["map"]["roads"]["road"]
     self.actorData.roadData = singleLoadData:getInstance().mapData["map"]["roads"]["road"][self.actorData.road]            -- 行走道路的数据
 end
 
 function enemy:born()
-    self.nowPosID = 1 --当前行动节点ID
     local bornPos = self:_getLoadPos(self.nowPosID )
 
     --设置到出生位置

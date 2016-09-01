@@ -103,11 +103,15 @@ function singleStage:eventResponse(gameEventID, eventSender, parameter)
         eventSender:removeFromParent()
 
         local tower = require("gameFight.actor.tower"):create()
-        tower:setPosition(cc.p(x,y))
+        tower:setPosition(cc.p(x,y - 12))
         tower:setTowerData(parameter)
         tower:createTowerWithData()
         singleTowerManager:getInstance():addTower(tower)
-        pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_tower)
+        
+        --动态计算塔的坐标位置
+        local  zoder = 120 - math.floor((tower:getPositionY()/10) + 0.5)
+        pParent:addChild(tower, CC_GAME_LAYER_LEVEL.Layer_scene_enemy + zoder)
+
     elseif gameEventID == CC_GAME_EVENT.GameEvent_GoldPoor then
         local goldLabel = cc.LabelTTF:create("", "ttf/fangzhenglier.ttf", 50)  
         goldLabel:setAnchorPoint(cc.p(0.5,0.5))

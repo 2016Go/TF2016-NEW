@@ -14,6 +14,7 @@ function singleManagerUI:getInstance()
     if self.instance == nil then  
         self.instance = self:new()  
     end  
+
     return self.instance  
 end
 
@@ -28,9 +29,26 @@ function singleManagerUI:changeUI(nowUI , changeUI, changeTpye)
 
 	changeTpye = changeTpye or CC_UI_GOTO_TPYE.UI_Add_Layer
 	if changeTpye == CC_UI_GOTO_TPYE.UI_Add_Layer then
-		
+
+		  local order = nowUI:getLocalZOrder()
+          local scene = cc.Director:getInstance():getRunningScene()
+          scene:addChild(changeUI,order + 1)
+
 	elseif changeTpye == CC_UI_GOTO_TPYE.UI_Add_Bomb then
-	
+            local order = nowUI:getLocalZOrder()
+            local scene = cc.Director:getInstance():getRunningScene()
+
+            --创建一个事件吞噬层
+            changeUI:setAnchorPoint(cc.p(0.5,0.5))
+            changeUI:setPosition(cc.p(display.cx,display.cy))
+            scene:addChild(changeUI,order+1)
+
+            changeUI.UI.bombSp:setScale(0.5)
+            changeUI.UI.bombSp:setOpacity(0)
+
+            local bAction1 = cc.Spawn:create(cc.ScaleTo:create(0.25,1.2),cc.FadeIn:create(0.25)) 
+            local bAction2 = cc.Sequence:create(bAction1,cc.ScaleTo:create(0.08,0.9),cc.ScaleTo:create(0.04,1)) 
+            changeUI.UI.bombSp:runAction(bAction2)
 	elseif changeTpye == CC_UI_GOTO_TPYE.UI_Rep_Scene then
 		local scene = cc.Director:getInstance():getRunningScene()
 
@@ -52,7 +70,7 @@ function singleManagerUI:changeUI(nowUI , changeUI, changeTpye)
     	
     	--创建这个层
 		local scene = cc.Scene:create()
-		scene:addChild(changeUI)
+		scene:addChild(changeUI,10)
 		cc.Director:getInstance():replaceScene(scene)
 	end
 end
@@ -81,7 +99,7 @@ function singleManagerUI:bindListener(node,target,name,parameter,isSoallowTouche
     elseif type == 'ccui.ListView' then----
         --_bindTouch(node,target,name,'ListView')
     elseif type == 'ccui.PageView' then---
-        --_do_bind_pageView_(node,target)
+        self:_do_bind_pageView_(node,target,name,parameter)
         --_bindTouch(node,target,name,'PageView')
     elseif type == 'cc.Sprite' then
         self:_do_bind_cc(node,target, name, 'cc.Sprite', parameter, isSoallowTouches)
@@ -198,7 +216,7 @@ function singleManagerUI:_bindTouch(node,target,name)
 end
 
 -- 绑定复选框
-local function _do_bind_checkBox_(node,target,name,parameter)
+function singleManagerUI:_do_bind_checkBox_(node,target,name,parameter)
     local checkBox = tolua.cast(node,'ccui.CheckBox')
     local select = name..'Select'
     local unselect = name..'Unselect'
@@ -212,5 +230,19 @@ local function _do_bind_checkBox_(node,target,name,parameter)
         end
     end
     checkBox:addEventListener(listener)
+end
+
+-- 绑定页视
+function singleManagerUI:_do_bind_pageView_(node,target,name,parameter)
+    local pageView = tolua.cast(node,'ccui.PageView')
+    local turning = name..'Turning'
+    local listener = function(sender,type)
+        if type == ccui.PageViewEventType.turning then
+            cs.util.callm(target,turning,sender,type)
+        else
+            cs.logger.e(_NAME,'unknown pageView event ['..type..']')
+        end
+    end
+    pageView:addEventListener(listener)
 end
 

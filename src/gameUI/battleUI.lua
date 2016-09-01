@@ -16,9 +16,10 @@ function battleUI:ctor()
     --用于存放地图触摸位置
     self.touchPlace = {["lastTouch"] = -1,["currentTouch"] = -1} 
 	--加载一张背景图片
-    self.UI.bgSp = ccui.ImageView:create("UI/denglu/map.jpg")
+    self.UI.bgSp = ccui.ImageView:create("UI/homePage/home_map.png")
     self.UI.bgSp:setTouchEnabled(true)
 	self.UI.bgSp:setAnchorPoint(cc.p(0,0))
+    self.UI.bgSp:setSwallowTouches(false)
     self:addChild(self.UI.bgSp)
 
     --获取最大关卡数
@@ -110,9 +111,10 @@ function battleUI:ctor()
                 self.UI.highLightSp = nil
             end
             --进入战斗界面
-            --self.UI.missionBtn[i]:setOpacity(255)
             local fightMainScene = require("gameFight.fightMainScene"):create()
             singleManagerUI:getInstance():changeUI({} , fightMainScene , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+
+            self:balance(true)
         end
 
         singleManagerUI:getInstance():bindListener(self.UI.missionBtn[i],self,"missionBtn"..i)
@@ -126,7 +128,7 @@ function battleUI:ctor()
     singleManagerUI:getInstance():bindListener(self.UI.testButton, self, "testButton")
 
     --为地图添加监听
-    singleManagerUI:getInstance():bindListener(self.UI.bgSp, self, "bgSp")
+    singleManagerUI:getInstance():bindListener(self.UI.bgSp, self, "bgSp" ,self ,false)
 end
 
 --旗帜动画
@@ -141,7 +143,7 @@ function battleUI:flagAnimate()
     local placeX,placeY = 0,0
 
     if currentMission > 0 and currentMission < self.UI.missionMaxNum then
-       placeX = display.width/2 - self.UI.missionBtn[currentMission + 1]:getPositionX()
+       --placeX = display.width/2 - self.UI.missionBtn[currentMission + 1]:getPositionX()
        placeY = display.height/2 - self.UI.missionBtn[currentMission + 1]:getPositionY()
     end
     --防止地图越界
@@ -149,11 +151,12 @@ function battleUI:flagAnimate()
     local width = self.UI.bgSp:getContentSize().width
     local height = self.UI.bgSp:getContentSize().height
 
+    --[[
     if placeX > 0 then
         placeX = 0
     elseif placeX + width < display.width then
         placeX = display.width - width
-    end
+    end]]
     if placeY > 0 then
        placeY = 0
     elseif placeY + height < display.height then
@@ -181,8 +184,9 @@ function battleUI:missionClear()
     --最大通关数加1
     singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_MissionNum,singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_MissionNum] + 1)
 
-    local mapUI = require("gameUI.mapUI"):create()
-    singleManagerUI:getInstance():changeUI({}, mapUI, CC_UI_GOTO_TPYE.UI_Rep_Scene)
+    --local mapUI = require("gameUI.mapUI"):create()
+    --singleManagerUI:getInstance():changeUI({}, mapUI, CC_UI_GOTO_TPYE.UI_Rep_Scene)
+    self:balance(false)
 end
 
 --地图初始位置
@@ -195,19 +199,21 @@ function battleUI:mapInitPosition()
     elseif currentMission >= self.UI.missionMaxNum then
         currentMission = self.UI.missionMaxNum
     end
-    local newPlaceX = display.width/2 - self.UI.missionBtn[currentMission]:getPositionX()
+    --local newPlaceX = display.width/2 - self.UI.missionBtn[currentMission]:getPositionX()
     local newPlaceY = display.height/2 - self.UI.missionBtn[currentMission]:getPositionY()
-    self.UI.bgSp:setPosition(cc.p(newPlaceX,newPlaceY))
+    --self.UI.bgSp:setPosition(cc.p(newPlaceX,newPlaceY))
+    self.UI.bgSp:setPositionY(newPlaceY)
 
     --调整地图位置，防止越界
     local width = self.UI.bgSp:getContentSize().width
     local height = self.UI.bgSp:getContentSize().height
 
+    --[[
     if self.UI.bgSp:getPositionX() > 0 then
         self.UI.bgSp:setPositionX(0)
     elseif self.UI.bgSp:getPositionX() + width < display.width then
         self.UI.bgSp:setPositionX(display.width - width)
-    end
+    end]]
     if self.UI.bgSp:getPositionY() > 0 then
         self.UI.bgSp:setPositionY(0)
     elseif self.UI.bgSp:getPositionY() + height < display.height then
@@ -223,26 +229,69 @@ function battleUI:mapMove(lastPoint,currentPoint)
     print('battleUI:mapMove-----------------')
     local width = self.UI.bgSp:getContentSize().width
     local height = self.UI.bgSp:getContentSize().height
-    local currentPlaceX = self.UI.bgSp:getPositionX()
+    --local currentPlaceX = self.UI.bgSp:getPositionX()
     local currentPlaceY = self.UI.bgSp:getPositionY()
-    local vectorX = currentPoint.x - lastPoint.x
+    --local vectorX = currentPoint.x - lastPoint.x
     local vectorY = currentPoint.y - lastPoint.y
-    currentPlaceX = currentPlaceX + vectorX
+    --currentPlaceX = currentPlaceX + vectorX
     currentPlaceY = currentPlaceY + vectorY
 
     --判断地图越界
+    --[[
     if currentPlaceX > 0 then
         currentPlaceX = 0
     elseif currentPlaceX + width < display.width then
         currentPlaceX = display.width - width
-    end
+    end]]
     if currentPlaceY > 0 then
         currentPlaceY = 0
     elseif currentPlaceY + height < display.height then
         currentPlaceY = display.height - height
     end    
 
-    self.UI.bgSp:setPosition(cc.p(currentPlaceX,currentPlaceY))
+    --self.UI.bgSp:setPosition(cc.p(currentPlaceX,currentPlaceY))
+    self.UI.bgSp:setPositionY(currentPlaceY)
+end
+
+--结算界面
+function battleUI:balance(isSuccess)
+    cs.logger.i("isSuccess:"..tostring(isSuccess))
+    self.UI.balanceLayer = cc.LayerColor:create(cc.c4b(100,100,100,150))
+    self.UI.balanceTitle = cc.LabelTTF:create("Lose","ttf/fangzhenglier.ttf",50)
+    self.UI.balanceScore = cc.LabelTTF:create("Scroe:","ttf/fangzhenglier.ttf",30)
+    self.UI.balanceHit = cc.LabelTTF:create("High Hit:","ttf/fangzhenglier.ttf",30)
+    self.UI.balanceTap = cc.LabelTTF:create("Tap to continue","ttf/fangzhenglier.ttf",30)
+    self.UI.balanceTitle:setPosition(cc.p(display.cx,display.cy + 300))
+    self.UI.balanceScore:setPosition(cc.p(display.cx,display.cy + 100))
+    self.UI.balanceHit:setPosition(cc.p(display.cx,display.cy + 50))
+    self.UI.balanceTap:setPosition(cc.p(display.width - 150, 50))
+    self:addChild(self.UI.balanceLayer)
+    self.UI.balanceLayer:addChild(self.UI.balanceTitle)
+    self.UI.balanceLayer:addChild(self.UI.balanceScore)
+    self.UI.balanceLayer:addChild(self.UI.balanceHit)
+    self.UI.balanceLayer:addChild(self.UI.balanceTap)
+    
+    local blink = cc.Blink:create(2,3)
+    self.UI.balanceTap:runAction(cc.RepeatForever:create(blink))
+
+    local scoreText = "1020304"  --分数
+    local hitText = "1020"       --最高连击数
+    self.UI.balanceScore:setString("Score:".." "..scoreText)
+    self.UI.balanceHit:setString("High Hit:".." "..hitText)
+
+    if isSuccess then            --胜利添加星星
+        self.UI.balanceTitle:setString("Victory")
+        local starNum = 5 --星数量，值为5*(剩余生命/总生命){向下取整}
+        for i=1,starNum do
+            local starSprite = cc.Sprite:create("UI/denglu/cannon.png")
+            starSprite:setPositionX(display.cx + (i - (starNum + 1)/2) * 100)
+            starSprite:setPositionY(display.cy + 200)
+            self.UI.balanceLayer:addChild(starSprite)
+        end
+    end
+
+    --绑定监听
+    singleManagerUI:getInstance():bindListener(self.UI.balanceLayer, self, "balanceLayer")
 end
 
 --事件函数
@@ -261,6 +310,13 @@ function battleUI:bgSpTouchMoved()
     self.touchPlace.currentTouch = self.UI.bgSp:getTouchMovePosition()
     self:mapMove(self.touchPlace.lastTouch, self.touchPlace.currentTouch)
     self.touchPlace.lastTouch = self.touchPlace.currentTouch
+end
+
+function battleUI:balanceLayerTouchEnded()
+    cs.logger.i("balanceLayerTouchEnded")
+    --返回地图界面
+    local mapUI = require("gameUI.mapUI"):create()
+    singleManagerUI:getInstance():changeUI({}, mapUI, CC_UI_GOTO_TPYE.UI_Rep_Scene) 
 end
 
 function battleUI:enter()

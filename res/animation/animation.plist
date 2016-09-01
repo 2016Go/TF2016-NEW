@@ -4,66 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>icon/hbui_e1.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{60,60}</string>
-                <key>spriteSourceSize</key>
-                <string>{60,60}</string>
-                <key>textureRect</key>
-                <string>{{336,1},{60,60}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>icon/hbui_e2.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{60,60}</string>
-                <key>spriteSourceSize</key>
-                <string>{60,60}</string>
-                <key>textureRect</key>
-                <string>{{341,63},{60,60}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>icon/hbui_e3.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{60,60}</string>
-                <key>spriteSourceSize</key>
-                <string>{60,60}</string>
-                <key>textureRect</key>
-                <string>{{398,1},{60,60}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>icon/hbui_e4.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{60,60}</string>
-                <key>spriteSourceSize</key>
-                <string>{60,60}</string>
-                <key>textureRect</key>
-                <string>{{403,63},{60,60}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
             <key>slime_1/body.png</key>
             <dict>
                 <key>aliases</key>
@@ -75,7 +15,7 @@
                 <key>spriteSourceSize</key>
                 <string>{47,47}</string>
                 <key>textureRect</key>
-                <string>{{460,1},{47,47}}</string>
+                <string>{{116,479},{47,47}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -90,7 +30,7 @@
                 <key>spriteSourceSize</key>
                 <string>{11,11}</string>
                 <key>textureRect</key>
-                <string>{{122,111},{11,11}}</string>
+                <string>{{111,1053},{11,11}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,9 +45,9 @@
                 <key>spriteSourceSize</key>
                 <string>{28,16}</string>
                 <key>textureRect</key>
-                <string>{{289,101},{28,16}}</string>
+                <string>{{230,967},{28,16}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>slime_1/eye_close.png</key>
             <dict>
@@ -120,7 +60,7 @@
                 <key>spriteSourceSize</key>
                 <string>{32,20}</string>
                 <key>textureRect</key>
-                <string>{{280,67},{32,20}}</string>
+                <string>{{124,1076},{32,20}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -135,9 +75,9 @@
                 <key>spriteSourceSize</key>
                 <string>{18,23}</string>
                 <key>textureRect</key>
-                <string>{{250,101},{18,23}}</string>
+                <string>{{124,1056},{18,23}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>slime_1/light.png</key>
             <dict>
@@ -150,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{15,11}</string>
                 <key>textureRect</key>
-                <string>{{105,111},{15,11}}</string>
+                <string>{{230,1014},{15,11}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -165,7 +105,7 @@
                 <key>spriteSourceSize</key>
                 <string>{37,29}</string>
                 <key>textureRect</key>
-                <string>{{302,67},{37,29}}</string>
+                <string>{{126,319},{37,29}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -180,7 +120,112 @@
                 <key>spriteSourceSize</key>
                 <string>{61,23}</string>
                 <key>textureRect</key>
-                <string>{{187,101},{61,23}}</string>
+                <string>{{152,1041},{61,23}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>slime_1_eff/glow.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{48,48}</string>
+                <key>spriteSourceSize</key>
+                <string>{50,50}</string>
+                <key>textureRect</key>
+                <string>{{101,968},{48,48}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_1_eff/qi001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{13,12}</string>
+                <key>spriteSourceSize</key>
+                <string>{13,12}</string>
+                <key>textureRect</key>
+                <string>{{230,1027},{13,12}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_1_eff/red001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,21}</string>
+                <key>textureRect</key>
+                <string>{{177,1088},{21,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_1_eff/red002.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{50,50}</string>
+                <key>spriteSourceSize</key>
+                <string>{50,50}</string>
+                <key>textureRect</key>
+                <string>{{113,528},{50,50}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_1_eff/red003.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{13,3}</string>
+                <key>spriteSize</key>
+                <string>{123,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{151,82}</string>
+                <key>textureRect</key>
+                <string>{{1,251},{123,68}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_1_eff/shouji001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{125,63}</string>
+                <key>spriteSourceSize</key>
+                <string>{125,63}</string>
+                <key>textureRect</key>
+                <string>{{1,186},{125,63}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_1_eff/shouji002.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{36,50}</string>
+                <key>spriteSourceSize</key>
+                <string>{36,50}</string>
+                <key>textureRect</key>
+                <string>{{210,1},{36,50}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -195,9 +240,9 @@
                 <key>spriteSourceSize</key>
                 <string>{98,91}</string>
                 <key>textureRect</key>
-                <string>{{187,1},{98,91}}</string>
+                <string>{{1,876},{98,91}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>slime_2/close_eye.png</key>
             <dict>
@@ -210,9 +255,9 @@
                 <key>spriteSourceSize</key>
                 <string>{36,40}</string>
                 <key>textureRect</key>
-                <string>{{465,50},{36,40}}</string>
+                <string>{{126,381},{36,40}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>slime_2/eye.png</key>
             <dict>
@@ -225,7 +270,7 @@
                 <key>spriteSourceSize</key>
                 <string>{15,15}</string>
                 <key>textureRect</key>
-                <string>{{319,98},{15,15}}</string>
+                <string>{{230,997},{15,15}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -240,9 +285,9 @@
                 <key>spriteSourceSize</key>
                 <string>{29,35}</string>
                 <key>textureRect</key>
-                <string>{{465,88},{29,35}}</string>
+                <string>{{177,1038},{29,35}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>slime_2/light.png</key>
             <dict>
@@ -255,9 +300,9 @@
                 <key>spriteSourceSize</key>
                 <string>{22,17}</string>
                 <key>textureRect</key>
-                <string>{{270,101},{22,17}}</string>
+                <string>{{177,1069},{22,17}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>slime_2/mouth.png</key>
             <dict>
@@ -270,7 +315,7 @@
                 <key>spriteSourceSize</key>
                 <string>{54,64}</string>
                 <key>textureRect</key>
-                <string>{{280,1},{54,64}}</string>
+                <string>{{109,632},{54,64}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -285,7 +330,112 @@
                 <key>spriteSourceSize</key>
                 <string>{61,23}</string>
                 <key>textureRect</key>
-                <string>{{187,101},{61,23}}</string>
+                <string>{{152,1041},{61,23}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>slime_2_eff/glow.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{48,48}</string>
+                <key>spriteSourceSize</key>
+                <string>{50,50}</string>
+                <key>textureRect</key>
+                <string>{{101,968},{48,48}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_2_eff/green001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,21}</string>
+                <key>textureRect</key>
+                <string>{{200,1088},{21,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_2_eff/green002.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{50,50}</string>
+                <key>spriteSourceSize</key>
+                <string>{50,50}</string>
+                <key>textureRect</key>
+                <string>{{113,580},{50,50}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_2_eff/green003.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{13,3}</string>
+                <key>spriteSize</key>
+                <string>{123,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{151,82}</string>
+                <key>textureRect</key>
+                <string>{{1,321},{123,68}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_2_eff/qi001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{13,12}</string>
+                <key>spriteSourceSize</key>
+                <string>{13,12}</string>
+                <key>textureRect</key>
+                <string>{{230,1027},{13,12}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_2_eff/shouji001.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{125,63}</string>
+                <key>spriteSourceSize</key>
+                <string>{125,63}</string>
+                <key>textureRect</key>
+                <string>{{1,186},{125,63}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>slime_2_eff/shouji002.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{36,50}</string>
+                <key>spriteSourceSize</key>
+                <string>{36,50}</string>
+                <key>textureRect</key>
+                <string>{{210,1},{36,50}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -300,9 +450,9 @@
                 <key>spriteSourceSize</key>
                 <string>{113,102}</string>
                 <key>textureRect</key>
-                <string>{{1,1},{113,102}}</string>
+                <string>{{1,391},{113,102}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>tower_1/ta_under.png</key>
             <dict>
@@ -315,9 +465,729 @@
                 <key>spriteSourceSize</key>
                 <string>{108,80}</string>
                 <key>textureRect</key>
-                <string>{{105,1},{108,80}}</string>
+                <string>{{166,269},{108,80}}</string>
                 <key>textureRotated</key>
                 <true/>
+            </dict>
+            <key>tower_1_bullet/bullet.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{33,24}</string>
+                <key>spriteSourceSize</key>
+                <string>{33,24}</string>
+                <key>textureRect</key>
+                <string>{{97,1018},{33,24}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_bullet/ta1yan_01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{38,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{38,37}</string>
+                <key>textureRect</key>
+                <string>{{128,228},{38,37}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_eff/circle_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2,2}</string>
+                <key>spriteSize</key>
+                <string>{162,164}</string>
+                <key>spriteSourceSize</key>
+                <string>{184,184}</string>
+                <key>textureRect</key>
+                <string>{{1,22},{162,164}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_eff/shouji_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,42}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,42}</string>
+                <key>textureRect</key>
+                <string>{{1,1018},{21,42}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_eff/shouji_2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{87,53}</string>
+                <key>spriteSourceSize</key>
+                <string>{87,53}</string>
+                <key>textureRect</key>
+                <string>{{105,803},{87,53}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_eff/shouji_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{68,42}</string>
+                <key>spriteSourceSize</key>
+                <string>{68,42}</string>
+                <key>textureRect</key>
+                <string>{{1,1041},{68,42}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_eff/shouji_4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{47,54}</string>
+                <key>spriteSourceSize</key>
+                <string>{47,54}</string>
+                <key>textureRect</key>
+                <string>{{116,423},{47,54}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_1_eff/shouji_5.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{56,24}</string>
+                <key>spriteSourceSize</key>
+                <string>{56,24}</string>
+                <key>textureRect</key>
+                <string>{{105,777},{56,24}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_1_eff/shouji_6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{49,38}</string>
+                <key>spriteSourceSize</key>
+                <string>{49,38}</string>
+                <key>textureRect</key>
+                <string>{{126,268},{49,38}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_1_eff/ta1yan_01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{38,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{38,37}</string>
+                <key>textureRect</key>
+                <string>{{128,228},{38,37}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2/ta_top.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{102,95}</string>
+                <key>spriteSourceSize</key>
+                <string>{102,95}</string>
+                <key>textureRect</key>
+                <string>{{1,779},{102,95}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2/ta_under.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{106,78}</string>
+                <key>spriteSourceSize</key>
+                <string>{106,78}</string>
+                <key>textureRect</key>
+                <string>{{167,53},{106,78}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_bullet/sandan.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{28,28}</string>
+                <key>spriteSourceSize</key>
+                <string>{28,28}</string>
+                <key>textureRect</key>
+                <string>{{214,1041},{28,28}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/2gwsj01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{5,-1}</string>
+                <key>spriteSize</key>
+                <string>{81,80}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,84}</string>
+                <key>textureRect</key>
+                <string>{{165,379},{81,80}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/2gwsj02.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,-3}</string>
+                <key>spriteSize</key>
+                <string>{69,76}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,84}</string>
+                <key>textureRect</key>
+                <string>{{152,967},{69,76}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/2gwsj03.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-4,-1}</string>
+                <key>spriteSize</key>
+                <string>{71,80}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,84}</string>
+                <key>textureRect</key>
+                <string>{{165,681},{71,80}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/2gwsj04.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-11,-1}</string>
+                <key>spriteSize</key>
+                <string>{69,82}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,84}</string>
+                <key>textureRect</key>
+                <string>{{164,754},{69,82}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/2gwsj05.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-11,0}</string>
+                <key>spriteSize</key>
+                <string>{69,84}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,84}</string>
+                <key>textureRect</key>
+                <string>{{160,825},{69,84}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/2gwsj06.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-11,0}</string>
+                <key>spriteSize</key>
+                <string>{69,84}</string>
+                <key>spriteSourceSize</key>
+                <string>{91,84}</string>
+                <key>textureRect</key>
+                <string>{{152,896},{69,84}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/circle_3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2,2}</string>
+                <key>spriteSize</key>
+                <string>{162,164}</string>
+                <key>spriteSourceSize</key>
+                <string>{184,184}</string>
+                <key>textureRect</key>
+                <string>{{1,22},{162,164}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/gwsj01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-2,0}</string>
+                <key>spriteSize</key>
+                <string>{77,57}</string>
+                <key>spriteSourceSize</key>
+                <string>{81,57}</string>
+                <key>textureRect</key>
+                <string>{{105,698},{77,57}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/gwsj02.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{81,57}</string>
+                <key>spriteSourceSize</key>
+                <string>{81,57}</string>
+                <key>textureRect</key>
+                <string>{{165,461},{81,57}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/gwsj03.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,1}</string>
+                <key>spriteSize</key>
+                <string>{81,55}</string>
+                <key>spriteSourceSize</key>
+                <string>{81,57}</string>
+                <key>textureRect</key>
+                <string>{{165,520},{81,55}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/gwsj04.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,3}</string>
+                <key>spriteSize</key>
+                <string>{81,51}</string>
+                <key>spriteSourceSize</key>
+                <string>{81,57}</string>
+                <key>textureRect</key>
+                <string>{{165,577},{81,51}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/gwsj05.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,4}</string>
+                <key>spriteSize</key>
+                <string>{81,49}</string>
+                <key>spriteSourceSize</key>
+                <string>{81,57}</string>
+                <key>textureRect</key>
+                <string>{{165,630},{81,49}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/shouji_1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,42}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,42}</string>
+                <key>textureRect</key>
+                <string>{{1,1018},{21,42}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/shouji_5.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{56,24}</string>
+                <key>spriteSourceSize</key>
+                <string>{56,24}</string>
+                <key>textureRect</key>
+                <string>{{105,777},{56,24}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_2_eff/shouji_6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{49,38}</string>
+                <key>spriteSourceSize</key>
+                <string>{49,38}</string>
+                <key>textureRect</key>
+                <string>{{126,268},{49,38}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_2_eff/ta1yan_01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{38,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{38,37}</string>
+                <key>textureRect</key>
+                <string>{{128,228},{38,37}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3/ta_top.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{102,102}</string>
+                <key>spriteSourceSize</key>
+                <string>{102,102}</string>
+                <key>textureRect</key>
+                <string>{{1,675},{102,102}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3/ta_under.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{106,78}</string>
+                <key>spriteSourceSize</key>
+                <string>{106,78}</string>
+                <key>textureRect</key>
+                <string>{{167,161},{106,78}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3_bullet/bingdan01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0}</string>
+                <key>spriteSize</key>
+                <string>{45,29}</string>
+                <key>spriteSourceSize</key>
+                <string>{47,29}</string>
+                <key>textureRect</key>
+                <string>{{93,1067},{45,29}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3_bullet/bingdan02.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{47,29}</string>
+                <key>spriteSourceSize</key>
+                <string>{47,29}</string>
+                <key>textureRect</key>
+                <string>{{49,969},{47,29}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3_bullet/bingdan03.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{41,29}</string>
+                <key>spriteSourceSize</key>
+                <string>{47,29}</string>
+                <key>textureRect</key>
+                <string>{{167,22},{41,29}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3_bullet/bingdan04.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,0}</string>
+                <key>spriteSize</key>
+                <string>{37,29}</string>
+                <key>spriteSourceSize</key>
+                <string>{47,29}</string>
+                <key>textureRect</key>
+                <string>{{126,350},{37,29}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3_eff/glow.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{48,48}</string>
+                <key>spriteSourceSize</key>
+                <string>{50,50}</string>
+                <key>textureRect</key>
+                <string>{{101,968},{48,48}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3_eff/xugaobuff01i.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{65,46}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,46}</string>
+                <key>textureRect</key>
+                <string>{{49,1000},{65,46}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3_eff/xugaosj01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-6,-6}</string>
+                <key>spriteSize</key>
+                <string>{40,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{52,49}</string>
+                <key>textureRect</key>
+                <string>{{128,186},{40,37}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3_eff/xugaosj02.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,-2}</string>
+                <key>spriteSize</key>
+                <string>{46,45}</string>
+                <key>spriteSourceSize</key>
+                <string>{52,49}</string>
+                <key>textureRect</key>
+                <string>{{45,1067},{46,45}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3_eff/xugaosj03.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{3,-1}</string>
+                <key>spriteSize</key>
+                <string>{46,47}</string>
+                <key>spriteSourceSize</key>
+                <string>{52,49}</string>
+                <key>textureRect</key>
+                <string>{{1,969},{46,47}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_3_eff/xugaosj04.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{6,0}</string>
+                <key>spriteSize</key>
+                <string>{40,49}</string>
+                <key>spriteSourceSize</key>
+                <string>{52,49}</string>
+                <key>textureRect</key>
+                <string>{{101,892},{40,49}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3_eff/xugaosj05.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{10,0}</string>
+                <key>spriteSize</key>
+                <string>{32,49}</string>
+                <key>spriteSourceSize</key>
+                <string>{52,49}</string>
+                <key>textureRect</key>
+                <string>{{101,934},{32,49}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_3_eff/xugaosjlizi.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{12,12}</string>
+                <key>spriteSourceSize</key>
+                <string>{12,12}</string>
+                <key>textureRect</key>
+                <string>{{97,1053},{12,12}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_4/ta_top.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{110,98}</string>
+                <key>spriteSourceSize</key>
+                <string>{110,98}</string>
+                <key>textureRect</key>
+                <string>{{1,495},{110,98}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_4/ta_under.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{106,78}</string>
+                <key>spriteSourceSize</key>
+                <string>{106,78}</string>
+                <key>textureRect</key>
+                <string>{{1,595},{106,78}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_4_bullet/glow.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{48,48}</string>
+                <key>spriteSourceSize</key>
+                <string>{50,50}</string>
+                <key>textureRect</key>
+                <string>{{101,968},{48,48}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>tower_4_bullet/zstzd_01.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{36,26}</string>
+                <key>spriteSourceSize</key>
+                <string>{36,26}</string>
+                <key>textureRect</key>
+                <string>{{124,1018},{36,26}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>tower_4_bullet/zstzd_02.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{207,19}</string>
+                <key>spriteSourceSize</key>
+                <string>{207,19}</string>
+                <key>textureRect</key>
+                <string>{{1,1},{207,19}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
@@ -331,9 +1201,9 @@
             <key>realTextureFileName</key>
             <string>animation.png</string>
             <key>size</key>
-            <string>{508,125}</string>
+            <string>{247,1113}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6fea82ef09f8310598ff396e17452caa:8fdc288661cab97644c6883e5e519af0:0a34c58c0aa3d5b8cfa3f16913e33dfe$</string>
+            <string>$TexturePacker:SmartUpdate:fbe961075a29aeae5b3284816207f7c4:a37c15cdcbfe658d96cb1fea97217ec9:0a34c58c0aa3d5b8cfa3f16913e33dfe$</string>
             <key>textureFileName</key>
             <string>animation.png</string>
         </dict>

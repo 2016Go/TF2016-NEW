@@ -106,7 +106,7 @@ function buildTowerUI:towerSpTouchBegan(towerID)
 	local mainSprite = DHSkeletonAnimation:createWithFile(towerData["png"]);
     mainSprite:setAnchorPoint(cc.p(0.5,0.5))
     mainSprite:setOpacity(150)
-    local seleTowerSize = cc.p( self.seleTower:getContentSize().width, self.seleTower:getContentSize().height)
+    local seleTowerSize = cc.p( self.seleTower:getContentSize().width, self.seleTower:getContentSize().height-24)
     mainSprite:setPosition( cc.pMul(seleTowerSize,0.5) )
     mainSprite:setScale(0.5)
     self.seleTower:addChild(mainSprite)

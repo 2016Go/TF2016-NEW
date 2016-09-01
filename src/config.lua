@@ -33,7 +33,7 @@ CC_CONFIG =
     { src = 'conf/buff.conf', name = 'buff'     },        --buff的配置
     { src = 'conf/trick.conf', name = 'trick'   },        --机关的配置
     { src = 'conf/title.conf', name = 'title'   },        --称号表
-    { src = 'conf/uiMapPos.conf', name = 'uiMapPos'},        --map地图的关卡信息表
+    { src = 'conf/uiMapPos.conf', name = 'uiMapPos'},     --map地图的关卡信息表
 }
 
 --是否显示DEBUG编辑器模式下的圈绘图
@@ -64,8 +64,10 @@ CC_UI_DATA_TPYE =
     UI_PlayName    = "PlayName",           --玩家数据
     UI_Wallet      = "Wallet",             --钱包数据
     UI_Level       = "Level" ,             --等级信息
-    UI_MissionNum  = "MissionNum",          --最大通关数
-    UI_Title       = "Title"               --游戏称号 
+    UI_MissionNum  = "MissionNum",         --最大通关数
+    UI_Title       = "Title",              --游戏称号 
+    UI_MusicState  = "MusicState",         --音乐开关情况
+    UI_EffectState = "EffectState"         --音效开关情况
 }
 
 -----------------------------------------------------
@@ -74,21 +76,15 @@ CC_UI_DATA_TPYE =
 --战斗中的层级关系
 CC_GAME_LAYER_LEVEL = 
 {
-    Layer_scene = 10,    --最底层的地形层 
-
-    
-    Layer_scene_space = 50,     --空地所在层
-    Layer_scene_enemy = 100,   --怪物所在层级
-    Layer_scene_top = 150,      --上层地形
-    Layer_scene_debug = 151,    --最底层的地形层上的debug模式绘制层
-    Layer_scene_tower = 180,    --塔所在层
-    Layer_scene_bullet = 190,    --子弹所在的层
-
-
-    Layer_scene_sky =  400,   --云层
-
-    Layer_fight_main_ui = 500,   --主操作层所在层级
-    Layer_max = 9999     --最高层地形
+    Layer_scene         = 10,       --最底层的地形层     
+    Layer_scene_space   = 30,       --空地所在层
+    Layer_scene_enemy   = 40,       --怪物所在层级 怪物后面必须预留120个层级单位，用于怪物之间的穿行
+    Layer_scene_top     = 160,      --上层地形
+    Layer_scene_debug   = 161,      --最底层的地形层上的debug模式绘制层
+    Layer_scene_bullet  = 200,      --子弹所在的层
+    Layer_scene_sky     = 400,      --云层
+    Layer_fight_main_ui = 500,      --主操作层所在层级
+    Layer_max           = 9999      --最高层地形
 }
 
 --参与者的阵营属性
@@ -117,10 +113,12 @@ CC_PLIST =
     --"plist/enemy/babyspirit.plist",
     --"plist/enemy/devilobserver.plist",
     "plist/enemy/goblin.plist",
+    "icon.plist",
     --"plist/enemy/orcgeneral.plist",
     --"plist/enemy/babyspirit.plist",
     "plist/towers/tower.plist",
     "plist/bullet/bullet.plist",
+    "animation/animation.plist",
     "animation/animation.plist",
 }
 
@@ -146,18 +144,22 @@ CC_LIFT_WALK_DIR =
 
 CC_GAME_EVENT = 
 {
-    GameEvent_EnemyGoOver = 1,      -- 怪物走到了最后的出口
-    GameEvent_LifeDie = 2,          -- 生命体被击杀
-    GameEvent_LodingRun = 20,       -- 读取进度条界面
-    GameEvent_WaveDataReady = 50,   -- 当前波次信息准备Ok,附带波次数据
-    GameEvent_NextWaveNeed  = 51,    -- 请求下一个波次的怪物，
-    GameEvent_MainUIDataChange = 100,     --游戏场景数据变化
-    GameEvent_GoldChange    =   101,     --金币数据变更      
-    GameEvent_GoldPoor      =   102,     --游戏中金币不足  
-    GameEvent_BuildTower    =   150,     --建造防御塔
-    GameEvent_BuildBullet   =   151,      --请求创建子弹
-    GameEvent_BulletDie   =   152,      --说明子弹自身死亡，请求销毁
-    GameEvent_BulletCollision =  153        --子弹碰撞检测请求
+    GameEvent_EnemyGoOver       = 1,      -- 怪物走到了最后的出口
+    GameEvent_LifeDie           = 2,      -- 生命体被击杀
+    GameEvent_LodingRun         = 20,     -- 读取进度条界面
+    GameEvent_WaveDataReady     = 50,     -- 当前波次信息准备Ok,附带波次数据
+    GameEvent_NextWaveNeed      = 51,     -- 请求下一个波次的怪物，
+    GameEvent_MainUIDataChange  = 100,    -- 游戏场景数据变化
+    GameEvent_GoldChange        = 101,    -- 金币数据变更      
+    GameEvent_GoldPoor          = 102,    -- 游戏中金币不足  
+    GameEvent_BuildTower        = 150,    -- 建造防御塔
+    GameEvent_BuildBullet       = 151,    -- 请求创建子弹
+    GameEvent_BulletDie         = 152,    -- 说明子弹自身死亡，请求销毁
+    GameEvent_BulletCollision   = 153,    -- 子弹碰撞检测请求
+
+    GameEvent_Trick_AddEnemy    = 200,    -- 增加怪物的机关事件
+    GameEvent_Trick_Water       = 201,    -- 水阀机关事件  
+    GameEvent_Trick_Dele        = 202     -- 请求下一帧销毁事件发出者机关  
 }
 
 CC_TIME_SCALE = 1

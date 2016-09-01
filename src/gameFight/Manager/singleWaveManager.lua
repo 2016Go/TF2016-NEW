@@ -21,11 +21,13 @@ end
 --监听事件
 function singleWaveManager:eventResponse(gameEventID, eventSender, parameter)
     --请求波次
-    cs.logger.i("singleWaveManager:eventResponse"..gameEventID)
     if gameEventID == CC_GAME_EVENT.GameEvent_NextWaveNeed then
         --开始进行波次的等待时间
         local stageData = singleGameData:getInstance():getStageData()
-        if stageData.wave >= stageData.waveLimit then
+
+        cs.logger.i("stageData.wave = "..stageData.wave)
+        cs.logger.i("stageData.waveLimit = "..stageData.waveLimit)
+        if stageData.wave > stageData.waveLimit then
             --处理波次结束时间
             singleTimeManager:getInstance():nextRemoveTimerNextFrame(self)
             return

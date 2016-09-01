@@ -5,11 +5,6 @@ function bullet:ctor()
     bullet.super.ctor(self)
     self:setAnchorPoint(cc.p(0.5,0.5))  --设定根节点的锚点
 
-    --创建一个子弹的造型空图片
-    self.mainSprite = cc.Sprite:create()
-    self.mainSprite:setAnchorPoint(cc.p(0.5,0.5))
-    self.mainSprite:setPosition(cc.p(0,0))
-
     --用于判断子弹是否已经造成过伤害
     self.isAtt = false
 end
@@ -19,15 +14,15 @@ end
 function bullet:born(bulletData)
 
     self.bulletData = cs.util.tablecpy(cs.conf.a("bullet",bulletData.bulletID))
-    local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.bulletData['png'] ,"/walk/", 0.25, 2, 10, "%02d.png")
+    --start
 
-    if fristFrame == nil then
-        print(" fristFrame == nil "..self.bulletData['png'])
-    end
-
-    if animation == nil then
-        print(" animation == nil "..self.bulletData['png'])
-    end
+    --local fristFrame , animation = singleUtil:getInstance():createFrameCache(self.bulletData['png'] ,"/walk/", 0.25, 2, 10, "%02d.png")
+    self.mainSprite = DHSkeletonAnimation:createWithFile(self.bulletData['png']);
+    self.mainSprite:setAnchorPoint(cc.p(0.5,0.5))
+    self.mainSprite:setScale(0.5)
+    self.mainSprite:playAnimation("start",-1)
+    self.mainSprite:scheduleUpdateLua()
+    self:addChild(self.mainSprite , 10)
 
     --如果没有敌人目标，说明是伴生子弹，强制改变子弹部分属性
     if bulletData.targetEnemy == nil then
@@ -36,10 +31,6 @@ function bullet:born(bulletData)
         self.bulletData['pRange'] = 36
     end
 
-    self.mainSprite:setSpriteFrame(fristFrame)
-    self.mainSprite:runAction(cc.RepeatForever:create(cc.Animate:create(animation)))
-    self:addChild(self.mainSprite , 10)
-    
     self:setPosition(bulletData.bulletPos)
 
     --上一个计算点的初始化，这个值特殊用于路径攻击的一个计算量

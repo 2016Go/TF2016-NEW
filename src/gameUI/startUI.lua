@@ -4,16 +4,17 @@ local startUI = class("startUI", function() return cc.Layer:create() end)
 function startUI:ctor()
 	--初始化监听数据，初始化数据
 	cs.logger.i("startUI:ctor()")
+    AudioEngine.preloadEffect("Sound/click.mp3")
 
 	self:setAnchorPoint(cc.p(0,0))
 	self:setPosition(cc.p(0,0))
 
 	self.UI = {}
-	
     --加载一张背景图片
     self.UI.bgSp = cc.Sprite:create("UI/denglu/bgPic.jpg")
     self.UI.bgSp:setAnchorPoint(cc.p(0,0))
     self.UI.bgSp:setPosition(cc.p(0,0))
+
     --获取背景图片大小
     local bgSize = self.UI.bgSp:getContentSize()
 
@@ -25,20 +26,19 @@ function startUI:ctor()
     --添加游戏名称图片
     self.UI.gameName = cc.Sprite:create("UI/denglu/gameTitle.png")
     --self.UI.gameName:setPosition(cc.p(display.cx,display.cy + 200))
-    --self.UI.gameName:setScale(0.7)
+    self.UI.gameName:setScale(0.7)
     --self:addChild(self.UI.gameName)
     --获取标题图片大小
     local titleSize = self.UI.gameName:getContentSize()
     
     --创建发光底板
-    --self.UI.spark = cc.Sprite:create("UI/denglu/spark.png")
-    --self.UI.spark:setPosition(cc.p(-titleSize.width/2, 0))
+    self.UI.spark = cc.Sprite:create("UI/denglu/spark.png")
+    self.UI.spark:setPosition(cc.p(-titleSize.width/2, 0))
 
     --创建裁剪节点
-    --[[
     self.UI.clipplingNode = cc.ClippingNode:create()
     self.UI.clipplingNode:setPosition(cc.p(display.cx,display.cy + 200))
-    self.UI.clipplingNode:setAlphaThreshold(0.05)
+    self.UI.clipplingNode:setAlphaThreshold(0.01)
     self.UI.clipplingNode:setContentSize(titleSize.width,titleSize.height)
     self.UI.clipplingNode:setStencil(self.UI.gameName)
     self.UI.clipplingNode:addChild(self.UI.gameName,1)
@@ -46,7 +46,7 @@ function startUI:ctor()
     self:addChild(self.UI.clipplingNode)
 
     local sparkMove = cc.MoveBy:create(2,cc.p(titleSize.width, 0))
-    self.UI.spark:runAction(cc.RepeatForever:create(cc.Sequence:create(sparkMove,sparkMove:reverse())))]]
+    self.UI.spark:runAction(cc.RepeatForever:create(cc.Sequence:create(sparkMove,sparkMove:reverse())))
 
     --添加开始游戏按钮
     self.UI.startBtn = ccui.Button:create("UI/denglu/startBtn.png")
@@ -76,6 +76,7 @@ function startUI:ctor()
     self:addChild(self.UI.versionLabel)
 
     cs.logger.i("gameName************2")
+    
     singleManagerUI:getInstance():bindListener(self.UI.bgSp,self,"bgSp")
 
     --绑定事件
@@ -87,6 +88,10 @@ function startUI:ctor()
     self.ShaderManager = require("gameUI.gameUIBase.ShaderManager")
     self.ShaderManager:load()
 
+    self.labelBmFont = cc.LabelBMFont:create("2221123", "ttf/TxtNumber_20.fnt")
+    self.labelBmFont:setPosition(ccp(100,200))
+
+    self:addChild(self.labelBmFont)
 
     for i=1,10 do
         local uuu = cs.conf.a("uiMapPos",i)
@@ -97,6 +102,8 @@ function startUI:ctor()
 
         print("number is = "..xxx)
     end
+
+
 end
 
 --添加一个灰色层
@@ -130,6 +137,18 @@ function startUI:addColorLayer()
     self.UI.effectCheckBox:setPosition(cc.p(setBgSize.width - 100, 100))
     self.UI.settingBg:addChild(self.UI.musicCheckBox)
     self.UI.settingBg:addChild(self.UI.effectCheckBox)
+    if singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_MusicState] == "ON" then
+        self.UI.musicCheckBox:setSelected(true)
+        AudioEngine.resumeMusic()
+    else
+        AudioEngine.stopMusic()
+    end
+    if singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_EffectState] == "ON" then
+        self.UI.effectCheckBox:setSelected(true)
+        AudioEngine:resumeAllEffects()
+    else
+        AudioEngine:stopAllEffects()
+    end
 
     --语言选择按钮
     self.UI.languageBtn = ccui.Button:create("UI/denglu/clearBtn.png")
@@ -152,10 +171,6 @@ function startUI:addColorLayer()
     singleManagerUI:getInstance():bindListener(self.UI.languageBtn, self, "languageBtn")
 end
 
-function startUI:musicCheckBoxTouchEnded()
-    print("*****************")
-    print(self.UI.musicCheckBox:isSelected())
-end
 
 --删除灰色层
 function startUI:removeColorLayer()
@@ -169,9 +184,10 @@ end
 --按钮监听事件函数
 function startUI:bgSpTouchBegan()
     print("bgSpTouchBegan")
+        self.labelBmFont:setString("23241")
     --self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.HIGHTLIGHT))
     --self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.COFFEE))
-    self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.GRAY))
+    --self.UI.bgSp:setGLProgram(self.ShaderManager:getShader(self.ShaderManager.ShaderType.GRAY))
 end
 
 function startUI:bgSpTouchEnd()
@@ -180,13 +196,23 @@ end
 
 function startUI:startBtnTouchEnded()
 	cs.logger.i("startBtnTouchEnded")
+    local fightMainScene = require("gameFight.fightMainScene"):create()
+    singleManagerUI:getInstance():changeUI({} , fightMainScene , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+
+    --if singleUIData:getInstance()[CC_UI_DATA_TPYE.UI_EffectState] == "ON" then
+    --    AudioEngine.playEffect("Sound/click.mp3")
+    --end
 	--进入选关界面
-    local mapUI = require("gameUI.mapUI"):create()
-    singleManagerUI:getInstance():changeUI({} , mapUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
+    --local mapUI = require("gameUI.mapUI"):create()
+    --singleManagerUI:getInstance():changeUI({} , mapUI , CC_UI_GOTO_TPYE.UI_Rep_Scene)
 end
 
 function startUI:clearBtnTouchEnded()
     singleUIData:getInstance():_setNewPlayerData()
+
+    --测试代码
+    local mapUI = require("gameUI.signInUI"):create()
+    singleManagerUI:getInstance():changeUI(self , mapUI , CC_UI_GOTO_TPYE.UI_Add_Bomb)
 end
 
 function startUI:settingBtnTouchEnded()
@@ -197,6 +223,30 @@ end
 function startUI:backBtnTouchEnded()
     cs.logger.i("backBtnTouchEnded")
     self:removeColorLayer()
+end
+
+function startUI:musicCheckBoxSelect()
+    cs.logger.i("musicCheckBoxSelect")
+    singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_MusicState, "ON")
+    AudioEngine:resumeMusic()
+end
+
+function startUI:musicCheckBoxUnselect()
+    cs.logger.i("musicCheckBoxUnselect")
+    singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_MusicState, "OFF")
+    AudioEngine:stopMusic()
+end
+
+function startUI:effectCheckBoxSelect()
+    cs.logger.i("effectCheckBoxSelect")
+    singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_EffectState, "ON")
+    AudioEngine:resumeAllEffects()
+end
+
+function startUI:effectCheckBoxUnselect()
+    cs.logger.i("effectCheckBoxUnselect")
+    singleUIData:getInstance():setData(CC_UI_DATA_TPYE.UI_EffectState, "OFF")
+    AudioEngine:stopAllEffects()
 end
 
 function startUI:enter()

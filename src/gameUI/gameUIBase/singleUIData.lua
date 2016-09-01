@@ -54,6 +54,8 @@ function singleUIData:_setNewPlayerData()
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Level , 0 )
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_MissionNum , 0)
     cs.util.writeUD( CC_UI_DATA_TPYE.UI_Title , "一级苦工")
+    cs.util.writeUD( CC_UI_DATA_TPYE.UI_MusicState , "ON")
+    cs.util.writeUD( CC_UI_DATA_TPYE.UI_EffectState , "ON")
     cs.util.flushUD()
     self[CC_UI_DATA_TPYE.UI_MissionNum] = 0
     self[CC_UI_DATA_TPYE.UI_Title] = "一级苦工"

@@ -603,6 +603,10 @@ protected:
     void updateScrollBar(const Vec2& outOfBoundary);
 
 protected:
+    
+    // 添加函数声明
+    virtual void autoScrollBegin(){}
+    
     Layout* _innerContainer;
 
     Direction _direction;
